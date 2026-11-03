@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U04-A07 — Laboratório Prático: Publicação Prática (Deploy) e Testes de Carga Finais</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U04-A07</span>
+      <span class="badge">Presencial (4h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Laboratório Prático: Publicação Prática (Deploy) e Testes de Carga Finais</h1>
+      <p>Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 07: Laboratório Prático: Publicação Prática (Deploy) e Testes de Carga Finais</h1>
+
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Deploy em Produção" loading="lazy" /><figcaption>Diagrama Deploy em Produção</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir este laboratório presencial de 4 horas, você será capaz de:
+<li class="task-item">✅ <strong>Realizar</strong> o deploy da aplicação Full-Stack e verificar a conectividade HTTPS entre <strong>React</strong>, <strong>Node.js</strong> e <strong>PocketBase</strong>.</li>
+<li class="task-item">✅ <strong>Implementar</strong> uma rota de verificação de integridade (<code class="inline-code">/health</code>) que monitora o tempo de atividade (<em>uptime</em>) e a conexão com o banco.</li>
+<li class="task-item">✅ <strong>Executar</strong> uma bateria de requisições concorrentes (<code class="inline-code">Promise.all</code>) para aferir a latência média (<code class="inline-code">p95</code>) e a estabilidade do servidor.</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 Observabilidade, <em>Healthchecks</em> e Testes de Carga</h3>
+Plataformas modernas de nuvem (Render, Fly.io, Railway) monitoram periodicamente uma rota de <strong>Healthcheck</strong> (<code class="inline-code">/health</code> ou <code class="inline-code">/api/health</code> no PocketBase) para saber se o container está saudável ou precisa ser reiniciado automaticamente. Além disso, antes de entregar o sistema aos usuários finais, simulamos rajadas de acessos simultâneos para garantir que o Event Loop do Node.js permaneça responsivo.
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Prompt para Simulador de Carga e Healthcheck em Node.js</h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Crie em JavaScript ES6+ um avaliador de saúde e carga (executarTesteCargaConcorrente) que dispare N requisições assíncronas simultâneas via Promise.all contra uma função de handler da API, medindo o tempo total, taxa de sucesso e latência média por requisição.</code></pre>
+
+<h3>Passo 2: Implementação de Healthcheck e Teste de Carga</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// src/projeto/loadTester.js
+import { performance } from 'node:perf_hooks';
+
+export async function executarTesteCargaConcorrente(fnRequisicao, totalRequisicoes = 50) {
+  const inicio = performance.now();
+  const promessas = Array.from({ length: totalRequisicoes }, (_, i) =&gt; fnRequisicao(i));
+  const resultados = await Promise.allSettled(promessas);
+  const duracaoTotalMs = Number((performance.now() - inicio).toFixed(2));
+
+  const sucessos = resultados.filter((r) =&gt; r.status === 'fulfilled').length;
+  const falhas = totalRequisicoes - sucessos;
+
+  return {
+    totalRequisicoes,
+    sucessos,
+    falhas,
+    duracaoTotalMs,
+    latenciaMediaMs: Number((duracaoTotalMs / totalRequisicoes).toFixed(2)),
+    estavel: falhas === 0
+  };
+}</code></pre>
+
+<h3>Passo 3: Teste de Validação em Laboratório</h3>
+Execute <code class="inline-code">executarTesteCargaConcorrente</code> com 50 chamadas simultâneas e verifique se <code class="inline-code">estavel === true</code> e <code class="inline-code">falhas === 0</code>.
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U04-DIAG01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: DIAG
+[TEMA]: Monitoramento de Healthcheck e Testes de Carga em Produção Cloud
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
+[COMPOSIÇÃO]: Production cloud cluster receiving concurrent load test requests with healthcheck status indicators.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "Docker Build", "Cloud Production", "PocketBase SQLite".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

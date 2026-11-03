@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U01-A02 — Configuração de Ambiente Node.js e Arquitetura Web na Prática (Laboratório)</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U01-A02</span>
+      <span class="badge">Presencial (4h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Configuração de Ambiente Node.js e Arquitetura Web na Prática (Laboratório)</h1>
+      <p>Unidade I: Framework Back-end, Padrões de Software & Vibe Coding</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 02: Configuração de Ambiente Node.js e Arquitetura Web na Prática (Laboratório)</h1>
+
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-DIAG01.png" alt="Fluxo Vibe Coding no Back-end" loading="lazy" /><figcaption>Fluxo Vibe Coding no Back-end</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir este laboratório presencial, você será capaz de:
+<li class="task-item">✅ <strong>Configurar</strong> o ambiente de desenvolvimento local com Node.js LTS, suporte nativo a arquivos <code class="inline-code">.env</code> (<code class="inline-code">--env-file</code>) e cliente de teste de APIs.</li>
+<li class="task-item">✅ <strong>Implementar</strong> o roteamento básico e a leitura de <em>streams</em> de dados JSON em requisições <code class="inline-code">POST</code> usando JavaScript Vanilla no Node.js.</li>
+<li class="task-item">✅ <strong>Diagnosticar</strong> cabeçalhos HTTP (<em>Headers</em>), códigos de status e tempos de resposta em chamadas locais.</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 Anatomia do Protocolo HTTP na Arquitetura Cliente-Servidor</h3>
+Toda comunicação entre um front-end (seja em <strong>JavaScript Vanilla</strong> ou <strong>React</strong>) e um back-end (<strong>Node.js</strong> ou <strong>PocketBase</strong>) fundamenta-se na troca de mensagens HTTP:
+<li><strong>Request (Requisição)</strong>: Composta pelo <strong>Método/Verbo</strong> (<code class="inline-code">GET</code>, <code class="inline-code">POST</code>, <code class="inline-code">PUT</code>, <code class="inline-code">PATCH</code>, <code class="inline-code">DELETE</code>), <strong>URI</strong> (<code class="inline-code">/cursos?turno=noite</code>), <strong>Headers</strong> (<code class="inline-code">Content-Type: application/json</code>, <code class="inline-code">Authorization: Bearer ...</code>) e <strong>Body</strong> (carga útil serializada em JSON).</li>
+<li><strong>Response (Resposta)</strong>: Composta pelo <strong>Status Code</strong> (<code class="inline-code">200 OK</code>, <code class="inline-code">201 Created</code>, <code class="inline-code">400 Bad Request</code>, <code class="inline-code">404 Not Found</code>, <code class="inline-code">500 Internal Server Error</code>), <strong>Headers</strong> de resposta (incluindo políticas de CORS) e <strong>Body</strong> de retorno.</li>
+
+<h3>2.2 Variáveis de Ambiente Nativas no Node.js</h3>
+Boas práticas de engenharia de software (12-Factor App) determinam que portas de rede, chaves secretas e URLs do <strong>PocketBase</strong> jamais devem ser escritas diretamente no código-fonte (<em>hardcoded</em>). A partir do Node.js 20.6+, carregamos variáveis diretamente sem pacotes externos usando a flag <code class="inline-code">--env-file=.env</code>.
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Especificação de Parser JSON Assíncrono com Vibe Coding</h3>
+Solicite ao assistente de IA a criação de uma função utilitária para ler o corpo (<em>stream</em>) de uma requisição HTTP em Node.js puro com limite de tamanho contra ataques de sobrecarga:
+
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Escreva uma função assíncrona lerBodyJson(req) em Node.js puro (JavaScript ES6+) que colete os chunks da requisição HTTP, aplique um limite de segurança de 1MB e faça o JSON.parse, lançando um erro com statusCode 400 caso o JSON seja inválido.</code></pre>
+
+<h3>Passo 2: Código de Referência do Laboratório</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// src/httpParser.js — Leitura Segura de Stream JSON em Node.js
+export async function lerBodyJson(req, limiteBytes = 1024 * 1024) {
+  return new Promise((resolve, reject) =&gt; {
+    let dados = '';
+    let bytesRecebidos = 0;
+
+    req.on('data', (chunk) =&gt; {
+      bytesRecebidos += chunk.length;
+      if (bytesRecebidos &gt; limiteBytes) {
+        const erro = new Error('Payload excede o limite máximo de 1MB.');
+        erro.statusCode = 413;
+        reject(erro);
+        req.destroy();
+        return;
+      }
+      dados += chunk.toString('utf-8');
+    });
+
+    req.on('end', () =&gt; {
+      if (!dados) return resolve({});
+      try {
+        resolve(JSON.parse(dados));
+      } catch {
+        const erro = new Error('Formato JSON malformado no corpo da requisição.');
+        erro.statusCode = 400;
+        reject(erro);
+      }
+    });
+
+    req.on('error', reject);
+  });
+}</code></pre>
+
+<h3>Passo 3: Teste de Validação no Laboratório</h3>
+Teste o parser enviando um JSON válido e um JSON malformado via <code class="inline-code">curl</code> ou script de teste para verificar o retorno exato do código <code class="inline-code">400 Bad Request</code>.
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U01-DIAG01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: DIAG
+[TEMA]: Vibe Coding Back-end Workflow in Node.js
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#06B6D4, #A855F7).
+[COMPOSIÇÃO]: Professional isometric technical diagram showing a developer entering natural language specifications on the left, feeding into an AI Code Engine in the center. The AI Engine outputs structured Node.js REST routes, JavaScript schema validators, and HTTP error handlers on the right.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "Spec SDD", "AI Code Engine", "Node.js REST API".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

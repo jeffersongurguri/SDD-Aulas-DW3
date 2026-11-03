@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U01-A05 — Arquitetura RESTful, Verbos HTTP, Middlewares e Tratamento de Exceções</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U01-A05</span>
+      <span class="badge">Síncrono (2h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Arquitetura RESTful, Verbos HTTP, Middlewares e Tratamento de Exceções</h1>
+      <p>Unidade I: Framework Back-end, Padrões de Software & Vibe Coding</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 05: Arquitetura RESTful, Verbos HTTP, Middlewares e Tratamento de Exceções</h1>
+
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-DIAG01.png" alt="Diagrama REST e Error Handling" loading="lazy" /><figcaption>Diagrama REST e Error Handling</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir esta aula síncrona, você será capaz de:
+<li class="task-item">✅ <strong>Mapear</strong> operações CRUD aos verbos HTTP semânticos (<code class="inline-code">GET</code>, <code class="inline-code">POST</code>, <code class="inline-code">PUT</code>, <code class="inline-code">PATCH</code>, <code class="inline-code">DELETE</code>) e códigos de status (<code class="inline-code">200</code>, <code class="inline-code">201</code>, <code class="inline-code">204</code>, <code class="inline-code">400</code>, <code class="inline-code">404</code>, <code class="inline-code">422</code>, <code class="inline-code">500</code>).</li>
+<li class="task-item">✅ <strong>Construir</strong> funções de <em>Middleware</em> (logging, CORS e autenticação) no fluxo de requisição Node.js.</li>
+<li class="task-item">✅ <strong>Padronizar</strong> respostas de erro JSON com classes customizadas (<code class="inline-code">HttpError</code>) e tratador global de exceções.</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 Semântica RESTful e Idempotência</h3>
+Uma API verdadeiramente <strong>RESTful</strong> utiliza substantivos no plural para identificar recursos (<code class="inline-code">/alunos</code>, <code class="inline-code">/turmas</code>) e delega a ação ao verbo HTTP:
+
+| Verbo HTTP | Rota Exemplo | Ação Semântica | Idempotente? | Status de Sucesso |
+| :--- | :--- | :--- | :---: | :---: |
+| <code class="inline-code">GET</code> | <code class="inline-code">/alunos</code> | Listar todos os discentes | Sim | <code class="inline-code">200 OK</code> |
+| <code class="inline-code">GET</code> | <code class="inline-code">/alunos/:matricula</code> | Buscar discente específico | Sim | <code class="inline-code">200 OK</code> (ou <code class="inline-code">404</code>) |
+| <code class="inline-code">POST</code> | <code class="inline-code">/alunos</code> | Cadastrar novo discente | Não | <code class="inline-code">201 Created</code> |
+| <code class="inline-code">PUT</code> / <code class="inline-code">PATCH</code> | <code class="inline-code">/alunos/:matricula</code> | Atualizar cadastro do discente | Sim | <code class="inline-code">200 OK</code> |
+| <code class="inline-code">DELETE</code> | <code class="inline-code">/alunos/:matricula</code> | Remover registro acadêmico | Sim | <code class="inline-code">200 OK</code> / <code class="inline-code">204 No Content</code> |
+
+<h3>2.2 Tratamento Centralizado de Exceções (<code class="inline-code">HttpError</code>)</h3>
+Em vez de espalhar blocos <code class="inline-code">res.writeHead(400)...</code> por dezenas de funções, criamos uma classe <code class="inline-code">HttpError extends Error</code> que carrega o <code class="inline-code">statusCode</code> e os detalhes do erro, capturando qualquer falha em um único bloco <code class="inline-code">try / catch</code> de alto nível no servidor.
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Especificação de Tratador Global de Erros e CORS via Vibe Coding</h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Crie em JavaScript ES6+ uma classe HttpError(statusCode, message, details) e um wrapper de servidor HTTP em Node.js que configure cabeçalhos CORS para o front-end React e capture qualquer exceção assíncrona retornando um JSON padronizado { erro, statusCode, timestamp }.</code></pre>
+
+<h3>Passo 2: Implementação de <code class="inline-code">HttpError</code> e Middleware Handler</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// src/errors/HttpError.js
+export class HttpError extends Error {
+  constructor(statusCode, message, details = null) {
+    super(message);
+    this.name = 'HttpError';
+    this.statusCode = statusCode;
+    this.details = details;
+  }
+}
+
+export function aplicarHeadersCors(res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+}
+
+export function responderJson(res, statusCode, payload) {
+  aplicarHeadersCors(res);
+  res.writeHead(statusCode, { 'Content-Type': 'application/json; charset=utf-8' });
+  res.end(JSON.stringify(payload));
+}</code></pre>
+
+<h3>Passo 3: Teste de Validação</h3>
+Verifique se uma exceção <code class="inline-code">throw new HttpError(422, 'Matrícula inválida')</code> é automaticamente convertida em uma resposta HTTP <code class="inline-code">422 Unprocessable Entity</code> com cabeçalhos CORS ativos.
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U01-DIAG01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: DIAG
+[TEMA]: Pipeline de Middlewares REST e Tratamento de Exceções em Node.js
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
+[COMPOSIÇÃO]: Isometric flow showing HTTP Request passing through CORS Middleware, Schema Validator, Controller, and Global Error Handler returning JSON.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "Spec SDD", "AI Code Engine", "Node.js REST API".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

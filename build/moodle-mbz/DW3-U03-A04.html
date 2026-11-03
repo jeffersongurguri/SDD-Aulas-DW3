@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U03-A04 — Requisições Assíncronas (fetch / SDK pocketbase) e Manipulação de Estado Reativo</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U03-A04</span>
+      <span class="badge">Assíncrono (2h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Requisições Assíncronas (fetch / SDK pocketbase) e Manipulação de Estado Reativo</h1>
+      <p>Unidade III: Framework Front-end, Headless CMS & No-Code UI</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 04: Requisições Assíncronas (<code class="inline-code">fetch</code> / SDK <code class="inline-code">pocketbase</code>) e Manipulação de Estado Reativo</h1>
+
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-INFO01.png" alt="Infográfico JS Vanilla vs Estado Reativo React" loading="lazy" /><figcaption>Infográfico JS Vanilla vs Estado Reativo React</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir esta aula assíncrona, você será capaz de:
+<li class="task-item">✅ <strong>Realizar</strong> requisições <code class="inline-code">GET</code>, <code class="inline-code">POST</code> e <code class="inline-code">DELETE</code> utilizando a <code class="inline-code">Fetch API</code> nativa do JavaScript com <code class="inline-code">async/await</code> e <code class="inline-code">AbortController</code>.</li>
+<li class="task-item">✅ <strong>Construir</strong> formulários controlados (<em>Controlled Components</em>) em React para cadastro de discentes.</li>
+<li class="task-item">✅ <strong>Subscrever</strong> atualizações em tempo real (<em>Realtime SSE</em>) do <strong>PocketBase</strong> para atualizar a lista automaticamente quando outro usuário insere dados.</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 Fetch API Nativa vs. SDK Oficial <code class="inline-code">pocketbase</code></h3>
+No <strong>JavaScript Vanilla</strong> e no <strong>React</strong> moderno, não precisamos instalar bibliotecas legadas para requisições simples: a <strong><code class="inline-code">fetch()</code> API</strong> é nativa tanto no navegador quanto no Node.js 18+.
+
+Quando nos conectamos ao <strong>PocketBase</strong>, podemos usar tanto <code class="inline-code">fetch()</code> direto quanto o SDK leve <code class="inline-code">pocketbase</code>, que adiciona conveniências poderosas como subscrição em tempo real com apenas 3 linhas de código:
+<pre class="code-block" data-lang="javascript"><code>// Escuta qualquer criação ou edição na coleção 'alunos' em tempo real!
+pb.collection('alunos').subscribe('*', (evento) =&gt; {
+  console.log('Ação em tempo real:', evento.action, evento.record);
+});</code></pre>
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Prompt de Especificação de Serviço de Rede e Formulário Controlado</h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Escreva uma função assíncrona cadastrarAlunoViaFetch(apiUrl, dadosAluno, fetchFn) que envie um POST JSON com tratamento de erro HTTP, e uma função de validação de formulário controlado para React que habilite o botão de envio apenas quando o nome (&gt;=3 letras) e matrícula (10 dígitos) forem válidos.</code></pre>
+
+<h3>Passo 2: Implementação de Requisição Assíncrona e Validação Reativa</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u3-react-frontend/clienteApiReact.js
+export function validarFormularioAluno({ nome = '', matricula = '' }) {
+  const erros = {};
+  if (nome.trim().length &lt; 3) {
+    erros.nome = 'Informe no mínimo 3 caracteres.';
+  }
+  if (!/^\d{10}$/.test(String(matricula))) {
+    erros.matricula = 'A matrícula deve ter exatamente 10 dígitos.';
+  }
+  return {
+    valido: Object.keys(erros).length === 0,
+    erros
+  };
+}
+
+export async function enviarNovoAlunoFetch(apiUrl, payload, fetchFn = fetch) {
+  const validacao = validarFormularioAluno(payload);
+  if (!validacao.valido) {
+    throw new Error(Object.values(validacao.erros).join(' '));
+  }
+
+  const res = await fetchFn(<code class="inline-code">${apiUrl}/alunos</code>, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  const dados = await res.json();
+  if (!res.ok) {
+    throw new Error(dados.erro || dados.detail || <code class="inline-code">Erro HTTP ${res.status}</code>);
+  }
+  return dados;
+}</code></pre>
+
+<h3>Passo 3: Teste de Validação</h3>
+Teste <code class="inline-code">validarFormularioAluno({ nome: 'Li', matricula: '123' })</code> e confirme que <code class="inline-code">valido</code> é <code class="inline-code">false</code> antes mesmo de disparar tráfego de rede desnecessário.
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U03-INFO01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: INFO
+[TEMA]: Formulários Controlados e Subscrição Realtime React + PocketBase
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
+[COMPOSIÇÃO]: Infographic contrasting manual DOM input reading with Controlled React Forms and Realtime PocketBase updates.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "Imperative Vanilla JS DOM", "Declarative React State".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

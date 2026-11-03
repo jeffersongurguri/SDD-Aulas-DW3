@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U03-A03 — Integração do Front-end React com APIs RESTful e Gerenciamento de Estado (useState / useEffect)</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U03-A03</span>
+      <span class="badge">Síncrono (2h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Integração do Front-end React com APIs RESTful e Gerenciamento de Estado (useState / useEffect)</h1>
+      <p>Unidade III: Framework Front-end, Headless CMS & No-Code UI</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 03: Integração do Front-end React com APIs RESTful e Gerenciamento de Estado</h1>
+
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-DIAG01.png" alt="Diagrama Fluxo React e REST Gateway" loading="lazy" /><figcaption>Diagrama Fluxo React e REST Gateway</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir esta aula síncrona, você será capaz de:
+<li class="task-item">✅ <strong>Aplicar</strong> os hooks essenciais do React (<code class="inline-code">useState</code> e <code class="inline-code">useEffect</code>) para sincronizar a interface com servidores externos (<strong>Node.js</strong> e <strong>PocketBase</strong>).</li>
+<li class="task-item">✅ <strong>Evitar</strong> loops infinitos de renderização compreendendo o array de dependências do <code class="inline-code">useEffect</code>.</li>
+<li class="task-item">✅ <strong>Implementar</strong> a máquina de estados da interface (<code class="inline-code">idle</code> → <code class="inline-code">loading</code> → <code class="inline-code">success</code> | <code class="inline-code">error</code>).</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 Hooks Fundamentais no React: <code class="inline-code">useState</code> e <code class="inline-code">useEffect</code></h3>
+1. <strong><code class="inline-code">useState(valorInicial)</code></strong>: Preserva o estado reativo entre renderizações. Ao invocar a função atualizadora (<code class="inline-code">setAlunos(novosAlunos)</code>), o React agenda uma nova renderização da árvore visual.
+2. <strong><code class="inline-code">useEffect(efeito, [dependencias])</code></strong>: Executa efeitos colaterais fora do cálculo puro de renderização (como buscar a lista de discentes na API Node.js/PocketBase assim que o componente é montado na tela).
+
+<h3>2.2 A Tríade de Estado de Rede (<code class="inline-code">dados</code>, <code class="inline-code">carregando</code>, <code class="inline-code">erro</code>)</h3>
+Uma interface profissional nunca deixa o usuário diante de uma tela em branco enquanto a rede responde. Todo componente que consome uma API deve gerenciar três variáveis reativas:
+<li><code class="inline-code">carregando</code> (<code class="inline-code">boolean</code>): Exibe um indicador visual (<em>Spinner</em> ou <em>Skeleton</em>).</li>
+<li><code class="inline-code">erro</code> (<code class="inline-code">string | null</code>): Exibe um alerta amigável caso o servidor Node.js ou PocketBase esteja inacessível.</li>
+<li><code class="inline-code">dados</code> (<code class="inline-code">Array</code>): Renderiza a lista ou um aviso de <em>"Nenhum registro encontrado"</em>.</li>
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Prompt de Especificação de Gerenciador de Estado Reativo</h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Crie um controlador de estado reativo em JavaScript/React (StoreAlunosReativo) que gerencie o estado { alunos, carregando, erro, filtroCurso }, permitindo buscar dados assíncronos da API e filtrar discentes em tempo real sem mutar o estado original.</code></pre>
+
+<h3>Passo 2: Implementação de Gerenciamento de Estado Imutável</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u3-react-frontend/estadoReativo.js
+export function criarEstadoInicialAlunos() {
+  return {
+    alunos: [],
+    carregando: false,
+    erro: null,
+    termoBusca: ''
+  };
+}
+
+export function reducerAlunos(estadoAtual, acao) {
+  switch (acao.tipo) {
+    case 'REQUISICAO_INICIADA':
+      return { ...estadoAtual, carregando: true, erro: null };
+    case 'REQUISICAO_SUCESSO':
+      return { ...estadoAtual, carregando: false, alunos: acao.payload, erro: null };
+    case 'REQUISICAO_ERRO':
+      return { ...estadoAtual, carregando: false, erro: acao.mensagem };
+    case 'ATUALIZAR_BUSCA':
+      return { ...estadoAtual, termoBusca: acao.termo };
+    case 'ADICIONAR_ALUNO':
+      return { ...estadoAtual, alunos: [...estadoAtual.alunos, acao.aluno] };
+    default:
+      return estadoAtual;
+  }
+}</code></pre>
+
+<h3>Passo 3: Teste de Validação</h3>
+Confirme que o <code class="inline-code">reducerAlunos</code> utiliza o operador <em>spread</em> (<code class="inline-code">...estadoAtual</code>) para retornar sempre uma <strong>nova referência de objeto</strong>, requisito indispensável para que o React detecte a mudança e re-renderize a tela.
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U03-DIAG01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: DIAG
+[TEMA]: Ciclo de Vida de Requisições Assíncronas com useState e useEffect no React
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#6366F1, #F59E0B).
+[COMPOSIÇÃO]: Flow diagram connecting React Component state (loading, data, error) with REST API Gateway and PocketBase backend.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "useState", "useEffect", "PocketBase API".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

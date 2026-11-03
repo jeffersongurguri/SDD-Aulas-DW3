@@ -1,0 +1,26 @@
+{
+  "name": "dw3-material-didatico-ifce-baturite",
+  "version": "1.0.0",
+  "description": "Material Didático SDD - Desenvolvimento Web III (UC17-DWIII) - IFCE Campus Baturité (JS Vanilla, Node.js, PocketBase e React)",
+  "type": "module",
+  "scripts": {
+    "validate": "node src/scripts/validate-specs.js",
+    "build:moodle": "node src/scripts/compile-moodle.js",
+    "test": "node --test src/code-samples/u4-fullstack-tests/api.test.js",
+    "all": "npm run validate && npm test && npm run build:moodle"
+  },
+  "keywords": [
+    "IFCE",
+    "Baturité",
+    "Desenvolvimento Web III",
+    "SDD",
+    "JavaScript",
+    "Node.js",
+    "PocketBase",
+    "React",
+    "Vibe Coding",
+    "Moodle"
+  ],
+  "author": "IFCE Campus Baturité - Equipe Docente DWIII",
+  "license": "MIT"
+}

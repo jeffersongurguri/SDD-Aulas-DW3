@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U04-A02 — Modelagem de Interface (UI/UX) e Fluxos de Navegação em React</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U04-A02</span>
+      <span class="badge">Assíncrono (2h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Modelagem de Interface (UI/UX) e Fluxos de Navegação em React</h1>
+      <p>Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 02: Modelagem de Interface (UI/UX) e Fluxos de Navegação em React</h1>
+
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Full-Stack UI/UX e Deploy" loading="lazy" /><figcaption>Banner Full-Stack UI/UX e Deploy</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir esta aula assíncrona, você será capaz de:
+<li class="task-item">✅ <strong>Mapear</strong> a jornada do usuário em uma <em>Single Page Application (SPA)</em> em <strong>React</strong> (Login → Dashboard → Cadastro → Detalhes).</li>
+<li class="task-item">✅ <strong>Implementar</strong> proteção de rotas no cliente (<em>Protected Routes</em>), redirecionando usuários não autenticados para a tela de login.</li>
+<li class="task-item">✅ <strong>Avaliar</strong> a interface segundo as heurísticas de Nielsen (visibilidade do status do sistema, prevenção de erros e contraste visual).</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 Fluxos de Navegação e Rotas Protegidas em React</h3>
+Em uma aplicação <strong>React</strong> integrada ao <strong>PocketBase</strong>, páginas administrativas (como lançamento de notas ou edição de editais) só devem ser renderizadas se houver um token de autenticação válido (<code class="inline-code">pb.authStore.isValid</code>). Caso contrário, o roteador intercepta a navegação e redireciona o usuário para <code class="inline-code">/login</code>.
+
+<h3>2.2 Heurísticas de UI/UX Essenciais no Projeto Final</h3>
+1. <strong>Visibilidade do Status do Sistema</strong>: Botões de submissão devem exibir <code class="inline-code">"Salvando..."</code> e ficar desabilitados (<code class="inline-code">disabled</code>) durante requisições ao Node.js/PocketBase para evitar cliques duplos.
+2. <strong>Prevenção de Erros</strong>: Confirmação explícita antes de ações destrutivas (<code class="inline-code">DELETE</code>).
+3. <strong>Acessibilidade Semântica</strong>: Uso de tags <code class="inline-code">&lt;main&gt;</code>, <code class="inline-code">&lt;nav&gt;</code>, <code class="inline-code">&lt;label htmlFor="..."&gt;</code> e atributos <code class="inline-code">aria-live</code> para mensagens de erro.
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Prompt de Especificação de Guarda de Rotas React</h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Escreva uma função pura de guarda de navegação resolverRotaNavegacao(rotaDestino, usuarioLogado) em JavaScript/React que proteja rotas administrativas (/admin, /lancamento-notas), exigindo autenticação e perfil adequado, ou redirecionando para /login ou /acesso-negado.</code></pre>
+
+<h3>Passo 2: Implementação de Guarda de Rotas (<code class="inline-code">RouteGuard</code>)</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// src/frontend/routeGuard.js
+const ROTAS_PUBLICAS = ['/login', '/catalogo-cursos', '/editais-publicos'];
+const ROTAS_DOCENTE = ['/lancamento-notas', '/fechamento-diario'];
+
+export function resolverRotaNavegacao(rotaDestino, authStore) {
+  if (ROTAS_PUBLICAS.includes(rotaDestino)) {
+    return { permitir: true, redirecionarPara: null };
+  }
+
+  if (!authStore || !authStore.isValid || !authStore.model) {
+    return { permitir: false, redirecionarPara: '/login' };
+  }
+
+  if (ROTAS_DOCENTE.includes(rotaDestino) &amp;&amp; authStore.model.role !== 'docente') {
+    return { permitir: false, redirecionarPara: '/acesso-negado' };
+  }
+
+  return { permitir: true, redirecionarPara: null };
+}</code></pre>
+
+<h3>Passo 3: Teste de Validação</h3>
+Teste <code class="inline-code">resolverRotaNavegacao('/lancamento-notas', { isValid: true, model: { role: 'discente' } })</code> e confirme o redirecionamento seguro para <code class="inline-code">'/acesso-negado'</code>.
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U04-ART01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: ART
+[TEMA]: Fluxo de Navegação SPA em React e Rotas Protegidas
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #A855F7, #34D399).
+[COMPOSIÇÃO]: UI/UX wireframe flow connecting Login Screen, Route Guard Shield, and Reactive Dashboard in React.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "FULL-STACK &amp; CLOUD DEPLOY".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

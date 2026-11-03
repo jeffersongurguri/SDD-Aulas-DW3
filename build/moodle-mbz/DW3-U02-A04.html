@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U02-A04 — Automação de Scripts de Banco de Dados e Introdução ao BaaS com PocketBase</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U02-A04</span>
+      <span class="badge">Assíncrono (4h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Automação de Scripts de Banco de Dados e Introdução ao BaaS com PocketBase</h1>
+      <p>Unidade II: Framework ORM, Persistência & Backend Low-Code / BaaS</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 04: Automação de Scripts de Banco de Dados e Introdução ao BaaS com PocketBase</h1>
+
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-INFO01.png" alt="Infográfico ORM vs PocketBase BaaS" loading="lazy" /><figcaption>Infográfico ORM vs PocketBase BaaS</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir esta aula assíncrona, você será capaz de:
+<li class="task-item">✅ <strong>Comparar</strong> a construção tradicional de back-end + ORM com a abordagem <strong>Backend-as-a-Service (BaaS)</strong> utilizando <strong>PocketBase</strong>.</li>
+<li class="task-item">✅ <strong>Configurar</strong> coleções (<em>Base</em>, <em>Auth</em> e <em>View</em>) no painel administrativo do PocketBase (<code class="inline-code">http://127.0.0.1:8090/_/</code>).</li>
+<li class="task-item">✅ <strong>Consumir</strong> os endpoints RESTful gerados automaticamente pelo PocketBase usando <strong>JavaScript Vanilla / Node.js</strong>.</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 Por que PocketBase revolucionou o Desenvolvimento Low-Code / BaaS?</h3>
+O <strong>PocketBase</strong> é um Backend-as-a-Service <em>open-source</em> distribuído em um único executável leve que entrega instantaneamente:
+1. <strong>Banco de Dados SQLite Embutido (modo WAL)</strong>: Altíssima performance de leitura e escrita sem necessidade de configurar servidores pesados de banco de dados.
+2. <strong>REST API Automática</strong>: Ao criar uma coleção <code class="inline-code">alunos</code>, o PocketBase disponibiliza imediatamente endpoints prontos para paginação, ordenação, filtragem e CRUD (<code class="inline-code">/api/collections/alunos/records</code>).
+3. <strong>Autenticação Nativa (JWT + OAuth2)</strong>: Coleções do tipo <code class="inline-code">Auth</code> gerenciam cadastro de usuários, hash de senhas (<code class="inline-code">bcrypt</code>) e emissão de tokens JWT sem escrever boilerplate.
+4. <strong>Assinaturas em Tempo Real (<em>Realtime via Server-Sent Events</em>)</strong>: O front-end em <strong>React</strong> ou <strong>JS Vanilla</strong> pode escutar mudanças na tabela instantaneamente.
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Prompt de Especificação de Cliente PocketBase em JS/Node.js</h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Crie um cliente JavaScript modular (PocketBaseClient) que se comunique com a REST API padrão do PocketBase (/api/collections/alunos/records), suportando listagem paginada com filtros, criação de registro e simulação local para testes automatizados offline.</code></pre>
+
+<h3>Passo 2: Implementação de Integração com PocketBase</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// Exemplo de consumo da API REST do PocketBase em JavaScript Vanilla / Node.js
+export class PocketBaseAlunosService {
+  constructor(baseUrl = 'http://127.0.0.1:8090') {
+    this.baseUrl = baseUrl;
+  }
+
+   montarUrlColecao(colecao = 'alunos', params = {}) {
+    const url = new URL(<code class="inline-code">/api/collections/${colecao}/records</code>, this.baseUrl);
+    for (const [chave, valor] of Object.entries(params)) {
+      if (valor !== undefined &amp;&amp; valor !== null) {
+        url.searchParams.set(chave, String(valor));
+      }
+    }
+    return url.toString();
+  }
+
+  async listarAlunos({ page = 1, perPage = 20, filter = '' } = {}, fetchFn = fetch) {
+    const endpoint = this.montarUrlColecao('alunos', { page, perPage, filter, sort: '-created' });
+    const resposta = await fetchFn(endpoint, {
+      headers: { 'Content-Type': 'application/json' }
+    });
+    if (!resposta.ok) {
+      throw new Error(<code class="inline-code">Falha ao consultar PocketBase: HTTP ${resposta.status}</code>);
+    }
+    return resposta.json();
+  }
+}</code></pre>
+
+<h3>Passo 3: Teste de Validação</h3>
+Inspecione a URL gerada por <code class="inline-code">montarUrlColecao('alunos', { page: 1, perPage: 10, filter: 'ativo=true' })</code> e confirme que segue exatamente o contrato <code class="inline-code">/api/collections/alunos/records?page=1&amp;perPage=10&amp;filter=ativo%3Dtrue&amp;sort=-created</code>.
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U02-INFO01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: INFO
+[TEMA]: Comparativo Arquitetural Node.js ORM vs PocketBase BaaS
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#10B981, #0284C7).
+[COMPOSIÇÃO]: Side-by-side infographic comparing traditional Node.js ORM stack with PocketBase single-binary BaaS architecture.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "Traditional Node.js ORM", "PocketBase BaaS".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

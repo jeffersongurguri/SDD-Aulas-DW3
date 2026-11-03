@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U04-A01 — Planejamento de Projeto: Escopo e Levantamento de Requisitos com SDD</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U04-A01</span>
+      <span class="badge">Síncrono (2h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Planejamento de Projeto: Escopo e Levantamento de Requisitos com SDD</h1>
+      <p>Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 01: Planejamento de Projeto: Escopo e Levantamento de Requisitos com SDD</h1>
+
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner da Unidade IV" loading="lazy" /><figcaption>Banner da Unidade IV</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir esta aula síncrona de abertura da Unidade IV, você será capaz de:
+<li class="task-item">✅ <strong>Definir</strong> o escopo do Projeto Integrador Full-Stack (<strong>React + Node.js + PocketBase</strong>).</li>
+<li class="task-item">✅ <strong>Estruturar</strong> Histórias de Usuário (<em>User Stories</em>) com Critérios de Aceitação verificáveis (<em>Given / When / Then</em>).</li>
+<li class="task-item">✅ <strong>Elaborar</strong> o arquivo <code class="inline-code">project.spec.md</code> que servirá de contexto mestre para os assistentes de IA na geração de código e testes.</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 Por que projetos guiados por IA falham sem uma Especificação Técnica?</h3>
+Quando equipes iniciam o desenvolvimento pedindo telas e rotas aleatórias para a IA sem um plano arquitetural, os nomes de campos divergem entre o <strong>React</strong>, o servidor <strong>Node.js</strong> e as coleções do <strong>PocketBase</strong>. No <strong>Desenvolvimento Orientado a Especificação (SDD)</strong>, o primeiro entregável do projeto é o contrato formal de dados e requisitos:
+1. <strong>Entidades e Coleções PocketBase</strong>: Definição exata de nomes de campos e tipos.
+2. <strong>Contratos de Endpoints Node.js</strong>: Payloads de entrada, regras de negócio e status HTTP.
+3. <strong>Critérios de Aceitação</strong>: Condições objetivas que serão transformadas em testes automatizados (<code class="inline-code">node:test</code>).
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Prompt para Geração de Especificação e Validador de Escopo SDD</h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere um validador de especificação de projeto (validarEscopoProjetoSDD) em JavaScript que verifique se o manifesto do projeto final do estudante contém título, coleções do PocketBase, rotas Node.js, componentes React e pelo menos 3 histórias de usuário com critérios de aceitação.</code></pre>
+
+<h3>Passo 2: Validador de Especificação do Projeto Final</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// src/projeto/validadorEscopoProjeto.js
+export function validarEscopoProjetoSDD(spec) {
+  const erros = [];
+  if (!spec?.titulo || spec.titulo.trim().length &lt; 5) {
+    erros.push('O projeto deve possuir um título descritivo (mínimo 5 caracteres).');
+  }
+  if (!Array.isArray(spec?.colecoesPocketBase) || spec.colecoesPocketBase.length &lt; 2) {
+    erros.push('Especifique no mínimo 2 coleções relacionadas no PocketBase.');
+  }
+  if (!Array.isArray(spec?.componentesReact) || spec.componentesReact.length &lt; 3) {
+    erros.push('Especifique no mínimo 3 componentes visuais em React.');
+  }
+  if (!Array.isArray(spec?.historiasUsuario) || spec.historiasUsuario.length &lt; 3) {
+    erros.push('Defina pelo menos 3 Histórias de Usuário com critérios de aceitação.');
+  }
+  return { aprovado: erros.length === 0, erros };
+}</code></pre>
+
+<h3>Passo 3: Teste de Validação</h3>
+Preencha o objeto <code class="inline-code">spec</code> do seu projeto final e execute <code class="inline-code">validarEscopoProjetoSDD(spec)</code> garantindo <code class="inline-code">aprovado: true</code>.
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U04-ART01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: ART
+[TEMA]: Full-Stack Project, AI Testing &amp; Cloud Deploy
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #A855F7, #34D399).
+[COMPOSIÇÃO]: Conceptual cover art for Unidade IV showing a complete web system with React, Node.js, PocketBase, automated test shields, and cloud deployment containers.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "FULL-STACK &amp; CLOUD DEPLOY".
+[ASPECT RATIO]: 21:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

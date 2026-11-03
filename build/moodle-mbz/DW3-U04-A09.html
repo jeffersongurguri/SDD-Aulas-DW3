@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U04-A09 — Envio Final do Repositório do Projeto no AVA Moodle (2ª Atividade Avaliativa - Projeto Final)</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U04-A09</span>
+      <span class="badge">Assíncrono (2h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Envio Final do Repositório do Projeto no AVA Moodle (2ª Atividade Avaliativa - Projeto Final)</h1>
+      <p>Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 09: Envio Final do Repositório do Projeto no AVA Moodle (2ª Atividade Avaliativa)</h1>
+
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Pipeline de Entrega Final" loading="lazy" /><figcaption>Diagrama Pipeline de Entrega Final</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir esta atividade avaliativa assíncrona, você será capaz de:
+<li class="task-item">✅ <strong>Elaborar</strong> um documento <code class="inline-code">README.md</code> de nível profissional contendo arquitetura, instruções de execução do <strong>Node.js</strong>, <strong>PocketBase</strong> e <strong>React</strong>, e evidências de testes.</li>
+<li class="task-item">✅ <strong>Executar</strong> o checklist final de conformidade antes da submissão no AVA Moodle.</li>
+<li class="task-item">✅ <strong>Realizar</strong> o envio oficial do link do repositório GitHub/GitLab e da URL de deploy.</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 Anatomia de uma Entrega de Software Profissional</h3>
+Um projeto sem documentação clara não pode ser auditado nem mantido. Para a <strong>2ª Atividade Avaliativa (Projeto Final)</strong> no Moodle do IFCE <em>Campus</em> Baturité, o repositório deve conter obrigatoriamente:
+1. <strong><code class="inline-code">README.md</code> Completo</strong>: Descrição do projeto, stack tecnológica (<code class="inline-code">JS Vanilla</code>, <code class="inline-code">Node.js</code>, <code class="inline-code">PocketBase</code>, <code class="inline-code">React</code>), passo a passo para rodar localmente e link do ambiente em nuvem.
+2. <strong>Arquivo <code class="inline-code">.env.example</code></strong>: Documentando todas as variáveis de ambiente necessárias (sem expor segredos reais!).
+3. <strong>Exportação do Schema do PocketBase (<code class="inline-code">pb_schema.json</code> ou <code class="inline-code">pb_migrations/</code>)</strong>: Permitindo que o professor recrie as coleções e <em>API Rules</em> com um único comando.
+4. <strong>Suíte de Testes Automatizados (<code class="inline-code">npm test</code>)</strong>: Executando sem erros.
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Prompt para Verificador de Entrega Final no Moodle</h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere uma função verificarChecklistEntregaMoodle(entrega) em JavaScript que valide se o pacote de submissão do aluno possui urlRepositorioGit, urlDeployNuvem, possuiEnvExample, possuiSchemaPocketBase e testesPassando.</code></pre>
+
+<h3>Passo 2: Validador de Submissão do Projeto Final</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// src/projeto/checklistEntregaMoodle.js
+export function verificarChecklistEntregaMoodle(entrega) {
+  const pendencias = [];
+  if (!entrega?.urlRepositorioGit || !/^https?:\/\/(github|gitlab)\.com\/.+/.test(entrega.urlRepositorioGit)) {
+    pendencias.push('URL válida do repositório GitHub ou GitLab é obrigatória.');
+  }
+  if (!entrega?.possuiEnvExample) {
+    pendencias.push('O arquivo .env.example deve estar presente na raiz do repositório.');
+  }
+  if (!entrega?.possuiSchemaPocketBase) {
+    pendencias.push('O schema/migrations do PocketBase (pb_schema.json) deve ser versionado.');
+  }
+  if (!entrega?.testesPassando) {
+    pendencias.push('A suíte de testes automatizados (npm test) deve estar passando.');
+  }
+
+  return {
+    prontoParaEnvioMoodle: pendencias.length === 0,
+    pendencias
+  };
+}</code></pre>
+
+<h3>Passo 3: Teste de Validação</h3>
+Execute a verificação sobre os metadados da sua entrega antes de clicar em <strong>"Enviar tarefa"</strong> no Moodle.
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U04-DIAG01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: DIAG
+[TEMA]: Checklist de Entrega Contínua e Publicação Final no AVA Moodle
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
+[COMPOSIÇÃO]: Verification pipeline from Git Repository and Automated Tests to Cloud Production and Moodle Submission.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "Git Push", "AI Tests (node:test)", "Cloud Production".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U03-A02 — Soluções de Gerenciamento de Conteúdo (PocketBase Headless CMS) e Prototipagem No-Code (v0 / Figma)</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U03-A02</span>
+      <span class="badge">Assíncrono (4h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Soluções de Gerenciamento de Conteúdo (PocketBase Headless CMS) e Prototipagem No-Code (v0 / Figma)</h1>
+      <p>Unidade III: Framework Front-end, Headless CMS & No-Code UI</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 02: Soluções de Gerenciamento de Conteúdo (PocketBase Headless CMS) e Prototipagem No-Code (v0 / Figma)</h1>
+
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-DIAG01.png" alt="Diagrama React e PocketBase Headless CMS" loading="lazy" /><figcaption>Diagrama React e PocketBase Headless CMS</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir esta aula assíncrona, você será capaz de:
+<li class="task-item">✅ <strong>Explicar</strong> a arquitetura <strong>Headless CMS</strong> e como o <strong>PocketBase</strong> substitui sistemas acoplados tradicionais, fornecendo conteúdo rico via JSON e upload de mídias.</li>
+<li class="task-item">✅ <strong>Elaborar</strong> prompts visuais/estruturais para ferramentas de <strong>UI Generativa (<code class="inline-code">v0</code> / Figma-to-Code)</strong> gerarem componentes React acessíveis e responsivos.</li>
+<li class="task-item">✅ <strong>Conectar</strong> os componentes gerados ao esquema de coleções do PocketBase.</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 O que é um Headless CMS e por que usar o PocketBase?</h3>
+Em um CMS monolítico tradicional (como WordPress clássico), o painel de administração e os templates de front-end estão fundidos no mesmo servidor. Em uma arquitetura <strong>Headless CMS ("Sem Cabeça")</strong>, o gerenciador de conteúdo armazena os artigos, editais, banners e arquivos e os expõe puramente via <strong>API REST/JSON</strong>.
+
+O <strong>PocketBase</strong> funciona como um Headless CMS perfeito para projetos em <strong>React</strong>:
+<li>Possui campos nativos do tipo <code class="inline-code">Editor</code> (Rich Text HTML), <code class="inline-code">File</code> (com geração automática de <em>thumbnails</em> de imagens como <code class="inline-code">?thumb=300x200</code>) e <code class="inline-code">Relation</code>.</li>
+<li>A coordenação do curso atualiza um edital pelo painel administrativo visual do PocketBase e o portal em React reflete a mudança instantaneamente sem precisar recompilar código!</li>
+
+<h3>2.2 UI Generativa (<code class="inline-code">v0</code>, Figma-to-Code e Vibe Coding no Front-end)</h3>
+Ferramentas de UI Generativa recebem a especificação dos campos de uma coleção do PocketBase e geram imediatamente a árvore de componentes React com layouts em CSS Grid/Flexbox, estados vazios (<em>Empty States</em>) e esqueletos de carregamento (<em>Skeletons</em>).
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Prompt para Geração de Componente React (UI Generativa <code class="inline-code">v0</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere um componente React &lt;MuralEditaisIFCE /&gt; estilizado em modo escuro que consuma a coleção "editais" do PocketBase (campos: id, titulo, categoria, data_publicacao, anexo_pdf) e construa a URL pública de download do arquivo anexo via /api/files/editais/:id/:filename.</code></pre>
+
+<h3>Passo 2: Utilitário de Mídia e Headless CMS para PocketBase + React</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// src/frontend/pocketbaseCmsHelper.js
+export function construirUrlArquivoPocketBase(baseUrl, record, nomeArquivo, thumb = '') {
+  if (!record || !record.collectionId || !record.id || !nomeArquivo) return null;
+  const base = baseUrl.replace(/\/$/, '');
+  const sufixoThumb = thumb ? <code class="inline-code">?thumb=${encodeURIComponent(thumb)}</code> : '';
+  return <code class="inline-code">${base}/api/files/${record.collectionId}/${record.id}/${nomeArquivo}${sufixoThumb}</code>;
+}
+
+export function formatarEditalParaComponente(record, baseUrl = 'http://127.0.0.1:8090') {
+  return {
+    id: record.id,
+    titulo: record.titulo,
+    categoria: record.categoria || 'Acadêmico',
+    resumo: record.resumo || '',
+    urlPdf: record.anexo_pdf
+      ? construirUrlArquivoPocketBase(baseUrl, record, record.anexo_pdf)
+      : null
+  };
+}</code></pre>
+
+<h3>Passo 3: Teste de Validação</h3>
+Verifique se <code class="inline-code">construirUrlArquivoPocketBase('http://127.0.0.1:8090', { collectionId: 'pbc_editais', id: 'rec123' }, 'edital.pdf')</code> produz exatamente <code class="inline-code">http://127.0.0.1:8090/api/files/pbc_editais/rec123/edital.pdf</code>.
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U03-DIAG01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: DIAG
+[TEMA]: React Front-end API Integration &amp; PocketBase Headless CMS
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#6366F1, #F59E0B).
+[COMPOSIÇÃO]: Technical vector flow diagram illustrating a reactive React Component tree on the left, consuming JSON payload via async Fetch API from a central REST API Gateway, connected to a PocketBase Headless CMS and Node.js Server on the right.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "React Tree", "REST Gateway", "PocketBase CMS".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

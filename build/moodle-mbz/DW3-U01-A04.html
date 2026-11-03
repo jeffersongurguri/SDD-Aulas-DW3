@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U01-A04 — Estudo Dirigido: Análise Crítica e Auditoria de Código Node.js Gerado por IA</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U01-A04</span>
+      <span class="badge">Assíncrono (2h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Estudo Dirigido: Análise Crítica e Auditoria de Código Node.js Gerado por IA</h1>
+      <p>Unidade I: Framework Back-end, Padrões de Software & Vibe Coding</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 04: Estudo Dirigido: Análise Crítica e Auditoria de Código Node.js Gerado por IA</h1>
+
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-INFO01.png" alt="Infográfico Auditoria de Código" loading="lazy" /><figcaption>Infográfico Auditoria de Código</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir este estudo dirigido assíncrono, você será capaz de:
+<li class="task-item">✅ <strong>Detectar</strong> os 5 antipadrões mais comuns gerados por modelos de IA em aplicações Node.js (bloqueio síncrono de I/O, falta de <code class="inline-code">try/catch</code> em funções assíncronas, pacotes alucinados, <code class="inline-code">eval()</code> e vazamento de <em>stack trace</em>).</li>
+<li class="task-item">✅ <strong>Refatorar</strong> trechos defeituosos aplicando programação defensiva em JavaScript Vanilla.</li>
+<li class="task-item">✅ <strong>Aplicar</strong> um checklist de auditoria SDD antes de aceitar sugestões de assistentes de código.</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 Por que Auditar Código Gerado por IA?</h3>
+No paradigma de <strong>Vibe Coding</strong>, a velocidade de geração aumenta exponencialmente, mas a responsabilidade técnica permanece 100% humana. Assistentes de IA treinados em repositórios públicos frequentemente reproduzem práticas obsoletas ou inseguras em Node.js:
+1. <strong>Bloqueio do Event Loop</strong>: Uso de <code class="inline-code">fs.readFileSync</code> dentro de rotas HTTP, travando todas as requisições concorrentes.
+2. <strong>Alucinação de Pacotes (<em>Package Hallucination</em>)</strong>: Sugestão de bibliotecas inexistentes ou depreciadas no <code class="inline-code">npm</code>.
+3. <strong>Ausência de Sanitização e Tipagem</strong>: Confiar cegamente em <code class="inline-code">req.body</code> sem validar tipos primitivos (<code class="inline-code">typeof</code>, expressões regulares).
+4. <strong>Exposição de Stack Trace</strong>: Retornar <code class="inline-code">err.stack</code> diretamente ao cliente em produção.
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Cenário de Auditoria (Código Vulnerável vs. Código Auditado)</h3>
+Analise o código problemático abaixo (frequentemente sugerido por prompts vagos) e compare-o com a versão refatorada:
+
+<pre class="code-block" data-lang="javascript"><code>// ❌ CÓDIGO VULNERÁVEL (NÃO UTILIZAR EM PRODUÇÃO)
+import fs from 'node:fs';
+
+export function rotaInseguraBuscarAluno(req, res) {
+  // Problema 1: Bloqueia o Event Loop inteiro lendo disco de forma síncrona
+  const raw = fs.readFileSync('./alunos.json', 'utf-8');
+  const alunos = JSON.parse(raw);
+  // Problema 2: Uso perigoso de eval() / sem validação de entrada
+  const filtro = eval(req.SearchQuery);
+  res.end(JSON.stringify(alunos.filter(filtro)));
+}</code></pre>
+
+<pre class="code-block" data-lang="javascript"><code>// ✅ CÓDIGO AUDITADO E REFATORADO (PADRÃO SDD DWIII)
+import fs from 'node:fs/promises';
+
+export async function rotaSeguraBuscarAluno(termoMatricula) {
+  // 1. Validação estrita de entrada com Regex (apenas dígitos)
+  const matriculaLimpa = String(termoMatricula ?? '').trim();
+  if (!/^\d{1,10}$/.test(matriculaLimpa)) {
+    const err = new Error('Parâmetro de busca inválido. Informe apenas números.');
+    err.statusCode = 400;
+    throw err;
+  }
+
+  // 2. Leitura assíncrona não bloqueante com fs/promises
+  const raw = await fs.readFile(new URL('./alunos.json', import.meta.url), 'utf-8');
+  const alunos = JSON.parse(raw);
+
+  // 3. Comparação segura sem execução dinâmica de código
+  return alunos.filter((a) =&gt; String(a.matricula).startsWith(matriculaLimpa));
+}</code></pre>
+
+<h3>Passo 2: Checklist de Validação do Estudo Dirigido</h3>
+Sempre execute os 3 questionamentos de auditoria antes de fazer <em>commit</em>:
+1. Todas as operações de I/O utilizam <code class="inline-code">async/await</code> ou <code class="inline-code">Promises</code>?
+2. Todos os dados vindos do usuário passam por validação explícita de tipo e formato?
+3. As dependências importadas são nativas do Node.js (<code class="inline-code">node:*</code>) ou estritamente homologadas no <code class="inline-code">package.json</code>?
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U01-INFO01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: INFO
+[TEMA]: Auditoria de Segurança e Performance em Código Node.js Gerado por IA
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
+[COMPOSIÇÃO]: Side-by-side infographic comparing unverified AI code vs audited Node.js production code with Event Loop and input validation shields.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "Manual Boilerplate", "Vibe Coding + Audit".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U02-A01 — Conceitos Fundamentais de ORM em Node.js e Abstração de Entidades</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U02-A01</span>
+      <span class="badge">Assíncrono (4h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Conceitos Fundamentais de ORM em Node.js e Abstração de Entidades</h1>
+      <p>Unidade II: Framework ORM, Persistência & Backend Low-Code / BaaS</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 01: Conceitos Fundamentais de ORM em Node.js e Abstração de Entidades</h1>
+
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-ART01.png" alt="Banner da Unidade II" loading="lazy" /><figcaption>Banner da Unidade II</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir esta aula assíncrona, você será capaz de:
+<li class="task-item">✅ <strong>Explicar</strong> o conceito de <em>Object-Relational Impedance Mismatch</em> (Impedância Objeto-Relacional) entre objetos JavaScript em memória e bancos relacionais SQL (SQLite/PostgreSQL).</li>
+<li class="task-item">✅ <strong>Diferenciar</strong> drivers SQL puros (<code class="inline-code">node:sqlite</code>), <em>Query Builders</em> e frameworks <strong>ORM</strong> (Prisma / Drizzle / Sequelize).</li>
+<li class="task-item">✅ <strong>Modelar</strong> entidades do domínio escolar como classes e schemas tipados em Node.js.</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 Da Memória Volátil à Persistência Relacional</h3>
+Na Unidade I, armazenamos os discentes em estruturas <code class="inline-code">Map</code> na memória RAM do processo Node.js. Caso o servidor reinicie, todos os dados são perdidos. Para garantir durabilidade (<strong>ACID</strong>: Atomicidade, Consistência, Isolamento e Durabilidade), utilizamos Sistemas Gerenciadores de Banco de Dados Relacionais (SGBDs), como <strong>SQLite</strong> (embutido no próprio <strong>PocketBase</strong> e no Node.js moderno) e <strong>PostgreSQL</strong>.
+
+<h3>2.2 O Papel do ORM (Object-Relational Mapping)</h3>
+Enquanto o código em <strong>Node.js / JavaScript</strong> manipula grafos de objetos dinâmicos, propriedades aninhadas e arrays, o banco relacional opera sobre tuplas (linhas), colunas tipadas e chaves estrangeiras. O <strong>ORM</strong> atua como uma camada tradutora que:
+1. Converte operações de métodos JavaScript (<code class="inline-code">AlunoModel.create()</code>, <code class="inline-code">AlunoModel.findMany()</code>) em instruções SQL parametrizadas seguras contra <em>SQL Injection</em>.
+2. Hidrata as linhas retornadas pelo banco em objetos JavaScript prontos para serialização JSON.
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Prompt de Especificação de Entidade ORM em Node.js</h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere uma classe de repositório ORM leve em JavaScript ES6+ que abstraia uma tabela SQL "alunos" (id, nome, matricula, curso, ativo, criado_em), gerando queries SQL parametrizadas seguras (Prepared Statements) e hidratando os registros para objetos camelCase.</code></pre>
+
+<h3>Passo 2: Implementação de Abstração de Entidade Relacional</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// src/orm/AlunoModel.js — Abstração Objeto-Relacional Parametrizada
+export class AlunoEntity {
+  constructor(row) {
+    this.id = row.id;
+    this.nome = row.nome;
+    this.matricula = row.matricula;
+    this.curso = row.curso;
+    this.ativo = Boolean(row.ativo);
+    this.criadoEm = row.criado_em;
+  }
+
+  static toSqlInsert(dados) {
+    return {
+      sql: <code class="inline-code">INSERT INTO alunos (nome, matricula, curso, ativo, criado_em) VALUES (?, ?, ?, ?, ?)</code>,
+      params: [
+        dados.nome.trim(),
+        String(dados.matricula),
+        dados.curso || 'Técnico em Informática para Internet',
+        dados.ativo !== false ? 1 : 0,
+        new Date().toISOString()
+      ]
+    };
+  }
+}</code></pre>
+
+<h3>Passo 3: Teste de Validação</h3>
+Verifique como <code class="inline-code">AlunoEntity.toSqlInsert()</code> separa a string SQL (<code class="inline-code">?</code>) do vetor de parâmetros (<code class="inline-code">params</code>), eliminando qualquer risco de concatenação maliciosa (<em>SQL Injection</em>).
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U02-ART01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: ART
+[TEMA]: Persistência Relacional, ORM e PocketBase BaaS
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#10B981, #0284C7).
+[COMPOSIÇÃO]: Conceptual cover art for Unidade II showing relational database tables seamlessly transforming into instant REST and Realtime API streams with built-in authentication shield.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "ORM &amp; POCKETBASE BaaS".
+[ASPECT RATIO]: 21:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

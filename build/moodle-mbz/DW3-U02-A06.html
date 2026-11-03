@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U02-A06 — Consultas Avançadas, Joins/Expand e Performance no ORM e PocketBase auxiliados por IA</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U02-A06</span>
+      <span class="badge">Síncrono (2h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Consultas Avançadas, Joins/Expand e Performance no ORM e PocketBase auxiliados por IA</h1>
+      <p>Unidade II: Framework ORM, Persistência & Backend Low-Code / BaaS</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 06: Consultas Avançadas, Joins/Expand e Performance no ORM e PocketBase auxiliados por IA</h1>
+
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama Consultas e Relacionamentos" loading="lazy" /><figcaption>Diagrama Consultas e Relacionamentos</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir esta aula síncrona, você será capaz de:
+<li class="task-item">✅ <strong>Identificar</strong> e resolver a anomalia de performance conhecida como <strong>Problema da Query <code class="inline-code">N+1</code></strong>.</li>
+<li class="task-item">✅ <strong>Construir</strong> consultas relacionais eficientes utilizando <code class="inline-code">JOIN</code> no ORM e o operador <code class="inline-code">expand</code> no <strong>PocketBase</strong>.</li>
+<li class="task-item">✅ <strong>Otimizar</strong> buscas utilizando índices (<code class="inline-code">CREATE INDEX</code>) e paginação baseada em limites (<code class="inline-code">page</code> / <code class="inline-code">perPage</code>).</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 O Problema Clássico de Performance <code class="inline-code">N+1</code></h3>
+Imagine listar 50 matrículas e, dentro de um laço <code class="inline-code">for</code>, disparar uma nova consulta ao banco para descobrir o nome do aluno e o nome do curso de cada matrícula:
+<li><code class="inline-code">1</code> consulta principal para buscar as 50 matrículas;</li>
+<li><code class="inline-code">+ 50</code> consultas individuais para buscar cada aluno = <strong>51 viagens de rede ao banco de dados!</strong></li>
+
+<h3>2.2 Solução no ORM (<code class="inline-code">JOIN</code> / <code class="inline-code">include</code>) e no PocketBase (<code class="inline-code">expand</code>)</h3>
+No <strong>PocketBase</strong>, eliminamos o problema <code class="inline-code">N+1</code> passando o parâmetro <code class="inline-code">expand=aluno_id,curso_id</code> em uma única requisição HTTP. O PocketBase resolve os relacionamentos internamente no SQLite e já aninha os objetos expandidos dentro da propriedade <code class="inline-code">record.expand</code>.
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Prompt de Otimização de Query com Vibe Coding</h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Escreva uma função em JavaScript que construa parâmetros de consulta avançados para o PocketBase, combinando filtro composto (notas maiores ou iguais a 6 e frequência &gt;= 75), ordenação decrescente por média e expansão automática das relações aluno_id e turma_id (expand) para evitar o problema N+1.</code></pre>
+
+<h3>Passo 2: Construtor de Consultas Otimizadas no PocketBase</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// src/orm/queryBuilderPocketBase.js
+export function construirQueryAprovados({ cursoCodigo = 'INFO-INT', pagina = 1 } = {}) {
+  const filtro = <code class="inline-code">mediaXs &gt;= 6.0 &amp;&amp; frequencia &gt;= 75 &amp;&amp; turma_id.curso_codigo = "${cursoCodigo}"</code>;
+  return {
+    page: pagina,
+    perPage: 25,
+    filter: filtro,
+    sort: '-mediaXs,created',
+    expand: 'aluno_id,turma_id' // Evita o problema N+1 trazendo Aluno e Turma na mesma query!
+  };
+}</code></pre>
+
+<h3>Passo 3: Teste de Validação</h3>
+Verifique que a consulta retornada inclui <code class="inline-code">expand: 'aluno_id,turma_id'</code>, reduzindo 26 requisições sequenciais para apenas <strong>1 única requisição HTTP</strong>.
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U02-DIAG01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: DIAG
+[TEMA]: Otimização de Consultas Relacionais e Eliminação do Problema N+1 com Expand no PocketBase
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
+[COMPOSIÇÃO]: Technical diagram showing single relational query with expand=aluno_id,turma_id fetching joined records from SQLite in one roundtrip.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "Alunos", "Matriculas (N:N)", "Turmas", "SQLite".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

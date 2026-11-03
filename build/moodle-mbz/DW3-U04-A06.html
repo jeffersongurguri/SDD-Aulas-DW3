@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U04-A06 — Testes Automatizados Gerados por IA (node:test) e Estratégias de Deploy (Docker/Vercel/Render/Fly.io)</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U04-A06</span>
+      <span class="badge">Assíncrono (4h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Testes Automatizados Gerados por IA (node:test) e Estratégias de Deploy (Docker/Vercel/Render/Fly.io)</h1>
+      <p>Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 06: Testes Automatizados Gerados por IA (<code class="inline-code">node:test</code>) e Estratégias de Deploy</h1>
+
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama CI/CD, Testes por IA e Deploy na Nuvem" loading="lazy" /><figcaption>Diagrama CI/CD, Testes por IA e Deploy na Nuvem</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir esta aula assíncrona, você será capaz de:
+<li class="task-item">✅ <strong>Escrever</strong> testes unitários e de integração utilizando o executor de testes nativo do Node.js (<code class="inline-code">node:test</code> e <code class="inline-code">node:assert/strict</code>) com auxílio de IA.</li>
+<li class="task-item">✅ <strong>Criar</strong> um <code class="inline-code">Dockerfile</code> multi-stage otimizado para publicar a aplicação em nuvem.</li>
+<li class="task-item">✅ <strong>Selecionar</strong> a estratégia de hospedagem adequada para cada camada (Vercel para <strong>React</strong>, Render/Fly.io para <strong>Node.js</strong> e <strong>PocketBase</strong> com volume persistente para <code class="inline-code">pb_data</code>).</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 Testes Automatizados Nativos em Node.js (<code class="inline-code">node:test</code>) com IA</h3>
+O Node.js 20+ inclui um <em>test runner</em> nativo ultrarrápido (<code class="inline-code">node --test</code>), dispensando configurações complexas de pacotes externos. Com a abordagem <strong>SDD + Vibe Coding</strong>, fornecemos a especificação de uma função ao assistente de IA e solicitamos uma bateria de testes cobrindo:
+<li><strong>Caminho Feliz (<em>Happy Path</em>)</strong>: Entradas válidas gerando o resultado esperado.</li>
+<li><strong>Casos de Borda (<em>Edge Cases</em>)</strong>: Limites exatos (ex.: média <code class="inline-code">6.0</code>, frequência <code class="inline-code">75.0%</code>).</li>
+<li><strong>Casos de Erro</strong>: Matrículas inválidas, duplicidades e acessos não autorizados (<code class="inline-code">assert.throws</code>).</li>
+
+<h3>2.2 Containerização e Deploy de PocketBase + Node.js + React</h3>
+Ao publicar o <strong>PocketBase</strong> em nuvem (Fly.io, Render ou Railway), um cuidado arquitetural é indispensável: como o banco SQLite e os uploads ficam salvos no diretório <code class="inline-code">pb_data/</code>, é obrigatório montar um <strong>Volume Persistente (Persistent Volume)</strong> nesse diretório para que os dados sobrevivam a novos deploys do container Docker.
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Prompt para Geração de Suíte <code class="inline-code">node:test</code> e <code class="inline-code">Dockerfile</code></h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere uma suíte de testes automatizados usando node:test e node:assert/strict que valide a API de Alunos (Node.js), o cálculo de médias do IFCE (PocketBase/ORM) e a filtragem reativa do Dashboard (React).</code></pre>
+
+<h3>Passo 2: Exemplo de Teste Nativo (<code class="inline-code">node:test</code>)</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// Exemplo executável em src/code-samples/u4-fullstack-tests/api.test.js
+import { test, describe } from 'node:test';
+import assert from 'node:assert/strict';
+import { calcularMediaSemestralIFCE } from '../u2-pocketbase-orm/pocketbase-client.js';
+
+describe('Validação Automatizada das Regras Acadêmicas IFCE (ROD)', () =&gt; {
+  test('Deve aprovar por média quando Xs &gt;= 6.0 e frequência &gt;= 75%', () =&gt; {
+    const res = calcularMediaSemestralIFCE(8.0, 7.0, 85);
+    assert.equal(res.mediaXs, 7.4);
+    assert.equal(res.situacao, 'APROVADO_POR_MEDIA');
+  });
+
+  test('Deve encaminhar para Exame Final (EFP) quando 3.0 &lt;= Xs &lt; 6.0', () =&gt; {
+    const res = calcularMediaSemestralIFCE(5.0, 4.0, 80);
+    assert.equal(res.mediaXs, 4.4);
+    assert.equal(res.situacao, 'EXAME_FINAL_EFP');
+  });
+});</code></pre>
+
+<h3>Passo 3: Teste de Validação</h3>
+Execute <code class="inline-code">npm test</code> (que aciona <code class="inline-code">node --test</code>) no terminal e confirme 100% de aprovação na suíte.
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U04-DIAG01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: DIAG
+[TEMA]: CI/CD Pipeline, AI Automated Tests (node:test) &amp; Cloud Deployment
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
+[COMPOSIÇÃO]: Technical vector architecture diagram showing Git Push -&gt; AI Automated Tests (node:test) -&gt; Docker Build -&gt; Cloud Production Environment hosting React Front-end, Node.js API, and PocketBase SQLite Persistence.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "Git Push", "AI Tests (node:test)", "Docker Build", "Cloud Production".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

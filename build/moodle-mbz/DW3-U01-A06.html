@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U01-A06 — Resolução de Exercícios Práticos Virtuais de Construção de APIs REST em Node.js</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U01-A06</span>
+      <span class="badge">Assíncrono (6h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Resolução de Exercícios Práticos Virtuais de Construção de APIs REST em Node.js</h1>
+      <p>Unidade I: Framework Back-end, Padrões de Software & Vibe Coding</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 06: Resolução de Exercícios Práticos Virtuais de Construção de APIs REST em Node.js</h1>
+
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-DIAG01.png" alt="Diagrama Workflow API REST Node.js" loading="lazy" /><figcaption>Diagrama Workflow API REST Node.js</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir esta atividade prática de consolidação da Unidade I, você será capaz de:
+<li class="task-item">✅ <strong>Implementar</strong> a API completa de Gestão de Alunos da disciplina DWIII (<code class="inline-code">GET</code>, <code class="inline-code">POST</code>, <code class="inline-code">DELETE</code>) em Node.js.</li>
+<li class="task-item">✅ <strong>Integrar</strong> validação de schemas, códigos HTTP (<code class="inline-code">200</code>, <code class="inline-code">201</code>, <code class="inline-code">400</code>, <code class="inline-code">404</code>, <code class="inline-code">422</code>) e respostas padronizadas em JSON.</li>
+<li class="task-item">✅ <strong>Validar</strong> todos os cenários de sucesso e de erro por meio do script executável em <code class="inline-code">src/code-samples/u1-node-api/server.js</code>.</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 Consolidação da Arquitetura Back-end na Unidade I</h3>
+Ao longo das 5 aulas anteriores, evoluímos do entendimento do runtime <strong>Node.js</strong> e do <strong>JavaScript Vanilla (ES6+)</strong> para a construção de serviços desacoplados com tratamento de exceções HTTP e auditoria de código gerado por IA.
+
+Nesta atividade prática de 6 horas, consolidamos a <strong>API de Gestão de Alunos (DWIII)</strong>, que servirá de base para a persistência relacional e BaaS (<strong>PocketBase</strong>) na Unidade II e para o consumo pelo front-end <strong>React</strong> na Unidade III.
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Especificação Completa da API de Alunos (Vibe Coding SDD)</h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Implemente um módulo completo em Node.js (src/code-samples/u1-node-api/server.js) contendo o repositório em memória, validador de AlunoSchema (nome &gt;= 3 caracteres, matrícula com 10 dígitos numéricos e curso padrão "Técnico em Informática para Internet"), funções CRUD (criarAluno, listarAlunos, buscarAlunoPorMatricula, removerAluno) e um servidor HTTP RESTful com suporte a CORS e tratamento de exceções HTTP 400, 404 e 422.</code></pre>
+
+<h3>Passo 2: Implementação Completa da API (<code class="inline-code">src/code-samples/u1-node-api/server.js</code>)</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// Exemplo consolidado da Unidade I (disponível em src/code-samples/u1-node-api/server.js)
+export class ApiAlunosNode {
+  constructor() {
+    this.dbAlunos = new Map();
+  }
+
+  validarAluno(payload) {
+    if (!payload || typeof payload.nome !== 'string' || payload.nome.trim().length &lt; 3) {
+      const err = new Error('Nome do discente deve possuir no mínimo 3 caracteres.');
+      err.statusCode = 422;
+      throw err;
+    }
+    if (!/^\d{10}$/.test(String(payload.matricula ?? ''))) {
+      const err = new Error('Matrícula inválida: informe exatamente 10 dígitos numéricos.');
+      err.statusCode = 422;
+      throw err;
+    }
+    return {
+      id: this.dbAlunos.size + 1,
+      nome: payload.nome.trim(),
+      matricula: String(payload.matricula),
+      curso: payload.curso || 'Técnico em Informática para Internet'
+    };
+  }
+
+  criarAluno(payload) {
+    const aluno = this.validarAluno(payload);
+    if (this.dbAlunos.has(aluno.matricula)) {
+      const err = new Error('Matrícula já cadastrada no sistema acadêmico.');
+      err.statusCode = 400;
+      throw err;
+    }
+    this.dbAlunos.set(aluno.matricula, aluno);
+    return { statusCode: 201, body: { mensagem: 'Aluno cadastrado com sucesso', dados: aluno } };
+  }
+}</code></pre>
+
+<h3>Passo 3: Exercícios de Validação Obrigatórios (Entrega no Moodle)</h3>
+1. <strong>Cenário 1 (Sucesso <code class="inline-code">201</code>)</strong>: Cadastre um discente com matrícula <code class="inline-code">"2026100123"</code> e verifique o retorno JSON.
+2. <strong>Cenário 2 (Duplicidade <code class="inline-code">400</code>)</strong>: Tente recadastrar a mesma matrícula <code class="inline-code">"2026100123"</code> e confirme a exceção HTTP <code class="inline-code">400</code>.
+3. <strong>Cenário 3 (Validação <code class="inline-code">422</code>)</strong>: Envie uma matrícula com letras (<code class="inline-code">"2026ABC"</code>), confirmando o bloqueio pelo validador de schema.
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U01-DIAG01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: DIAG
+[TEMA]: Arquitetura Completa da API REST de Gestão de Alunos em Node.js
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
+[COMPOSIÇÃO]: Technical diagram showing HTTP Client requests (POST/GET/DELETE /alunos) processed by Node.js Router, Schema Validator, and In-Memory Store.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "POST /alunos", "201 Created", "400 Bad Request".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

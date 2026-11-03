@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U02-A03 — Modelagem e Geração Automática de Migrações (Migrations)</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U02-A03</span>
+      <span class="badge">Assíncrono (2h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Modelagem e Geração Automática de Migrações (Migrations)</h1>
+      <p>Unidade II: Framework ORM, Persistência & Backend Low-Code / BaaS</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 03: Modelagem e Geração Automática de Migrações (Migrations)</h1>
+
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-INFO01.png" alt="Infográfico ORM e Migrations vs PocketBase" loading="lazy" /><figcaption>Infográfico ORM e Migrations vs PocketBase</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir esta aula assíncrona, você será capaz de:
+<li class="task-item">✅ <strong>Explicar</strong> por que alterações manuais em bancos de produção são proibidas em equipes profissionais de engenharia de software.</li>
+<li class="task-item">✅ <strong>Escrever</strong> scripts de migração reversíveis (<code class="inline-code">up</code> para aplicar mudanças e <code class="inline-code">down</code> para reverter/<em>rollback</em>) em JavaScript/Node.js.</li>
+<li class="task-item">✅ <strong>Implementar</strong> scripts de <em>Seed</em> para popular automaticamente o ambiente de desenvolvimento.</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 O que são Database Migrations?</h3>
+Assim como o Git controla o histórico de alterações do código-fonte JavaScript, as <strong>Migrations (Migrações)</strong> controlam o histórico evolutivo do esquema do banco de dados. Tanto em ORMs tradicionais do ecossistema Node.js (Prisma Migrate, Knex, Drizzle Kit) quanto internamente no <strong>PocketBase</strong> (<code class="inline-code">pb_migrations</code>), cada alteração estrutural é gravada em um arquivo datado contendo duas funções:
+<li><strong><code class="inline-code">up(db)</code></strong>: Aplica a evolução (ex.: cria a coleção/tabela <code class="inline-code">projetos</code> ou adiciona a coluna <code class="inline-code">github_url</code>).</li>
+<li><strong><code class="inline-code">down(db)</code></strong>: Desfaz a alteração com segurança caso um deploy apresente falhas.</li>
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Especificação de Migration Compatível com Node.js / PocketBase</h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere uma estrutura de migração em JavaScript (padrão up/down) que adicione o campo "github_repo" e "nota_final" na coleção/tabela de alunos, acompanhada de uma função de seed que insira 3 discentes de exemplo do IFCE Campus Baturité.</code></pre>
+
+<h3>Passo 2: Implementação de Migration e Seed</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// src/orm/migrations/20261102_add_github_repo.js
+export const migrationAddGithubRepo = {
+  id: '20261102_01_add_github_repo',
+  up(schemaState) {
+    schemaState.columns.push(
+      { name: 'github_repo', type: 'TEXT', required: false },
+      { name: 'nota_final', type: 'REAL', default: 0.0 }
+    );
+    return schemaState;
+  },
+  down(schemaState) {
+    schemaState.columns = schemaState.columns.filter(
+      (col) =&gt; col.name !== 'github_repo' &amp;&amp; col.name !== 'nota_final'
+    );
+    return schemaState;
+  }
+};
+
+export const seedAlunosIniciais = [
+  { nome: 'Ana Clara Martins', matricula: '2026100101', curso: 'Técnico em Informática para Internet' },
+  { nome: 'Carlos Eduardo Silva', matricula: '2026100102', curso: 'Técnico em Informática para Internet' },
+  { nome: 'Beatriz Oliveira Lima', matricula: '2026100103', curso: 'Técnico em Informática para Internet' }
+];</code></pre>
+
+<h3>Passo 3: Teste de Validação</h3>
+Execute a função <code class="inline-code">up()</code> seguida de <code class="inline-code">down()</code> sobre um objeto de estado inicial para comprovar a idempotência da reversão do esquema.
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U02-INFO01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: INFO
+[TEMA]: ORM vs PocketBase BaaS Low-Code Architecture
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#10B981, #0284C7).
+[COMPOSIÇÃO]: Side-by-side comparison infographic. Left side labeled "Traditional Node.js ORM" showing JavaScript Models mapping to SQL Tables via Migration Scripts. Right side labeled "PocketBase BaaS" showing direct Auto-generated REST &amp; Realtime APIs from SQLite Collections with built-in Auth.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "Traditional Node.js ORM", "PocketBase BaaS".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

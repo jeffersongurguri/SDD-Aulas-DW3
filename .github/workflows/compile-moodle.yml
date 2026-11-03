@@ -1,0 +1,37 @@
+name: Compile DWIII Material Didatico to Moodle & PDF
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  validate-and-compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate SDD Specifications (.spec.md) & Hours Matrix
+        run: npm run validate
+
+      - name: Run Code Samples Automated Tests (node:test)
+        run: npm test
+
+      - name: Compile Moodle Package (.mbz / HTML) and Study Guides
+        run: npm run build:moodle
+
+      - name: Upload Moodle Package & Study Guides Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dw3-moodle-and-pdf-build
+          path: |
+            build/moodle-mbz/
+            build/pdf/

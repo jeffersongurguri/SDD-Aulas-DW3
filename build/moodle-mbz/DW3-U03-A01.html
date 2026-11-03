@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U03-A01 — Do JavaScript Vanilla ao React: Componentes Visuais, Reatividade e Ciclo de Vida</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U03-A01</span>
+      <span class="badge">Assíncrono (4h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Do JavaScript Vanilla ao React: Componentes Visuais, Reatividade e Ciclo de Vida</h1>
+      <p>Unidade III: Framework Front-end, Headless CMS & No-Code UI</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 01: Do JavaScript Vanilla ao React: Componentes Visuais, Reatividade e Ciclo de Vida</h1>
+
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-ART01.png" alt="Banner da Unidade III" loading="lazy" /><figcaption>Banner da Unidade III</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir esta aula assíncrona, você será capaz de:
+<li class="task-item">✅ <strong>Contrastar</strong> a manipulação manual de nós do DOM em <strong>JavaScript Vanilla</strong> (<code class="inline-code">document.querySelector</code>, <code class="inline-code">appendChild</code>) com o modelo declarativo de <strong>Virtual DOM</strong> do <strong>React</strong>.</li>
+<li class="task-item">✅ <strong>Decompor</strong> uma tela do sistema acadêmico em componentes funcionais desacoplados (<code class="inline-code">&lt;HeaderIFCE /&gt;</code>, <code class="inline-code">&lt;CardAluno /&gt;</code>, <code class="inline-code">&lt;BoletimBadge /&gt;</code>).</li>
+<li class="task-item">✅ <strong>Transmitir</strong> dados de componentes pais para filhos utilizando propriedades imutáveis (<code class="inline-code">props</code>).</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 Paradigma Imperativo (JS Vanilla DOM) vs. Declarativo (React)</h3>
+Em <strong>JavaScript Vanilla</strong>, quando um estado muda (por exemplo, um novo discente é cadastrado), o programador precisa descrever passo a passo <em>como</em> localizar o elemento HTML (<code class="inline-code">document.getElementById('lista-alunos')</code>), criar uma nova tag <code class="inline-code">&lt;li&gt;</code>, atribuir classes CSS e anexá-la à árvore DOM. Em sistemas complexos, sincronizar dezenas de elementos visuais manualmente gera bugs de inconsistência de estado.
+
+O <strong>React</strong> adota a programação <strong>declarativa</strong>: definimos a interface como uma função pura do estado:
+$$\text{UI} = f(\text{state}, \text{props})$$
+Sempre que o estado muda, o React recalcula a árvore de componentes na memória e atualiza apenas os nós exatos do DOM que sofreram alteração.
+
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-INFO01.png" alt="Infográfico JS Vanilla DOM vs React" loading="lazy" /><figcaption>Infográfico JS Vanilla DOM vs React</figcaption></figure>
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Prompt de Especificação (Comparativo JS Vanilla vs. React Component)</h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere lado a lado uma função em JavaScript Vanilla que renderiza um card de aluno em HTML e o componente funcional equivalente em React (&lt;CardAluno /&gt;), exibindo nome, matrícula, curso e um selo visual colorido conforme a situação acadêmica.</code></pre>
+
+<h3>Passo 2: Implementação em JavaScript Vanilla e React</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// 1. Abordagem JavaScript Vanilla (Template String Segura)
+export function renderizarCardAlunoVanilla(aluno) {
+  const corBadge = aluno.situacao === 'APROVADO_POR_MEDIA' ? '#10B981' : '#F59E0B';
+  return `
+    &lt;article class="card-aluno" data-matricula="${aluno.matricula}"&gt;
+      &lt;h3&gt;${aluno.nome}&lt;/h3&gt;
+      &lt;p&gt;Matrícula: &lt;strong&gt;${aluno.matricula}&lt;/strong&gt; | ${aluno.curso}&lt;/p&gt;
+      &lt;span style="color:${corBadge}"&gt;${aluno.situacao || 'CURSANDO'}&lt;/span&gt;
+    &lt;/article&gt;
+  `.trim();
+}
+
+// 2. Abordagem Declarativa em React (JSX / Functional Component)
+export function CardAluno({ aluno, onSelecionar }) {
+  const aprovado = aluno.situacao === 'APROVADO_POR_MEDIA';
+  return {
+    type: 'article',
+    props: {
+      className: <code class="inline-code">card-aluno ${aprovado ? 'aprovado' : 'pendente'}</code>,
+      onClick: () =&gt; onSelecionar &amp;&amp; onSelecionar(aluno.matricula),
+      children: [
+        { type: 'h3', props: { children: aluno.nome } },
+        { type: 'p', props: { children: <code class="inline-code">Matrícula: ${aluno.matricula} — ${aluno.curso}</code> } }
+      ]
+    }
+  };
+}</code></pre>
+
+<h3>Passo 3: Teste de Validação</h3>
+Invoque <code class="inline-code">renderizarCardAlunoVanilla</code> e <code class="inline-code">CardAluno</code> com o mesmo objeto de aluno e verifique a previsibilidade determinística da saída.
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U03-ART01</code> &amp; <code class="inline-code">DW3-U03-INFO01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: INFO
+[TEMA]: Imperative Vanilla JS DOM vs Declarative React State
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
+[COMPOSIÇÃO]: Side-by-side comparison infographic showing manual querySelector mutations on the left vs declarative useState rendering on the right.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "Imperative Vanilla JS DOM", "Declarative React State".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

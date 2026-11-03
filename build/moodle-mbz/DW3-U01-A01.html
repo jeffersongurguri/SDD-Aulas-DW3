@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U01-A01 — Introdução ao Node.js, Frameworks Web e Gerenciamento de Pacotes com IA</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U01-A01</span>
+      <span class="badge">Assíncrono (4h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Introdução ao Node.js, Frameworks Web e Gerenciamento de Pacotes com IA</h1>
+      <p>Unidade I: Framework Back-end, Padrões de Software & Vibe Coding</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 01: Introdução ao Node.js, Frameworks Web e Gerenciamento de Pacotes com IA</h1>
+
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-ART01.png" alt="Banner da Unidade I" loading="lazy" /><figcaption>Banner da Unidade I</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir esta aula assíncrona, você será capaz de:
+<li class="task-item">✅ <strong>Explicar</strong> o funcionamento do runtime <strong>Node.js</strong>, a engine V8 e o modelo de I/O não bloqueante orientado a eventos (<em>Event Loop</em>).</li>
+<li class="task-item">✅ <strong>Diferenciar</strong> a escrita de código em <strong>JavaScript Vanilla (ES6+)</strong> no navegador e no servidor utilizando <em>ES Modules</em> (<code class="inline-code">import</code> / <code class="inline-code">export</code>).</li>
+<li class="task-item">✅ <strong>Estruturar</strong> um projeto back-end com <code class="inline-code">npm</code>, configurando o manifesto <code class="inline-code">package.json</code> e utilizando <strong>Vibe Coding</strong> para geração e auditoria de configurações iniciais.</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 Do Navegador ao Servidor: O Ecossistema Node.js</h3>
+Historicamente, o <strong>JavaScript Vanilla</strong> nascia restrito ao contexto do navegador para manipulação do DOM. Com a criação do <strong>Node.js</strong> sobre a engine <strong>V8</strong> (do Google Chrome) combinada à biblioteca <code class="inline-code">libuv</code>, o JavaScript consolidou-se como uma linguagem <em>full-stack</em> de alta performance para servidores Web e APIs RESTful.
+
+Diferente de servidores tradicionais que alocam uma <em>thread</em> pesada do sistema operacional para cada requisição HTTP recebida, o Node.js opera sob o modelo <strong>Single-Threaded Event Loop</strong> com I/O assíncrono não bloqueante:
+1. A requisição HTTP chega ao Event Loop.
+2. Operações custosas de entrada/saída (consulta ao banco SQLite/PocketBase, leitura de arquivos ou chamadas de rede) são delegadas de forma assíncrona (<code class="inline-code">Promises</code> e <code class="inline-code">async/await</code>).
+3. O processo principal continua livre para atender centenas de outros clientes simultaneamente.
+
+<h3>2.2 Frameworks Web em Node.js e Gerenciamento de Pacotes (<code class="inline-code">npm</code>)</h3>
+Embora o módulo nativo <code class="inline-code">node:http</code> forneça toda a base de rede para criar servidores Web sem dependências externas, frameworks minimalistas (como <strong>Express</strong> e <strong>Fastify</strong>) adicionam camadas ergonômicas de roteamento, <em>middlewares</em> e serialização JSON.
+
+O <strong>Node Package Manager (<code class="inline-code">npm</code>)</strong> centraliza a gestão de bibliotecas por meio do arquivo <code class="inline-code">package.json</code>. Na abordagem moderna adotada nesta disciplina, ativamos o suporte nativo a <strong>ES Modules</strong> definindo <code class="inline-code">"type": "module"</code>, o que unifica a sintaxe <code class="inline-code">import/export</code> entre o back-end Node.js e o front-end React.
+
+<h3>2.3 Vibe Coding no Setup Arquitetural</h3>
+No paradigma de <strong>Desenvolvimento Orientado a Especificação (SDD)</strong> e <strong>Vibe Coding</strong>, o desenvolvedor não perde tempo memorizando flags obscuras de configuração: ele especifica requisitos técnicos claros (versão da engine Node, scripts de execução com <code class="inline-code">--watch</code>, política de módulos ES6 e dependências estritamente necessárias) e audita o artefato gerado pela IA.
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Prompt de Especificação para Inicialização do Projeto (Vibe Coding)</h3>
+Utilize o seguinte prompt estruturado no seu assistente de código (Cursor, GitHub Copilot ou Gemini Code Assist):
+
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere um arquivo package.json para uma API acadêmica do IFCE Campus Baturité em Node.js 20+, utilizando ES Modules ("type": "module"), sem dependências externas desnecessárias, contendo scripts para desenvolvimento com live-reload nativo (--watch) e execução de testes nativos (node --test). Em seguida, crie um módulo utilitário src/infoSistema.js em JavaScript Vanilla que retorne metadados da plataforma e um servidor HTTP básico em src/index.js.</code></pre>
+
+<h3>Passo 2: Implementação e Inspeção do Código Gerado</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// src/infoSistema.js — Módulo ES6+ em JavaScript Vanilla
+import os from 'node:os';
+
+export function obterStatusServidor() {
+  return {
+    instituicao: 'IFCE Campus Baturité',
+    disciplina: 'Desenvolvimento Web III (UC17-DWIII)',
+    runtime: <code class="inline-code">Node.js ${process.version}</code>,
+    plataforma: <code class="inline-code">${os.type()} (${os.arch()})</code>,
+    memoriaLivreMB: Math.round(os.freemem() / (1024 * 1024)),
+    timestamp: new Date().toISOString()
+  };
+}</code></pre>
+
+<pre class="code-block" data-lang="javascript"><code>// src/index.js — Servidor HTTP Nativo em Node.js
+import http from 'node:http';
+import { obterStatusServidor } from './infoSistema.js';
+
+const PORT = process.env.PORT || 3000;
+
+const server = http.createServer((req, res) =&gt; {
+  if (req.method === 'GET' &amp;&amp; req.url === '/status') {
+    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.end(JSON.stringify(obterStatusServidor(), null, 2));
+    return;
+  }
+
+  res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
+  res.end(JSON.stringify({ erro: 'Rota não encontrada' }));
+});
+
+server.listen(PORT, () =&gt; {
+  console.log(<code class="inline-code">Servidor ativo em http://localhost:${PORT}/status</code>);
+});</code></pre>
+
+<h3>Passo 3: Teste de Validação</h3>
+Execute o comando abaixo no terminal e valide se o JSON retornado apresenta o código HTTP <code class="inline-code">200</code> e a versão do Node.js:
+<pre class="code-block" data-lang="bash"><code>node --check src/index.js</code></pre>
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U01-ART01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: ART
+[TEMA]: Arquitetura Back-end Node.js e Vibe Coding
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
+[COMPOSIÇÃO]: Conceptual cover art for Unidade I showing a glowing Node.js hexagon core connected to AI neural circuit lines and REST API endpoints.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "NODE.JS &amp; VIBE CODING".
+[ASPECT RATIO]: 21:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

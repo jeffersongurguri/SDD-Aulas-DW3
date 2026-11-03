@@ -1,0 +1,14 @@
+# Dependências e Ambiente
+node_modules/
+.env
+.env.local
+.env.*.local
+
+# PocketBase Runtime Data (não versionar dados sensíveis locais)
+pb_data/
+
+# Logs e Arquivos Temporários do SO
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db

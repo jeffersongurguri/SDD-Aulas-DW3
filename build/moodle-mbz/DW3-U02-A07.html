@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U02-A07 — Atividade de Fixação: Mapeamento de Tabelas Complexas e API Rules no PocketBase</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U02-A07</span>
+      <span class="badge">Assíncrono (2h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Atividade de Fixação: Mapeamento de Tabelas Complexas e API Rules no PocketBase</h1>
+      <p>Unidade II: Framework ORM, Persistência & Backend Low-Code / BaaS</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 07: Atividade de Fixação: Mapeamento de Tabelas Complexas e API Rules no PocketBase</h1>
+
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama API Rules e Segurança no PocketBase" loading="lazy" /><figcaption>Diagrama API Rules e Segurança no PocketBase</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir esta atividade assíncrona de fechamento da Unidade II, você será capaz de:
+<li class="task-item">✅ <strong>Configurar</strong> as 5 regras de acesso (<em>API Rules</em>: <code class="inline-code">listRule</code>, <code class="inline-code">viewRule</code>, <code class="inline-code">createRule</code>, <code class="inline-code">updateRule</code>, <code class="inline-code">deleteRule</code>) em coleções do <strong>PocketBase</strong>.</li>
+<li class="task-item">✅ <strong>Escrever</strong> expressões de segurança utilizando o contexto <code class="inline-code">@request.auth.id</code> e <code class="inline-code">@request.auth.role</code>.</li>
+<li class="task-item">✅ <strong>Auditar</strong> regras de acesso com auxílio de IA para impedir que um estudante altere notas de outros estudantes.</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 Segurança Declarativa no Banco: As <em>API Rules</em> do PocketBase</h3>
+Por padrão, toda coleção criada no <strong>PocketBase</strong> vem bloqueada (<code class="inline-code">Admin Only</code> = <code class="inline-code">null</code>), impedindo acessos públicos acidentais. Para liberar o acesso seguro diretamente para o front-end <strong>React</strong>, configuramos expressões booleanas avaliadas a cada requisição:
+
+| Operação | Regra no PocketBase (<code class="inline-code">matriculas</code>) | Significado Pedagógico e de Segurança |
+| :--- | :--- | :--- |
+| <strong>List / View</strong> | <code class="inline-code">@request.auth.id != "" &amp;&amp; (aluno_id = @request.auth.id \|\| @request.auth.role = "docente")</code> | O aluno logado vê apenas seu próprio boletim; professores veem todos. |
+| <strong>Create / Update</strong> | <code class="inline-code">@request.auth.role = "docente" \|\| @request.auth.role = "coordenador"</code> | Apenas docentes ou coordenadores autenticados podem lançar ou alterar notas. |
+| <strong>Delete</strong> | <code class="inline-code">@request.auth.role = "coordenador"</code> | Somente a coordenação pode excluir registros de matrícula. |
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Prompt de Especificação de Regras de Segurança no PocketBase</h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere um avaliador em JavaScript que simule a validação das API Rules do PocketBase para a coleção "matriculas", verificando o objeto de contexto auth ({ id, role }) e o registro alvo ({ aluno_id }) para as operações view, update e delete.</code></pre>
+
+<h3>Passo 2: Simulador de Avaliação de API Rules em JavaScript</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Validador de API Rules)
+export function avaliarRegraAcessoPocketBase(operacao, authUser, registroMatricula) {
+  if (!authUser || !authUser.id) return false; // Não autenticado
+
+  switch (operacao) {
+    case 'view':
+    case 'list':
+      return authUser.role === 'docente' || authUser.role === 'coordenador' || registroMatricula.aluno_id === authUser.id;
+    case 'create':
+    case 'update':
+      return authUser.role === 'docente' || authUser.role === 'coordenador';
+    case 'delete':
+      return authUser.role === 'coordenador';
+    default:
+      return false;
+  }
+}</code></pre>
+
+<h3>Passo 3: Exercício de Fixação</h3>
+Teste a função <code class="inline-code">avaliarRegraAcessoPocketBase</code> passando um usuário com <code class="inline-code">role: 'discente'</code> tentando executar <code class="inline-code">'update'</code> no próprio boletim e confirme que o retorno é <code class="inline-code">false</code> (<code class="inline-code">403 Forbidden</code>).
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U02-DIAG01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: DIAG
+[TEMA]: Controle de Acesso Row-Level Security com API Rules no PocketBase
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
+[COMPOSIÇÃO]: Security shield filter inspecting @request.auth.id and role before permitting access to SQLite collections.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "API Rules", "JWT Auth", "SQLite".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>

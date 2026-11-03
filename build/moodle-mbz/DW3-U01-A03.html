@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>DW3-U01-A03 — Padrões de Arquitetura Back-end (MVC/Controllers) e Scaffolding com Vibe Coding</title>
+  <style>
+  :root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-cyan: #38bdf8;
+    --accent-indigo: #818cf8;
+    --accent-emerald: #34d399;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.65;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+  header.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    border: 1px solid #334155;
+    border-left: 6px solid var(--accent-emerald);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-cyan);
+    margin-right: 0.5rem;
+  }
+  .lesson-card {
+    background: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  h1, h2, h3 { color: var(--accent-cyan); }
+  pre.code-block {
+    background: #020617;
+    border: 1px solid #334155;
+    border-left: 4px solid var(--accent-indigo);
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+  }
+  code.inline-code {
+    background: rgba(129, 140, 248, 0.15);
+    color: #c7d2fe;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  figure.visual-asset {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  figure.visual-asset img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid #475569;
+  }
+  figure.visual-asset figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <span class="badge">DW3-U01-A03</span>
+      <span class="badge">Síncrono (2h)</span>
+      <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
+      <h1>Padrões de Arquitetura Back-end (MVC/Controllers) e Scaffolding com Vibe Coding</h1>
+      <p>Unidade I: Framework Back-end, Padrões de Software & Vibe Coding</p>
+    </header>
+    <main class="lesson-card">
+      
+<h1>Aula 03: Padrões de Arquitetura Back-end (MVC/Controllers) e Scaffolding com Vibe Coding</h1>
+
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-INFO01.png" alt="Infográfico Código Manual vs Vibe Coding" loading="lazy" /><figcaption>Infográfico Código Manual vs Vibe Coding</figcaption></figure>
+
+<h2>1. Objetivos de Aprendizagem</h2>
+
+Ao concluir este encontro síncrono, você será capaz de:
+<li class="task-item">✅ <strong>Estruturar</strong> um projeto back-end Node.js separando responsabilidades entre <em>Routes</em>, <em>Controllers</em>, <em>Services</em> e <em>Models</em>.</li>
+<li class="task-item">✅ <strong>Elaborar</strong> especificações de <em>Scaffolding</em> para assistentes de IA gerarem controladores padronizados sem misturar regras de negócio com manipulação de HTTP.</li>
+<li class="task-item">✅ <strong>Refatorar</strong> um código monolítico em camadas modulares em JavaScript ES6+.</li>
+
+---
+
+<h2>2. Fundamentação Teórica (Markdown)</h2>
+
+<h3>2.1 O Padrão MVC e Arquitetura em Camadas para APIs REST</h3>
+No desenvolvimento tradicional com renderização no servidor, o padrão <strong>MVC (Model-View-Controller)</strong> dividia a aplicação em Dados (<em>Model</em>), Tela HTML (<em>View</em>) e Controle (<em>Controller</em>). Em arquiteturas modernas onde a <em>View</em> é um front-end desacoplado em <strong>React</strong> ou <strong>JavaScript Vanilla</strong>, adaptamos o MVC no Node.js para três camadas essenciais:
+1. <strong>Controller (Controlador HTTP)</strong>: Recebe <code class="inline-code">req</code> e <code class="inline-code">res</code>, extrai parâmetros, aciona o <em>Service</em> e devolve o status HTTP adequado.
+2. <strong>Service (Regra de Negócio)</strong>: Aplica validações acadêmicas (ex.: verificar se o aluno já possui matrícula ativa) de forma independente do protocolo HTTP.
+3. <strong>Repository / Model (Persistência)</strong>: Comunica-se com o banco de dados em memória, ORM ou <strong>PocketBase</strong>.
+
+<h3>2.2 Scaffolding Acelerado com Vibe Coding</h3>
+Quando pedimos a uma IA apenas <em>"crie uma API de alunos"</em>, ela tende a gerar um único arquivo gigante difícil de manter. No <strong>Vibe Coding orientado a especificação</strong>, instruímos explicitamente a arquitetura em camadas desejada.
+
+---
+
+<h2>3. Atividade Prática Guiada (Hands-on)</h2>
+
+<h3>Passo 1: Prompt de Scaffolding em Camadas</h3>
+<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere um Service (AlunoService) e um Controller (AlunoController) em JavaScript ES6+ para Node.js seguindo o princípio da responsabilidade única. O AlunoService deve validar matrícula de 10 dígitos e nome mínimo de 3 letras, impedindo duplicidades. O AlunoController deve apenas traduzir chamadas HTTP em invocações ao Service.</code></pre>
+
+<h3>Passo 2: Implementação Desacoplada (<code class="inline-code">Service</code> + <code class="inline-code">Controller</code>)</h3>
+
+<pre class="code-block" data-lang="javascript"><code>// src/services/AlunoService.js
+export class AlunoService {
+  constructor() {
+    this.repositorio = new Map();
+  }
+
+  criar({ nome, matricula, curso = 'Técnico em Informática para Internet' }) {
+    if (!nome || typeof nome !== 'string' || nome.trim().length &lt; 3) {
+      const err = new Error('O nome completo do discente deve ter pelo menos 3 caracteres.');
+      err.statusCode = 422;
+      throw err;
+    }
+    if (!/^\d{10}$/.test(String(matricula ?? ''))) {
+      const err = new Error('A matrícula deve conter exatamente 10 dígitos numéricos.');
+      err.statusCode = 422;
+      throw err;
+    }
+    if (this.repositorio.has(matricula)) {
+      const err = new Error('Matrícula já cadastrada no sistema acadêmico.');
+      err.statusCode = 400;
+      throw err;
+    }
+
+    const novoAluno = {
+      id: this.repositorio.size + 1,
+      nome: nome.trim(),
+      matricula: String(matricula),
+      curso,
+      criadoEm: new Date().toISOString()
+    };
+    this.repositorio.set(matricula, novoAluno);
+    return novoAluno;
+  }
+
+  listarTodos() {
+    return Array.from(this.repositorio.values());
+  }
+}</code></pre>
+
+<h3>Passo 3: Teste de Validação</h3>
+Instancie <code class="inline-code">AlunoService</code> em um teste isolado sem precisar subir a porta de rede HTTP, comprovando a vantagem do desacoplamento arquitetural.
+
+---
+
+<h2>4. Especificação de Ativos Visuais</h2>
+
+<h3>Prompt de Imagem (<code class="inline-code">DW3-U01-INFO01</code>)</h3>
+<pre class="code-block" data-lang="text"><code>[TIPO]: INFO
+[TEMA]: Manual Boilerplate vs Vibe Coding + Human Audit
+[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #34D399).
+[COMPOSIÇÃO]: Side-by-side comparison infographic. Left side showing manual repetitive boilerplate coding. Right side showing SDD specification input, AI scaffolding in Node.js, and human architectural audit.
+[TEXT RENDERING]: Crisp legible text rendering for labels: "Manual Boilerplate", "Vibe Coding + Audit".
+[ASPECT RATIO]: 16:9</code></pre>
+
+    </main>
+  </div>
+</body>
+</html>
