@@ -6,7 +6,7 @@
 
 ## Visão Geral
 
-Este repositório armazena o ecossistema completo de material didático da disciplina **Desenvolvimento Web III (80h / 4 créditos)**, construído sob a metodologia de **Specification-Driven Development (SDD)** e alinhado ao Projeto Pedagógico do Curso (PPC) e ao Regulamento da Organização Didática (ROD) do IFCE.
+Este repositório armazena o ecossistema completo de material didático da disciplina **Desenvolvimento Web III (UC17-DWIII)**, construído sob a metodologia de **Specification-Driven Development (SDD)** e alinhado ao Projeto Pedagógico do Curso (PPC) e ao Regulamento da Organização Didática (ROD) do IFCE.
 
 ### Stack Tecnológica Oficial da Disciplina
 - **Linguagem Base**: JavaScript Vanilla (ES6+ / ES Modules / Fetch API / DOM)
@@ -17,21 +17,21 @@ Este repositório armazena o ecossistema completo de material didático da disci
 
 ---
 
-## Distribuição de Carga Horária (80 Horas-Aula)
+## Estrutura das Unidades Curriculares
 
-| Unidade Curricular | Aulas | Presencial | Síncrona | Assíncrona | Total |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **Unidade I**: Framework Back-end (Node.js), Padrões & Vibe Coding | 6 (`A01`–`A06`) | 4h | 4h | 12h | **20h** |
-| **Unidade II**: ORM, Persistência & Backend Low-Code (PocketBase) | 7 (`A01`–`A07`) | 4h | 4h | 12h | **20h** |
-| **Unidade III**: Front-end (JS Vanilla & React), Headless CMS & No-Code UI | 5 (`A01`–`A05`) | 4h | 2h | 10h | **16h** |
-| **Unidade IV**: Projeto Web Completo, Testes por IA & Deploy na Nuvem | 10 (`A01`–`A10`) | 4h | 4h | 16h | **24h** |
-| **Total Geral da Disciplina** | **28 Aulas** | **16h** | **14h** | **50h** | **80h** |
+| Unidade Curricular | Aulas Especificadas |
+| :--- | :---: |
+| **Unidade I**: Framework Back-end (Node.js), Padrões & Vibe Coding | 6 (`A01`–`A06`) |
+| **Unidade II**: ORM, Persistência & Backend Low-Code (PocketBase) | 7 (`A01`–`A07`) |
+| **Unidade III**: Front-end (JS Vanilla & React), Headless CMS & No-Code UI | 5 (`A01`–`A05`) |
+| **Unidade IV**: Projeto Web Completo, Testes por IA & Deploy na Nuvem | 10 (`A01`–`A10`) |
+| **Total Geral da Disciplina** | **28 Aulas** |
 
 ---
 
 ## Como Executar o Pipeline Localmente
 
-1. **Validar todas as 28 especificações `.spec.md`, ativos visuais e matriz horária**:
+1. **Validar todas as 28 especificações `.spec.md` e ativos visuais**:
    ```bash
    npm run validate
    ```
@@ -39,7 +39,7 @@ Este repositório armazena o ecossistema completo de material didático da disci
    ```bash
    npm test
    ```
-3. **Compilar os pacotes HTML/Moodle (`.mbz`) e Cadernos Didáticos (`build/`)**:
+3. **Compilar os pacotes HTML/Moodle (`.mbz`) e E-Book PDF (`build/`)**:
    ```bash
    npm run build:moodle
    ```

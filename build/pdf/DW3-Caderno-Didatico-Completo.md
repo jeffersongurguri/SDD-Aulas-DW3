@@ -424,7 +424,7 @@ Ao concluir esta atividade prática de consolidação da Unidade I, você será 
 ### 2.1 Consolidação da Arquitetura Back-end na Unidade I
 Ao longo das 5 aulas anteriores, evoluímos do entendimento do runtime **Node.js** e do **JavaScript Vanilla (ES6+)** para a construção de serviços desacoplados com tratamento de exceções HTTP e auditoria de código gerado por IA.
 
-Nesta atividade prática de 6 horas, consolidamos a **API de Gestão de Alunos (DWIII)**, que servirá de base para a persistência relacional e BaaS (**PocketBase**) na Unidade II e para o consumo pelo front-end **React** na Unidade III.
+Nesta atividade prática, consolidamos a **API de Gestão de Alunos (DWIII)**, que servirá de base para a persistência relacional e BaaS (**PocketBase**) na Unidade II e para o consumo pelo front-end **React** na Unidade III.
 
 ---
 
@@ -1236,7 +1236,7 @@ Teste `validarFormularioAluno({ nome: 'Li', matricula: '123' })` e confirme que 
 
 ## 1. Objetivos de Aprendizagem
 
-Ao concluir este laboratório presencial de 4 horas da Unidade III, você será capaz de:
+Ao concluir este laboratório presencial da Unidade III, você será capaz de:
 - [x] **Integrar** ponta a ponta o front-end **React** com a API **Node.js** e as coleções do **PocketBase**.
 - [x] **Implementar** filtragem instantânea de discentes por nome ou matrícula usando estado derivado.
 - [x] **Calcular** e renderizar cartões de indicadores acadêmicos (Total de Alunos, Taxa de Aprovação e Média da Turma).
@@ -1683,7 +1683,7 @@ Execute `npm test` (que aciona `node --test`) no terminal e confirme 100% de apr
 
 ## 1. Objetivos de Aprendizagem
 
-Ao concluir este laboratório presencial de 4 horas, você será capaz de:
+Ao concluir este laboratório presencial, você será capaz de:
 - [x] **Realizar** o deploy da aplicação Full-Stack e verificar a conectividade HTTPS entre **React**, **Node.js** e **PocketBase**.
 - [x] **Implementar** uma rota de verificação de integridade (`/health`) que monitora o tempo de atividade (*uptime*) e a conexão com o banco.
 - [x] **Executar** uma bateria de requisições concorrentes (`Promise.all`) para aferir a latência média (`p95`) e a estabilidade do servidor.
@@ -1884,12 +1884,12 @@ Ao concluir esta última aula da disciplina **Desenvolvimento Web III (UC17-DWII
 
 ## 2. Fundamentação Teórica (Markdown)
 
-### 2.1 Síntese da Jornada em Desenvolvimento Web III (80h)
-Ao longo de 28 aulas (16h presenciais, 14h síncronas e 50h assíncronas), você vivenciou na prática o **Desenvolvimento Orientado a Especificação (SDD)**:
-- **Unidade I (20h)**: Domínio de **Node.js**, arquitetura em camadas, protocolo HTTP/REST, validação de dados e auditoria crítica de código gerado por IA (*Vibe Coding*).
-- **Unidade II (20h)**: Modelagem relacional, *migrations*, prevenção ao problema `N+1` e produtividade extrema com **PocketBase** (BaaS Low-Code e *API Rules*).
-- **Unidade III (16h)**: Evolução do **JavaScript Vanilla** (DOM/Fetch) para interfaces declarativas em **React** (`useState`, `useEffect`), consumindo o PocketBase como *Headless CMS* e geradores de UI.
-- **Unidade IV (24h)**: Engenharia Full-Stack completa, autenticação JWT/OWASP, testes automatizados com `node:test` e publicação em nuvem.
+### 2.1 Síntese da Jornada em Desenvolvimento Web III
+Ao longo das 28 aulas nas modalidades presencial, síncrona e assíncrona, você vivenciou na prática o **Desenvolvimento Orientado a Especificação (SDD)**:
+- **Unidade I**: Domínio de **Node.js**, arquitetura em camadas, protocolo HTTP/REST, validação de dados e auditoria crítica de código gerado por IA (*Vibe Coding*).
+- **Unidade II**: Modelagem relacional, *migrations*, prevenção ao problema `N+1` e produtividade extrema com **PocketBase** (BaaS Low-Code e *API Rules*).
+- **Unidade III**: Evolução do **JavaScript Vanilla** (DOM/Fetch) para interfaces declarativas em **React** (`useState`, `useEffect`), consumindo o PocketBase como *Headless CMS* e geradores de UI.
+- **Unidade IV**: Engenharia Full-Stack completa, autenticação JWT/OWASP, testes automatizados com `node:test` e publicação em nuvem.
 
 ### 2.2 Regra Matemática para o Exame Presencial Final ($EFP$)
 Segundo o ROD do IFCE, se $3,0 \le X_S < 6,0$ e a frequência for $\ge 75\%$, o estudante realiza o $EFP$ precisando atingir média final $X_F = \frac{X_S + EFP}{2} \ge 5,0$. Portanto, a nota mínima necessária no exame é:

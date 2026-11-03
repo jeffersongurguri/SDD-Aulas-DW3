@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Validate SDD Specifications (.spec.md) & Hours Matrix
+      - name: Validate SDD Specifications (.spec.md)
         run: npm run validate
 
       - name: Run Code Samples Automated Tests (node:test)

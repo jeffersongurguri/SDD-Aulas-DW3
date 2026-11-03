@@ -5,174 +5,145 @@
     <course_fullname>Desenvolvimento Web III (UC17-DWIII) - IFCE Campus Baturité</course_fullname>
     <course_shortname>UC17-DWIII</course_shortname>
     <stack>JavaScript Vanilla, Node.js, PocketBase, React</stack>
-    <total_hours>80h</total_hours>
     <activities>
     <activity id="1" moduleid="DW3-U01-A01" modulename="page">
       <title>DW3-U01-A01 - Introdução ao Node.js, Frameworks Web e Gerenciamento de Pacotes com IA</title>
       <modality>Assíncrono</modality>
-      <workload>4h</workload>
       <content_file>DW3-U01-A01.html</content_file>
     </activity>
     <activity id="2" moduleid="DW3-U01-A02" modulename="page">
       <title>DW3-U01-A02 - Configuração de Ambiente Node.js e Arquitetura Web na Prática (Laboratório)</title>
       <modality>Presencial</modality>
-      <workload>4h</workload>
       <content_file>DW3-U01-A02.html</content_file>
     </activity>
     <activity id="3" moduleid="DW3-U01-A03" modulename="page">
       <title>DW3-U01-A03 - Padrões de Arquitetura Back-end (MVC/Controllers) e Scaffolding com Vibe Coding</title>
       <modality>Síncrono</modality>
-      <workload>2h</workload>
       <content_file>DW3-U01-A03.html</content_file>
     </activity>
     <activity id="4" moduleid="DW3-U01-A04" modulename="page">
       <title>DW3-U01-A04 - Estudo Dirigido: Análise Crítica e Auditoria de Código Node.js Gerado por IA</title>
       <modality>Assíncrono</modality>
-      <workload>2h</workload>
       <content_file>DW3-U01-A04.html</content_file>
     </activity>
     <activity id="5" moduleid="DW3-U01-A05" modulename="page">
       <title>DW3-U01-A05 - Arquitetura RESTful, Verbos HTTP, Middlewares e Tratamento de Exceções</title>
       <modality>Síncrono</modality>
-      <workload>2h</workload>
       <content_file>DW3-U01-A05.html</content_file>
     </activity>
     <activity id="6" moduleid="DW3-U01-A06" modulename="page">
       <title>DW3-U01-A06 - Resolução de Exercícios Práticos Virtuais de Construção de APIs REST em Node.js</title>
       <modality>Assíncrono</modality>
-      <workload>6h</workload>
       <content_file>DW3-U01-A06.html</content_file>
     </activity>
     <activity id="7" moduleid="DW3-U02-A01" modulename="page">
       <title>DW3-U02-A01 - Conceitos Fundamentais de ORM em Node.js e Abstração de Entidades</title>
       <modality>Assíncrono</modality>
-      <workload>4h</workload>
       <content_file>DW3-U02-A01.html</content_file>
     </activity>
     <activity id="8" moduleid="DW3-U02-A02" modulename="page">
       <title>DW3-U02-A02 - Mapeamento de Atributos, Chaves e Relacionamentos no ORM</title>
       <modality>Síncrono</modality>
-      <workload>2h</workload>
       <content_file>DW3-U02-A02.html</content_file>
     </activity>
     <activity id="9" moduleid="DW3-U02-A03" modulename="page">
       <title>DW3-U02-A03 - Modelagem e Geração Automática de Migrações (Migrations)</title>
       <modality>Assíncrono</modality>
-      <workload>2h</workload>
       <content_file>DW3-U02-A03.html</content_file>
     </activity>
     <activity id="10" moduleid="DW3-U02-A04" modulename="page">
       <title>DW3-U02-A04 - Automação de Scripts de Banco de Dados e Introdução ao BaaS com PocketBase</title>
       <modality>Assíncrono</modality>
-      <workload>4h</workload>
       <content_file>DW3-U02-A04.html</content_file>
     </activity>
     <activity id="11" moduleid="DW3-U02-A05" modulename="page">
       <title>DW3-U02-A05 - Laboratório Prático: Integração Back-end Node.js + ORM/PocketBase + Banco Relacional (1ª Avaliação)</title>
       <modality>Presencial</modality>
-      <workload>4h</workload>
       <content_file>DW3-U02-A05.html</content_file>
     </activity>
     <activity id="12" moduleid="DW3-U02-A06" modulename="page">
       <title>DW3-U02-A06 - Consultas Avançadas, Joins/Expand e Performance no ORM e PocketBase auxiliados por IA</title>
       <modality>Síncrono</modality>
-      <workload>2h</workload>
       <content_file>DW3-U02-A06.html</content_file>
     </activity>
     <activity id="13" moduleid="DW3-U02-A07" modulename="page">
       <title>DW3-U02-A07 - Atividade de Fixação: Mapeamento de Tabelas Complexas e API Rules no PocketBase</title>
       <modality>Assíncrono</modality>
-      <workload>2h</workload>
       <content_file>DW3-U02-A07.html</content_file>
     </activity>
     <activity id="14" moduleid="DW3-U03-A01" modulename="page">
       <title>DW3-U03-A01 - Do JavaScript Vanilla ao React: Componentes Visuais, Reatividade e Ciclo de Vida</title>
       <modality>Assíncrono</modality>
-      <workload>4h</workload>
       <content_file>DW3-U03-A01.html</content_file>
     </activity>
     <activity id="15" moduleid="DW3-U03-A02" modulename="page">
       <title>DW3-U03-A02 - Soluções de Gerenciamento de Conteúdo (PocketBase Headless CMS) e Prototipagem No-Code (v0 / Figma)</title>
       <modality>Assíncrono</modality>
-      <workload>4h</workload>
       <content_file>DW3-U03-A02.html</content_file>
     </activity>
     <activity id="16" moduleid="DW3-U03-A03" modulename="page">
       <title>DW3-U03-A03 - Integração do Front-end React com APIs RESTful e Gerenciamento de Estado (useState / useEffect)</title>
       <modality>Síncrono</modality>
-      <workload>2h</workload>
       <content_file>DW3-U03-A03.html</content_file>
     </activity>
     <activity id="17" moduleid="DW3-U03-A04" modulename="page">
       <title>DW3-U03-A04 - Requisições Assíncronas (fetch / SDK pocketbase) e Manipulação de Estado Reativo</title>
       <modality>Assíncrono</modality>
-      <workload>2h</workload>
       <content_file>DW3-U03-A04.html</content_file>
     </activity>
     <activity id="18" moduleid="DW3-U03-A05" modulename="page">
       <title>DW3-U03-A05 - Laboratório Prático: Consumo de Dados e Renderização Dinâmica na Interface React</title>
       <modality>Presencial</modality>
-      <workload>4h</workload>
       <content_file>DW3-U03-A05.html</content_file>
     </activity>
     <activity id="19" moduleid="DW3-U04-A01" modulename="page">
       <title>DW3-U04-A01 - Planejamento de Projeto: Escopo e Levantamento de Requisitos com SDD</title>
       <modality>Síncrono</modality>
-      <workload>2h</workload>
       <content_file>DW3-U04-A01.html</content_file>
     </activity>
     <activity id="20" moduleid="DW3-U04-A02" modulename="page">
       <title>DW3-U04-A02 - Modelagem de Interface (UI/UX) e Fluxos de Navegação em React</title>
       <modality>Assíncrono</modality>
-      <workload>2h</workload>
       <content_file>DW3-U04-A02.html</content_file>
     </activity>
     <activity id="21" moduleid="DW3-U04-A03" modulename="page">
       <title>DW3-U04-A03 - Camada de Persistência no PocketBase/Node.js, Autenticação e Segurança da Informação</title>
       <modality>Assíncrono</modality>
-      <workload>4h</workload>
       <content_file>DW3-U04-A03.html</content_file>
     </activity>
     <activity id="22" moduleid="DW3-U04-A04" modulename="page">
       <title>DW3-U04-A04 - Padrões Avançados de Arquitetura Full-Stack e Integração de Sistemas</title>
       <modality>Síncrono</modality>
-      <workload>1h</workload>
       <content_file>DW3-U04-A04.html</content_file>
     </activity>
     <activity id="23" moduleid="DW3-U04-A05" modulename="page">
       <title>DW3-U04-A05 - Codificação Supervisionada do Projeto Final</title>
       <modality>Assíncrono</modality>
-      <workload>2h</workload>
       <content_file>DW3-U04-A05.html</content_file>
     </activity>
     <activity id="24" moduleid="DW3-U04-A06" modulename="page">
       <title>DW3-U04-A06 - Testes Automatizados Gerados por IA (node:test) e Estratégias de Deploy (Docker/Vercel/Render/Fly.io)</title>
       <modality>Assíncrono</modality>
-      <workload>4h</workload>
       <content_file>DW3-U04-A06.html</content_file>
     </activity>
     <activity id="25" moduleid="DW3-U04-A07" modulename="page">
       <title>DW3-U04-A07 - Laboratório Prático: Publicação Prática (Deploy) e Testes de Carga Finais</title>
       <modality>Presencial</modality>
-      <workload>4h</workload>
       <content_file>DW3-U04-A07.html</content_file>
     </activity>
     <activity id="26" moduleid="DW3-U04-A08" modulename="page">
       <title>DW3-U04-A08 - Code Review, Análise de Performance e Apresentação de Projetos</title>
       <modality>Síncrono</modality>
-      <workload>1h</workload>
       <content_file>DW3-U04-A08.html</content_file>
     </activity>
     <activity id="27" moduleid="DW3-U04-A09" modulename="page">
       <title>DW3-U04-A09 - Envio Final do Repositório do Projeto no AVA Moodle (2ª Atividade Avaliativa - Projeto Final)</title>
       <modality>Assíncrono</modality>
-      <workload>2h</workload>
       <content_file>DW3-U04-A09.html</content_file>
     </activity>
     <activity id="28" moduleid="DW3-U04-A10" modulename="page">
       <title>DW3-U04-A10 - Fechamento de Diário de Classe e Orientações para Exame Final</title>
       <modality>Assíncrono</modality>
-      <workload>2h</workload>
       <content_file>DW3-U04-A10.html</content_file>
     </activity>
     </activities>

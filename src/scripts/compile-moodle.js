@@ -17,7 +17,6 @@ const UNIDADES = [
     numero: 'Unidade I',
     pasta: 'u1-backend-vibe',
     nome: 'Unidade I: Framework Back-end (Node.js), Padrões & Vibe Coding',
-    cargaHoraria: '20h',
     banner: 'DW3-U01-ART01.png',
     ementa:
       'Arquitetura cliente-servidor com Node.js e JavaScript Vanilla (ES6+), gerenciamento de pacotes npm, padrões MVC/Services/Controllers, construção de APIs RESTful, middlewares, tratamento de exceções HTTP e auditoria crítica de código gerado por IA (Vibe Coding).'
@@ -27,7 +26,6 @@ const UNIDADES = [
     numero: 'Unidade II',
     pasta: 'u2-orm-lowcode',
     nome: 'Unidade II: Framework ORM, Persistência & Backend Low-Code (PocketBase)',
-    cargaHoraria: '20h',
     banner: 'DW3-U02-ART01.png',
     ementa:
       'Impedância objeto-relacional, modelagem de entidades e relacionamentos (1:1, 1:N, N:N), geração de Migrations e Seeds, integração com PocketBase BaaS (SQLite embutido, Collections, Auth JWT, Realtime), otimização de queries (expand vs N+1) e segurança declarativa com API Rules.'
@@ -37,7 +35,6 @@ const UNIDADES = [
     numero: 'Unidade III',
     pasta: 'u3-frontend-nocode',
     nome: 'Unidade III: Framework Front-end (JS Vanilla & React), Headless CMS & No-Code UI',
-    cargaHoraria: '16h',
     banner: 'DW3-U03-ART01.png',
     ementa:
       'Transição da manipulação imperativa do DOM (JavaScript Vanilla) para interfaces declarativas em React (JSX, Props, useState, useEffect, Estado Derivado), consumo do PocketBase como Headless CMS, prototipagem com UI Generativa (v0 / Figma) e requisições assíncronas.'
@@ -47,7 +44,6 @@ const UNIDADES = [
     numero: 'Unidade IV',
     pasta: 'u4-projeto-deploy',
     nome: 'Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem',
-    cargaHoraria: '24h',
     banner: 'DW3-U04-ART01.png',
     ementa:
       'Engenharia Full-Stack orientada a especificação (SDD), fluxos de navegação e rotas protegidas em React, autenticação JWT e segurança OWASP Top 10, padrão BFF, testes automatizados nativos com node:test gerados por IA, containerização Docker, deploy na nuvem e fechamento acadêmico segundo o ROD/IFCE.'
@@ -100,7 +96,6 @@ function renderizarTabelasMarkdown(html) {
   for (let i = 0; i < linhas.length; i++) {
     const linha = linhas[i].trim();
     if (linha.startsWith('|') && linha.endsWith('|')) {
-      // Linha separadora | :--- | :---: |
       if (/^\|[\s:|-]+\|$/.test(linha)) {
         continue;
       }
@@ -140,7 +135,6 @@ function markdownParaHtmlBasico(md, pastaUnidadeRelativa) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
 
-  // Blocos de código ```lang ... ```
   const blocosCodigo = [];
   html = html.replace(/```([a-zA-Z0-9_-]*)\r?\n([\s\S]*?)```/g, (_, lang, code) => {
     const token = `@@CODE_BLOCK_${blocosCodigo.length}@@`;
@@ -150,34 +144,27 @@ function markdownParaHtmlBasico(md, pastaUnidadeRelativa) {
     return token;
   });
 
-  // Tabelas Markdown
   html = renderizarTabelasMarkdown(html);
 
-  // Imagens ![alt](./assets/file.png)
   html = html.replace(/!\[(.*?)\]\(\.\/assets\/(.*?)\)/g, (_, alt, imgFile) => {
     const srcPath = `${pastaUnidadeRelativa}/assets/${imgFile}`;
     return `<figure class="visual-asset"><img src="${srcPath}" alt="${alt}" /><figcaption>${alt}</figcaption></figure>`;
   });
 
-  // Títulos
   html = html.replace(/^### (.*)$/gm, '<h3>$1</h3>');
   html = html.replace(/^## (.*)$/gm, '<h2>$1</h2>');
   html = html.replace(/^# (.*)$/gm, '<h1 class="lesson-main-title">$1</h1>');
 
-  // Divisores horizontais
   html = html.replace(/^---$/gm, '<hr class="section-divider" />');
 
-  // Checkboxes e listas
   html = html.replace(/^- \[x\] (.*)$/gm, '<li class="task-item">✅ $1</li>');
   html = html.replace(/^- (.*)$/gm, '<li>$1</li>');
   html = html.replace(/^(\d+)\. (.*)$/gm, '<li class="num-item"><span class="num-badge">$1.</span> $2</li>');
 
-  // Negrito, itálico e inline code
   html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
   html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
   html = html.replace(/`([^`\n]+)`/g, '<code class="inline-code">$1</code>');
 
-  // Restaura blocos de código
   html = html.replace(/@@CODE_BLOCK_(\d+)@@/g, (_, idx) => blocosCodigo[Number(idx)]);
 
   return html;
@@ -732,7 +719,7 @@ export function compilarMaterialMoodleEPdf() {
   <div class="container">
     <header class="hero">
       <span class="badge">${meta.modulo_id}</span>
-      <span class="badge">${meta.modalidade} (${meta.carga_horaria})</span>
+      <span class="badge">${meta.modalidade}</span>
       <span class="badge">Stack: JS Vanilla • Node.js • PocketBase • React</span>
       <h1>${meta.titulo}</h1>
       <p>${meta.unidade}</p>
@@ -751,7 +738,6 @@ export function compilarMaterialMoodleEPdf() {
         titulo: meta.titulo,
         unidade: unidade.nome,
         unidadeId: unidade.id,
-        carga_horaria: meta.carga_horaria,
         modalidade: meta.modalidade,
         competencias: meta.competencias_chave || [],
         arquivoHtml: nomeHtmlAula
@@ -768,7 +754,7 @@ export function compilarMaterialMoodleEPdf() {
         <article class="ebook-lesson" id="${meta.modulo_id}">
           <div class="lesson-meta-bar">
             <span class="mod-id">${meta.modulo_id} — ${unidade.numero}</span>
-            <span class="mod-info">${meta.modalidade} • Carga Horária: ${meta.carga_horaria}</span>
+            <span class="mod-info">Modalidade: ${meta.modalidade}</span>
           </div>
           ${competenciasHtml}
           ${htmlAulaCorpo}
@@ -795,7 +781,6 @@ export function compilarMaterialMoodleEPdf() {
           <td>${a.unidade}</td>
           <td><a href="./${a.arquivoHtml}" style="color:#38bdf8">${a.titulo}</a></td>
           <td>${a.modalidade}</td>
-          <td>${a.carga_horaria}</td>
         </tr>`
     )
     .join('\n');
@@ -816,7 +801,7 @@ export function compilarMaterialMoodleEPdf() {
   <div class="container">
     <header class="hero">
       <span class="badge">IFCE Campus Baturité</span>
-      <span class="badge">UC17-DWIII • 80 Horas (4 Créditos)</span>
+      <span class="badge">UC17-DWIII</span>
       <span class="badge">SDD Specification-Driven</span>
       <h1>Desenvolvimento Web III — Pacote Instrucional Moodle</h1>
       <p>Stack Oficial: <strong>JavaScript Vanilla (ES6+), Node.js, PocketBase e React</strong></p>
@@ -828,7 +813,6 @@ export function compilarMaterialMoodleEPdf() {
           <th>Unidade Curricular</th>
           <th>Título da Aula Compilada</th>
           <th>Modalidade</th>
-          <th>CH</th>
         </tr>
       </thead>
       <tbody>
@@ -848,7 +832,6 @@ export function compilarMaterialMoodleEPdf() {
         `    <activity id="${idx + 1}" moduleid="${a.modulo_id}" modulename="page">
       <title>${a.modulo_id} - ${a.titulo}</title>
       <modality>${a.modalidade}</modality>
-      <workload>${a.carga_horaria}</workload>
       <content_file>${a.arquivoHtml}</content_file>
     </activity>`
     )
@@ -861,7 +844,6 @@ export function compilarMaterialMoodleEPdf() {
     <course_fullname>Desenvolvimento Web III (UC17-DWIII) - IFCE Campus Baturité</course_fullname>
     <course_shortname>UC17-DWIII</course_shortname>
     <stack>JavaScript Vanilla, Node.js, PocketBase, React</stack>
-    <total_hours>80h</total_hours>
     <activities>
 ${itensXml}
     </activities>
@@ -882,7 +864,7 @@ ${itensXml}
       <div class="toc-unit-block">
         <div class="toc-unit-header">
           <span>${unidade.nome}</span>
-          <span class="ch">${aulasToc.length} Aulas • ${unidade.cargaHoraria}</span>
+          <span class="ch">${aulasToc.length} Aulas</span>
         </div>
         <ul class="toc-list">
           ${aulasToc
@@ -890,7 +872,7 @@ ${itensXml}
               (a) => `
             <li class="toc-item">
               <a href="#${a.modulo_id}"><span class="toc-code">${a.modulo_id}</span>${a.titulo}</a>
-              <span class="toc-meta">${a.modalidade} • ${a.carga_horaria}</span>
+              <span class="toc-meta">${a.modalidade}</span>
             </li>`
             )
             .join('')}
@@ -905,7 +887,7 @@ ${itensXml}
       ({ unidade, aulasHtml }) => `
       <section class="unit-section" id="unidade-${unidade.id}">
         <div class="unit-divider">
-          <div class="inst-tag">Unidade Curricular • Carga Horária: ${unidade.cargaHoraria}</div>
+          <div class="inst-tag">Unidade Curricular • ${unidade.numero}</div>
           <h2>${unidade.nome}</h2>
           <p>${unidade.ementa}</p>
         </div>
@@ -929,7 +911,7 @@ ${itensXml}
     <div>
       <div class="cover-top-bar">
         <span class="inst-tag">Instituto Federal do Ceará (IFCE) — Campus Baturité</span>
-        <span class="code-tag">UC17-DWIII • 80h (4 Créditos)</span>
+        <span class="code-tag">UC17-DWIII • Material Didático SDD</span>
       </div>
 
       <div class="cover-hero">
@@ -985,8 +967,8 @@ ${itensXml}
       <div class="meta-box">
         <h4>Dados Curriculares Oficiais (PPC / IFCE)</h4>
         <p><strong>Unidade Curricular:</strong> Desenvolvimento Web III (UC17-DWIII)</p>
-        <p><strong>Carga Horária Total:</strong> 80 horas-aula (4 créditos acadêmicos)</p>
-        <p><strong>Distribuição Modal:</strong> 16h Presenciais • 14h Síncronas • 50h Assíncronas (AVA Moodle)</p>
+        <p><strong>Estrutura Pedagógica:</strong> 4 Unidades Curriculares • 28 Aulas Especificadas</p>
+        <p><strong>Modalidades de Ensino:</strong> Momentos Presenciais, Síncronos e Assíncronos (AVA Moodle)</p>
       </div>
       <div class="meta-box">
         <h4>Stack Tecnológica Padronizada</h4>
@@ -1013,7 +995,7 @@ ${itensXml}
 
   <!-- 3. SUMÁRIO GERAL NAVEGÁVEL -->
   <section class="toc-page">
-    <div class="section-eyebrow">Estrutura Curricular Completa • 4 Unidades • 28 Aulas (80h)</div>
+    <div class="section-eyebrow">Estrutura Curricular Completa • 4 Unidades • 28 Aulas</div>
     <h2 class="page-header-title">Sumário Geral</h2>
     ${tocHtmlUnidades}
   </section>
@@ -1030,7 +1012,6 @@ ${itensXml}
   fs.writeFileSync(path.join(BUILD_PDF_DIR, 'DW3-Caderno-Didatico-Completo.md'), markdownConsolidado, 'utf-8');
   fs.writeFileSync(caminhoHtmlConsolidado, ebookCompletoHtml, 'utf-8');
 
-  // Renderiza o arquivo PDF real utilizando Google Chrome ou Microsoft Edge Headless
   const userDataDir = path.join(ROOT_DIR, 'build', '.chrome-profile');
   fs.mkdirSync(userDataDir, { recursive: true });
   const candidatosBrowser = [
@@ -1057,7 +1038,7 @@ ${itensXml}
       ]);
       if (fs.existsSync(caminhoPdfEbook)) break;
     } catch {
-      // Tenta o próximo navegador disponível ou execução externa
+      // Tenta o próximo navegador disponível
     }
   }
   fs.rmSync(userDataDir, { recursive: true, force: true });
