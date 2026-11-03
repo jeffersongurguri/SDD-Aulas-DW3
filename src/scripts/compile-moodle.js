@@ -1008,9 +1008,47 @@ ${itensXml}
 
   const caminhoHtmlConsolidado = path.join(BUILD_PDF_DIR, 'DW3-Caderno-Didatico-Completo.html');
   const caminhoPdfEbook = path.join(BUILD_PDF_DIR, 'DW3-Ebook-Desenvolvimento-Web-III-IFCE.pdf');
+  const caminhoHtmlMoodleOrg = path.join(BUILD_PDF_DIR, 'DW3-Guia-Organizacao-Moodle-Dirtree.html');
+  const caminhoPdfMoodleOrg = path.join(BUILD_PDF_DIR, 'DW3-Guia-Organizacao-Moodle-Dirtree.pdf');
 
   fs.writeFileSync(path.join(BUILD_PDF_DIR, 'DW3-Caderno-Didatico-Completo.md'), markdownConsolidado, 'utf-8');
   fs.writeFileSync(caminhoHtmlConsolidado, ebookCompletoHtml, 'utf-8');
+
+  // Gera HTML Editorial e PDF do Guia de Organização e Postagem no Moodle (dirtree)
+  const rawMoodleOrg = fs.readFileSync(path.join(DOCS_DIR, 'moodle-organization.md'), 'utf-8');
+  const htmlCorpoMoodleOrg = markdownParaHtmlBasico(rawMoodleOrg, '.');
+  const htmlDocumentoMoodleOrg = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guia de Organização e Postagem no AVA Moodle (Dirtree) — DWIII IFCE</title>
+  <style>
+    ${CSS_EBOOK_PDF}
+    .dirtree-header {
+      background: linear-gradient(135deg, #090d16 0%, #0f172a 60%, #1e1b4b 100%);
+      color: #f8fafc;
+      padding: 18px 22px;
+      border-radius: 10px;
+      border-left: 8px solid #10b981;
+      margin-bottom: 18px;
+    }
+    .dirtree-header h1 { color: #ffffff; font-size: 18pt; margin: 6px 0; border: none; }
+    .dirtree-header p { color: #cbd5e1; margin: 0; font-size: 9.8pt; }
+    pre.code-block { font-size: 7.8pt; line-height: 1.38; }
+  </style>
+</head>
+<body>
+  <div class="dirtree-header">
+    <div class="inst-tag">Instituto Federal do Ceará (IFCE) — Campus Baturité • UC17-DWIII</div>
+    <h1>Guia de Organização e Postagem no AVA Moodle (Dirtree)</h1>
+    <p>Mapeamento Estrutural das Seções, Páginas HTML, Ativos Visuais, E-Book e Atividades Avaliativas</p>
+  </div>
+  <main>
+    ${htmlCorpoMoodleOrg}
+  </main>
+</body>
+</html>`;
+  fs.writeFileSync(caminhoHtmlMoodleOrg, htmlDocumentoMoodleOrg, 'utf-8');
 
   const userDataDir = path.join(ROOT_DIR, 'build', '.chrome-profile');
   fs.mkdirSync(userDataDir, { recursive: true });
@@ -1020,25 +1058,32 @@ ${itensXml}
     'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe'
   ];
 
-  const fileUrl = 'file:///' + caminhoHtmlConsolidado.replace(/\\/g, '/');
-  for (const browserExe of candidatosBrowser) {
-    if (!fs.existsSync(browserExe)) continue;
-    try {
-      execFileSync(browserExe, [
-        '--headless=new',
-        '--no-sandbox',
-        '--disable-gpu',
-        '--disable-dev-shm-usage',
-        '--no-first-run',
-        '--no-default-browser-check',
-        `--user-data-dir=${userDataDir}`,
-        '--no-pdf-header-footer',
-        `--print-to-pdf=${caminhoPdfEbook}`,
-        fileUrl
-      ]);
-      if (fs.existsSync(caminhoPdfEbook)) break;
-    } catch {
-      // Tenta o próximo navegador disponível
+  const alvosPdf = [
+    { html: caminhoHtmlConsolidado, pdf: caminhoPdfEbook },
+    { html: caminhoHtmlMoodleOrg, pdf: caminhoPdfMoodleOrg }
+  ];
+
+  for (const alvo of alvosPdf) {
+    const fileUrl = 'file:///' + alvo.html.replace(/\\/g, '/');
+    for (const browserExe of candidatosBrowser) {
+      if (!fs.existsSync(browserExe)) continue;
+      try {
+        execFileSync(browserExe, [
+          '--headless=new',
+          '--no-sandbox',
+          '--disable-gpu',
+          '--disable-dev-shm-usage',
+          '--no-first-run',
+          '--no-default-browser-check',
+          `--user-data-dir=${userDataDir}`,
+          '--no-pdf-header-footer',
+          `--print-to-pdf=${alvo.pdf}`,
+          fileUrl
+        ]);
+        if (fs.existsSync(alvo.pdf)) break;
+      } catch {
+        // Tenta o próximo navegador disponível
+      }
     }
   }
   fs.rmSync(userDataDir, { recursive: true, force: true });
@@ -1053,6 +1098,12 @@ ${itensXml}
     const stats = fs.statSync(caminhoPdfEbook);
     console.log(
       ` ✔ E-Book PDF Oficial gerado em      : build/pdf/DW3-Ebook-Desenvolvimento-Web-III-IFCE.pdf (${(stats.size / (1024 * 1024)).toFixed(2)} MB)`
+    );
+  }
+  if (fs.existsSync(caminhoPdfMoodleOrg)) {
+    const statsOrg = fs.statSync(caminhoPdfMoodleOrg);
+    console.log(
+      ` ✔ PDF Guia Dirtree Moodle gerado em : build/pdf/DW3-Guia-Organizacao-Moodle-Dirtree.pdf (${(statsOrg.size / 1024).toFixed(1)} KB)`
     );
   }
   console.log('===================================================================');

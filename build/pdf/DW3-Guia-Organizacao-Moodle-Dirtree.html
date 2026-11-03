@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guia de Organização e Postagem no AVA Moodle (Dirtree) — DWIII IFCE</title>
+  <style>
+    
+  @page {
+    size: A4 portrait;
+    margin: 16mm 15mm 18mm 15mm;
+  }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #0f172a;
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.58;
+    font-size: 10.5pt;
+  }
+  /* CAPA EDITORIAL */
+  .ebook-cover {
+    background: linear-gradient(145deg, #090d16 0%, #0f172a 55%, #1e1b4b 100%);
+    color: #f8fafc;
+    min-height: 262mm;
+    padding: 18mm 16mm;
+    border-radius: 10px;
+    border: 2px solid #1e293b;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    page-break-after: always;
+    break-after: page;
+  }
+  .cover-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #10b981;
+    padding-bottom: 12px;
+  }
+  .inst-tag {
+    font-size: 9.5pt;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #34d399;
+  }
+  .code-tag {
+    background: rgba(56, 189, 248, 0.18);
+    border: 1px solid #38bdf8;
+    color: #38bdf8;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 8.5pt;
+    font-weight: 700;
+  }
+  .cover-hero {
+    margin: 12mm 0 8mm 0;
+  }
+  .cover-pretitle {
+    color: #38bdf8;
+    font-size: 11pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+  .cover-title {
+    font-size: 27pt;
+    line-height: 1.15;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 12px 0;
+  }
+  .cover-subtitle {
+    font-size: 12.5pt;
+    color: #cbd5e1;
+    font-weight: 400;
+    margin: 0 0 18px 0;
+  }
+  .cover-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .cover-pill {
+    background: rgba(129, 140, 248, 0.2);
+    border: 1px solid #818cf8;
+    color: #e0e7ff;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 9pt;
+    font-weight: 600;
+  }
+  .cover-banner-box {
+    margin: 6mm 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #334155;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  }
+  .cover-banner-box img {
+    width: 100%;
+    max-height: 78mm;
+    object-fit: cover;
+    display: block;
+  }
+  .cover-footer {
+    border-top: 1px solid #334155;
+    padding-top: 14px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    font-size: 9.5pt;
+    color: #cbd5e1;
+  }
+  .cover-footer strong { color: #38bdf8; display: block; font-size: 8.5pt; text-transform: uppercase; }
+
+  /* SEÇÃO DE AUTOR E FICHA TÉCNICA */
+  .author-page {
+    page-break-after: always;
+    break-after: page;
+    padding-top: 4mm;
+  }
+  .section-eyebrow {
+    color: #0284c7;
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .page-header-title {
+    font-size: 20pt;
+    color: #0f172a;
+    margin: 0 0 14px 0;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #0f172a;
+  }
+  .author-card {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-left: 6px solid #0284c7;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 18px;
+  }
+  .author-card h3 {
+    margin: 0 0 6px 0;
+    color: #0f172a;
+    font-size: 13.5pt;
+  }
+  .author-role {
+    color: #0369a1;
+    font-weight: 600;
+    font-size: 10pt;
+    margin-bottom: 10px;
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .meta-box {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .meta-box h4 {
+    margin: 0 0 6px 0;
+    font-size: 9.5pt;
+    text-transform: uppercase;
+    color: #0f172a;
+  }
+  .formula-box {
+    background: #0f172a;
+    color: #f8fafc;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 12px;
+  }
+  .formula-box h4 { color: #34d399; margin: 0 0 8px 0; }
+
+  /* SUMÁRIO EXECUTIVO E NAVEGÁVEL */
+  .toc-page {
+    page-break-after: always;
+    break-after: page;
+  }
+  .toc-unit-block {
+    margin-bottom: 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .toc-unit-header {
+    background: #0f172a;
+    color: #ffffff;
+    padding: 8px 14px;
+    font-weight: 700;
+    font-size: 10.5pt;
+    display: flex;
+    justify-content: space-between;
+  }
+  .toc-unit-header span.ch { color: #34d399; }
+  .toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 6px 14px;
+    background: #ffffff;
+  }
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 5px 0;
+    border-bottom: 1px dashed #e2e8f0;
+    font-size: 9.5pt;
+  }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item a {
+    color: #0f172a;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .toc-item .toc-code {
+    color: #0284c7;
+    font-weight: 700;
+    margin-right: 8px;
+    font-family: Consolas, monospace;
+  }
+  .toc-item .toc-meta {
+    font-size: 8.5pt;
+    color: #475569;
+    white-space: nowrap;
+    margin-left: 10px;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 99px;
+  }
+
+  /* CAPA DE UNIDADE */
+  .unit-divider {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #ffffff;
+    padding: 18px 22px;
+    border-radius: 10px;
+    border-left: 8px solid #10b981;
+    margin-bottom: 16px;
+    page-break-before: always;
+    break-before: page;
+  }
+  .unit-divider h2 {
+    color: #38bdf8;
+    margin: 4px 0 8px 0;
+    font-size: 16pt;
+  }
+  .unit-divider p {
+    margin: 0;
+    color: #e2e8f0;
+    font-size: 10pt;
+  }
+
+  /* PÁGINA DE AULA */
+  .ebook-lesson {
+    page-break-before: always;
+    break-before: page;
+    padding-bottom: 10mm;
+  }
+  .lesson-meta-bar {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .lesson-meta-bar .mod-id {
+    color: #38bdf8;
+    font-weight: 800;
+    font-size: 10.5pt;
+  }
+  .lesson-meta-bar .mod-info {
+    background: rgba(52, 211, 153, 0.2);
+    color: #34d399;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 8.5pt;
+    font-weight: 700;
+  }
+  .competencias-box {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-left: 4px solid #0284c7;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-size: 9.2pt;
+  }
+  .competencias-box strong { color: #0369a1; }
+  h1.lesson-main-title {
+    font-size: 16pt;
+    color: #0f172a;
+    margin: 8px 0 12px 0;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 6px;
+  }
+  .ebook-lesson h2 {
+    font-size: 12.5pt;
+    color: #0369a1;
+    margin: 14px 0 6px 0;
+  }
+  .ebook-lesson h3 {
+    font-size: 10.8pt;
+    color: #1e293b;
+    margin: 10px 0 4px 0;
+  }
+  pre.code-block {
+    background: #0f172a;
+    color: #f8fafc;
+    border: 1px solid #334155;
+    border-left: 4px solid #6366f1;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 8.3pt;
+    line-height: 1.42;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin: 10px 0;
+  }
+  .code-lang {
+    color: #818cf8;
+    font-size: 7.2pt;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  code.inline-code {
+    background: #f1f5f9;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+    padding: 1px 4px;
+    border-radius: 4px;
+    font-family: Consolas, monospace;
+    font-size: 9pt;
+  }
+  figure.visual-asset {
+    margin: 10px auto;
+    text-align: center;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  figure.visual-asset img {
+    max-width: 92%;
+    max-height: 68mm;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+  }
+  figure.visual-asset figcaption {
+    font-size: 8.2pt;
+    color: #475569;
+    margin-top: 4px;
+    font-style: italic;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 8.8pt;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #cbd5e1;
+    padding: 6px 8px;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #0f172a;
+    color: #38bdf8;
+  }
+  li.task-item, li.num-item {
+    list-style: none;
+    margin: 4px 0;
+  }
+  .num-badge {
+    font-weight: 700;
+    color: #0284c7;
+  }
+  hr.section-divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 12px 0;
+  }
+
+    .dirtree-header {
+      background: linear-gradient(135deg, #090d16 0%, #0f172a 60%, #1e1b4b 100%);
+      color: #f8fafc;
+      padding: 18px 22px;
+      border-radius: 10px;
+      border-left: 8px solid #10b981;
+      margin-bottom: 18px;
+    }
+    .dirtree-header h1 { color: #ffffff; font-size: 18pt; margin: 6px 0; border: none; }
+    .dirtree-header p { color: #cbd5e1; margin: 0; font-size: 9.8pt; }
+    pre.code-block { font-size: 7.8pt; line-height: 1.38; }
+  </style>
+</head>
+<body>
+  <div class="dirtree-header">
+    <div class="inst-tag">Instituto Federal do Ceará (IFCE) — Campus Baturité • UC17-DWIII</div>
+    <h1>Guia de Organização e Postagem no AVA Moodle (Dirtree)</h1>
+    <p>Mapeamento Estrutural das Seções, Páginas HTML, Ativos Visuais, E-Book e Atividades Avaliativas</p>
+  </div>
+  <main>
+    <h1 class="lesson-main-title">Guia de Organização e Postagem no AVA Moodle (<code class="inline-code">dirtree</code>)</h1>
+<h2>Disciplina: Desenvolvimento Web III (UC17-DWIII)</h2>
+<h3>Instituto Federal de Educação, Ciência e Tecnologia do Ceará (IFCE) — Campus Baturité</h3>
+
+<hr class="section-divider" />
+
+<h2>1. Visão Geral da Estrutura no Moodle</h2>
+
+Este documento especifica a árvore de organização (<code class="inline-code">dirtree</code>) para a publicação e importação dos artefatos gerados em <code class="inline-code">build/moodle-mbz/</code> e <code class="inline-code">build/pdf/</code> dentro da sala virtual do <strong>Ambiente Virtual de Aprendizagem (Moodle)</strong> do <strong>IFCE Campus Baturité</strong>.
+
+A estrutura respeita integralmente a matriz curricular da disciplina nas modalidades presencial, síncrona e assíncrona, alinhada ao Regulamento da Organização Didática (ROD) do IFCE.
+
+<hr class="section-divider" />
+
+<h2>2. Diagrama de Árvore de Diretórios da Sala Virtual (<code class="inline-code">dirtree</code>)</h2>
+
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>AVA-Moodle-IFCE-Baturite/
+└── Curso: Técnico Subsequente em Informática para Internet (EaD)
+    └── Disciplina: Desenvolvimento Web III (UC17-DWIII)
+        │
+        ├── 📌 [Seção 00] Ambientação, Guia de Estudos e Biblioteca Digital
+        │   ├── 🖼️ Banner Principal do Curso (u1-backend-vibe/assets/DW3-U01-ART01.png)
+        │   ├── 📄 Plano de Ensino e Critérios de Avaliação ROD/IFCE (docs/plan.md)
+        │   ├── 📕 [Recurso: Arquivo PDF] E-Book Completo da Disciplina (build/pdf/DW3-Ebook-Desenvolvimento-Web-III-IFCE.pdf)
+        │   ├── 🌐 [Recurso: Página/Índice] Mapa Geral de Aulas (build/moodle-mbz/index.html)
+        │   └── 💬 [Atividade: Fórum] Fórum Geral de Avisos e Dúvidas Técnicas
+        │
+        ├── 🚀 [Seção 01] Unidade I: Framework Back-end (Node.js), Padrões &amp; Vibe Coding
+        │   ├── 🖼️ Rótulo/Banner de Abertura (u1-backend-vibe/assets/DW3-U01-ART01.png)
+        │   ├── 📘 [Página HTML] Aula 01 (Assíncrona): Introdução ao Node.js e npm com IA (DW3-U01-A01.html)
+        │   ├── 🧪 [Página HTML] Aula 02 (Presencial): Ambiente Node.js e HTTP na Prática (DW3-U01-A02.html)
+        │   │   └── 🖼️ Diagrama Embutido: Fluxo Vibe Coding Back-end (DW3-U01-DIAG01.png)
+        │   ├── 🎥 [Página + Webconferência] Aula 03 (Síncrona): MVC/Controllers e Scaffolding (DW3-U01-A03.html)
+        │   │   └── 🖼️ Infográfico Embutido: Manual vs. Vibe Coding + Audit (DW3-U01-INFO01.png)
+        │   ├── 📘 [Página HTML] Aula 04 (Assíncrona): Auditoria Crítica de Código Gerado por IA (DW3-U01-A04.html)
+        │   ├── 🎥 [Página + Webconferência] Aula 05 (Síncrona): RESTful, Verbos HTTP e Exceções (DW3-U01-A05.html)
+        │   ├── 💻 [Tarefa AD1] Aula 06 (Assíncrona): Exercícios Práticos de API REST em Node.js (DW3-U01-A06.html)
+        │   └── 📦 Código-Fonte de Apoio (src/code-samples/u1-node-api/server.js)
+        │
+        ├── 🗄️ [Seção 02] Unidade II: Framework ORM, Persistência &amp; PocketBase BaaS
+        │   ├── 🖼️ Rótulo/Banner de Abertura (u2-orm-lowcode/assets/DW3-U02-ART01.png)
+        │   ├── 📘 [Página HTML] Aula 01 (Assíncrona): Conceitos de ORM em Node.js e Entidades (DW3-U02-A01.html)
+        │   ├── 🎥 [Página + Webconferência] Aula 02 (Síncrona): Chaves e Relacionamentos 1:N / N:N (DW3-U02-A02.html)
+        │   │   └── 🖼️ Diagrama Embutido: Relacionamentos e API Rules (DW3-U02-DIAG01.png)
+        │   ├── 📘 [Página HTML] Aula 03 (Assíncrona): Modelagem e Migrations Automáticas (DW3-U02-A03.html)
+        │   ├── 📘 [Página HTML] Aula 04 (Assíncrona): Automação de Banco e PocketBase BaaS (DW3-U02-A04.html)
+        │   │   └── 🖼️ Infográfico Embutido: Node.js ORM vs. PocketBase BaaS (DW3-U02-INFO01.png)
+        │   ├── 🏆 [Avaliação Presencial AP1] Aula 05 (Presencial): Lab Node.js + PocketBase (DW3-U02-A05.html)
+        │   ├── 🎥 [Página + Webconferência] Aula 06 (Síncrona): Queries Avançadas, Expand e N+1 (DW3-U02-A06.html)
+        │   ├── 💻 [Tarefa AD2] Aula 07 (Assíncrona): Fixação de Tabelas e API Rules (DW3-U02-A07.html)
+        │   └── 📦 Código-Fonte de Apoio (src/code-samples/u2-pocketbase-orm/pocketbase-client.js)
+        │
+        ├── ⚛️ [Seção 03] Unidade III: Front-end (JS Vanilla &amp; React), Headless CMS &amp; No-Code UI
+        │   ├── 🖼️ Rótulo/Banner de Abertura (u3-frontend-nocode/assets/DW3-U03-ART01.png)
+        │   ├── 📘 [Página HTML] Aula 01 (Assíncrona): Do JS Vanilla ao React e Reatividade (DW3-U03-A01.html)
+        │   │   └── 🖼️ Infográfico Embutido: DOM Imperativo vs. Estado Reativo (DW3-U03-INFO01.png)
+        │   ├── 📘 [Página HTML] Aula 02 (Assíncrona): PocketBase Headless CMS e UI v0/Figma (DW3-U03-A02.html)
+        │   │   └── 🖼️ Diagrama Embutido: Integração React + REST + PocketBase CMS (DW3-U03-DIAG01.png)
+        │   ├── 🎥 [Página + Webconferência] Aula 03 (Síncrona): APIs REST, useState e useEffect (DW3-U03-A03.html)
+        │   ├── 💻 [Tarefa AD3] Aula 04 (Assíncrona): Requisições Fetch/SDK e Forms Reativos (DW3-U03-A04.html)
+        │   ├── 🧪 [Laboratório Presencial] Aula 05 (Presencial): Dashboard Dinâmico em React (DW3-U03-A05.html)
+        │   └── 📦 Código-Fonte de Apoio (src/code-samples/u3-react-frontend/dashboardLogica.js)
+        │
+        └── ☁️ [Seção 04] Unidade IV: Projeto Web Completo, Testes por IA &amp; Deploy na Nuvem
+            ├── 🖼️ Rótulo/Banner de Abertura (u4-projeto-deploy/assets/DW3-U04-ART01.png)
+            ├── 🎥 [Página + Webconferência] Aula 01 (Síncrona): Escopo e Requisitos com SDD (DW3-U04-A01.html)
+            ├── 📘 [Página HTML] Aula 02 (Assíncrona): Modelagem UI/UX e Rotas Protegidas React (DW3-U04-A02.html)
+            ├── 📘 [Página HTML] Aula 03 (Assíncrona): Persistência, Auth JWT e Segurança OWASP (DW3-U04-A03.html)
+            ├── 🎥 [Página + Webconferência] Aula 04 (Síncrona): Arquitetura BFF e Integração (DW3-U04-A04.html)
+            ├── 📘 [Página HTML] Aula 05 (Assíncrona): Codificação Supervisionada e Git (DW3-U04-A05.html)
+            ├── 📘 [Página HTML] Aula 06 (Assíncrona): Testes por IA (node:test) e Deploy Docker (DW3-U04-A06.html)
+            │   └── 🖼️ Diagrama Embutido: Pipeline CI/CD, Testes IA e Cloud Deploy (DW3-U04-DIAG01.png)
+            ├── 🧪 [Laboratório Presencial] Aula 07 (Presencial): Deploy em Nuvem e Teste de Carga (DW3-U04-A07.html)
+            ├── 🎥 [Banca Síncrona] Aula 08 (Síncrona): Code Review e Apresentação de Projetos (DW3-U04-A08.html)
+            ├── 🏆 [Avaliação Final AP2/AD4] Aula 09 (Assíncrona): Envio do Repositório no Moodle (DW3-U04-A09.html)
+            ├── 📊 [Fechamento &amp; Exame EFP] Aula 10 (Assíncrona): Diário de Classe e Exame Final (DW3-U04-A10.html)
+            └── 📦 Suíte de Testes &amp; Container (src/code-samples/u4-fullstack-tests/api.test.js &amp; Dockerfile)</code></pre>
+
+<hr class="section-divider" />
+
+<h2>3. Fluxo de Mapeamento (<code class="inline-code">Repositório SDD</code> ➔ <code class="inline-code">Tópicos do Moodle</code>)</h2>
+
+<pre class="code-block" data-lang="mermaid"><div class="code-lang">MERMAID</div><code>flowchart LR
+    subgraph Build["Artefatos Compilados (build/)"]
+        PDF["build/pdf/\nDW3-Ebook-Desenvolvimento-Web-III-IFCE.pdf"]
+        XML["build/moodle-mbz/\nmoodle_backup.xml + manifest.json"]
+        HTML["build/moodle-mbz/\nDW3-U01-A01.html ... DW3-U04-A10.html"]
+        IMG["build/moodle-mbz/u*/assets/\n*.png (ART, DIAG, INFO)"]
+    end
+
+    subgraph Moodle["Estrutura de Postagem no AVA Moodle (IFCE Baturité)"]
+        S0["Seção 00: Ambientação\n• E-Book PDF Completo\n• Guia e Fórmulas ROD"]
+        S1["Seção 01: Unidade I\n• 6 Páginas HTML + 3 Imagens\n• Tarefa Prática AD1 (API Node.js)"]
+        S2["Seção 02: Unidade II\n• 7 Páginas HTML + 3 Imagens\n• Avaliação AP1 + Tarefa AD2 (PocketBase)"]
+        S3["Seção 03: Unidade III\n• 5 Páginas HTML + 3 Imagens\n• Tarefa AD3 + Lab React"]
+        S4["Seção 04: Unidade IV\n• 10 Páginas HTML + 2 Imagens\n• Entrega Projeto Final (AP2) + EFP"]
+    end
+
+    PDF --&gt; S0
+    XML --&gt; Moodle
+    HTML --&gt; S1 &amp; S2 &amp; S3 &amp; S4
+    IMG --&gt; S1 &amp; S2 &amp; S3 &amp; S4</code></pre>
+
+<hr class="section-divider" />
+
+<h2>4. Matriz de Recursos Moodle e Rastreabilidade de Frequência (ROD / IFCE)</h2>
+
+<table class="md-table">
+<thead><tr><th>Tipo de Aula na Árvore</th><th>Recurso Nativo no Moodle</th><th>Arquivo de Origem no Build</th><th>Critério de Conclusão e Presença Computada</th></tr></thead><tbody>
+<tr><td><strong>Ambientação / E-Book (<code class="inline-code">📕</code>)</strong></td><td>Recurso <strong>Arquivo (<code class="inline-code">mod_resource</code>)</strong></td><td><code class="inline-code">build/pdf/DW3-Ebook-Desenvolvimento-Web-III-IFCE.pdf</code></td><td>Download/leitura offline do material integral das 4 unidades.</td></tr>
+<tr><td><strong>Assíncrona Teórica (<code class="inline-code">📘</code>)</strong></td><td>Recurso <strong>Página (<code class="inline-code">mod_page</code>)</strong></td><td><code class="inline-code">build/moodle-mbz/DW3-U0X-A0Y.html</code></td><td>Conclusão automática ao visualizar a página + entrega das Atividades a Distância (<strong>AD</strong>).</td></tr>
+<tr><td><strong>Assíncrona Prática (<code class="inline-code">💻</code>)</strong></td><td>Atividade <strong>Tarefa (<code class="inline-code">mod_assign</code>)</strong></td><td><code class="inline-code">DW3-U01-A06.html</code>, <code class="inline-code">DW3-U02-A07.html</code>, <code class="inline-code">DW3-U03-A04.html</code></td><td>Submissão de código/repositório pelo discente (compõe a nota <strong>AD</strong> e frequência assíncrona).</td></tr>
+<tr><td><strong>Síncrona (<code class="inline-code">🎥</code>)</strong></td><td>Recurso <strong>Página (<code class="inline-code">mod_page</code>)</strong> + <strong>URL Webconferência</strong></td><td><code class="inline-code">U01-A03/A05</code>, <code class="inline-code">U02-A02/A06</code>, <code class="inline-code">U03-A03</code>, <code class="inline-code">U04-A01/A04/A08</code></td><td>Participação ao vivo nos momentos síncronos ou acesso à gravação.</td></tr>
+<tr><td><strong>Presencial / Lab (<code class="inline-code">🧪</code> / <code class="inline-code">🏆</code>)</strong></td><td>Recurso <strong>Página (<code class="inline-code">mod_page</code>)</strong> + <strong>Avaliação (<code class="inline-code">AP1</code> / <code class="inline-code">AP2</code>)</strong></td><td><code class="inline-code">DW3-U01-A02.html</code>, <code class="inline-code">DW3-U02-A05.html</code>, <code class="inline-code">DW3-U03-A05.html</code>, <code class="inline-code">DW3-U04-A07/A09.html</code></td><td>Presença física registrada no laboratório do <em>Campus</em> Baturité + nota <strong>AP</strong>.</td></tr>
+</tbody></table>
+  </main>
+</body>
+</html>
