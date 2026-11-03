@@ -6,7 +6,6 @@
 
 
 <!-- DW3-U01-A01 -->
-
 # Aula 01: Introdução ao Node.js, Frameworks Web e Gerenciamento de Pacotes com IA
 
 ![Banner da Unidade I](./assets/DW3-U01-ART01.png)
@@ -98,24 +97,8 @@ node --check src/index.js
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U01-ART01`)
-```text
-[TIPO]: ART
-[TEMA]: Arquitetura Back-end Node.js e Vibe Coding
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
-[COMPOSIÇÃO]: Conceptual cover art for Unidade I showing a glowing Node.js hexagon core connected to AI neural circuit lines and REST API endpoints.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "NODE.JS & VIBE CODING".
-[ASPECT RATIO]: 21:9
-```
-
-
----
-
 
 <!-- DW3-U01-A02 -->
-
 # Aula 02: Configuração de Ambiente Node.js e Arquitetura Web na Prática (Laboratório)
 
 ![Fluxo Vibe Coding no Back-end](./assets/DW3-U01-DIAG01.png)
@@ -192,24 +175,8 @@ Teste o parser enviando um JSON válido e um JSON malformado via `curl` ou scrip
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U01-DIAG01`)
-```text
-[TIPO]: DIAG
-[TEMA]: Vibe Coding Back-end Workflow in Node.js
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#06B6D4, #A855F7).
-[COMPOSIÇÃO]: Professional isometric technical diagram showing a developer entering natural language specifications on the left, feeding into an AI Code Engine in the center. The AI Engine outputs structured Node.js REST routes, JavaScript schema validators, and HTTP error handlers on the right.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "Spec SDD", "AI Code Engine", "Node.js REST API".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U01-A03 -->
-
 # Aula 03: Padrões de Arquitetura Back-end (MVC/Controllers) e Scaffolding com Vibe Coding
 
 ![Infográfico Código Manual vs Vibe Coding](./assets/DW3-U01-INFO01.png)
@@ -291,24 +258,8 @@ Instancie `AlunoService` em um teste isolado sem precisar subir a porta de rede 
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U01-INFO01`)
-```text
-[TIPO]: INFO
-[TEMA]: Manual Boilerplate vs Vibe Coding + Human Audit
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #34D399).
-[COMPOSIÇÃO]: Side-by-side comparison infographic. Left side showing manual repetitive boilerplate coding. Right side showing SDD specification input, AI scaffolding in Node.js, and human architectural audit.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "Manual Boilerplate", "Vibe Coding + Audit".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U01-A04 -->
-
 # Aula 04: Estudo Dirigido: Análise Crítica e Auditoria de Código Node.js Gerado por IA
 
 ![Infográfico Auditoria de Código](./assets/DW3-U01-INFO01.png)
@@ -382,24 +333,8 @@ Sempre execute os 3 questionamentos de auditoria antes de fazer *commit*:
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U01-INFO01`)
-```text
-[TIPO]: INFO
-[TEMA]: Auditoria de Segurança e Performance em Código Node.js Gerado por IA
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
-[COMPOSIÇÃO]: Side-by-side infographic comparing unverified AI code vs audited Node.js production code with Event Loop and input validation shields.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "Manual Boilerplate", "Vibe Coding + Audit".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U01-A05 -->
-
 # Aula 05: Arquitetura RESTful, Verbos HTTP, Middlewares e Tratamento de Exceções
 
 ![Diagrama REST e Error Handling](./assets/DW3-U01-DIAG01.png)
@@ -469,24 +404,8 @@ Verifique se uma exceção `throw new HttpError(422, 'Matrícula inválida')` é
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U01-DIAG01`)
-```text
-[TIPO]: DIAG
-[TEMA]: Pipeline de Middlewares REST e Tratamento de Exceções em Node.js
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
-[COMPOSIÇÃO]: Isometric flow showing HTTP Request passing through CORS Middleware, Schema Validator, Controller, and Global Error Handler returning JSON.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "Spec SDD", "AI Code Engine", "Node.js REST API".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U01-A06 -->
-
 # Aula 06: Resolução de Exercícios Práticos Virtuais de Construção de APIs REST em Node.js
 
 ![Diagrama Workflow API REST Node.js](./assets/DW3-U01-DIAG01.png)
@@ -564,24 +483,8 @@ export class ApiAlunosNode {
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U01-DIAG01`)
-```text
-[TIPO]: DIAG
-[TEMA]: Arquitetura Completa da API REST de Gestão de Alunos em Node.js
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
-[COMPOSIÇÃO]: Technical diagram showing HTTP Client requests (POST/GET/DELETE /alunos) processed by Node.js Router, Schema Validator, and In-Memory Store.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "POST /alunos", "201 Created", "400 Bad Request".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U02-A01 -->
-
 # Aula 01: Conceitos Fundamentais de ORM em Node.js e Abstração de Entidades
 
 ![Banner da Unidade II](./assets/DW3-U02-ART01.png)
@@ -648,24 +551,8 @@ Verifique como `AlunoEntity.toSqlInsert()` separa a string SQL (`?`) do vetor de
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U02-ART01`)
-```text
-[TIPO]: ART
-[TEMA]: Persistência Relacional, ORM e PocketBase BaaS
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#10B981, #0284C7).
-[COMPOSIÇÃO]: Conceptual cover art for Unidade II showing relational database tables seamlessly transforming into instant REST and Realtime API streams with built-in authentication shield.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "ORM & POCKETBASE BaaS".
-[ASPECT RATIO]: 21:9
-```
-
-
----
-
 
 <!-- DW3-U02-A02 -->
-
 # Aula 02: Mapeamento de Atributos, Chaves e Relacionamentos no ORM
 
 ![Diagrama Relacionamentos e Regras](./assets/DW3-U02-DIAG01.png)
@@ -732,24 +619,8 @@ Analise a cláusula `UNIQUE(aluno_id, disciplina_codigo)` e explique como o pró
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U02-DIAG01`)
-```text
-[TIPO]: DIAG
-[TEMA]: Mapeamento Relacional de Entidades (1:N e N:N) e Integridade Referencial
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
-[COMPOSIÇÃO]: Technical vector architecture diagram illustrating Relational Entity Mapping (1:N and N:N between Alunos, Matriculas, Turmas) and PocketBase API Rules security filter shield validating JWT Auth tokens before querying SQLite storage.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "Alunos", "Matriculas (N:N)", "Turmas", "SQLite".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U02-A03 -->
-
 # Aula 03: Modelagem e Geração Automática de Migrações (Migrations)
 
 ![Infográfico ORM e Migrations vs PocketBase](./assets/DW3-U02-INFO01.png)
@@ -812,24 +683,8 @@ Execute a função `up()` seguida de `down()` sobre um objeto de estado inicial 
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U02-INFO01`)
-```text
-[TIPO]: INFO
-[TEMA]: ORM vs PocketBase BaaS Low-Code Architecture
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#10B981, #0284C7).
-[COMPOSIÇÃO]: Side-by-side comparison infographic. Left side labeled "Traditional Node.js ORM" showing JavaScript Models mapping to SQL Tables via Migration Scripts. Right side labeled "PocketBase BaaS" showing direct Auto-generated REST & Realtime APIs from SQLite Collections with built-in Auth.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "Traditional Node.js ORM", "PocketBase BaaS".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U02-A04 -->
-
 # Aula 04: Automação de Scripts de Banco de Dados e Introdução ao BaaS com PocketBase
 
 ![Infográfico ORM vs PocketBase BaaS](./assets/DW3-U02-INFO01.png)
@@ -898,24 +753,8 @@ Inspecione a URL gerada por `montarUrlColecao('alunos', { page: 1, perPage: 10, 
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U02-INFO01`)
-```text
-[TIPO]: INFO
-[TEMA]: Comparativo Arquitetural Node.js ORM vs PocketBase BaaS
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#10B981, #0284C7).
-[COMPOSIÇÃO]: Side-by-side infographic comparing traditional Node.js ORM stack with PocketBase single-binary BaaS architecture.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "Traditional Node.js ORM", "PocketBase BaaS".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U02-A05 -->
-
 # Aula 05: Laboratório Prático: Integração Back-end Node.js + ORM/PocketBase (1ª Avaliação Prática)
 
 ![Diagrama Arquitetura PocketBase e Node.js](./assets/DW3-U02-DIAG01.png)
@@ -983,24 +822,8 @@ export function calcularMediaSemestralIFCE(notaAD, notaAP, frequencia) {
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U02-DIAG01`)
-```text
-[TIPO]: DIAG
-[TEMA]: Integração Node.js + PocketBase + Banco SQLite no Laboratório Avaliativo
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
-[COMPOSIÇÃO]: Architecture flow showing Node.js Business Logic calculating IFCE Academic Grades and persisting records into PocketBase SQLite Collections.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "Node.js API", "PocketBase", "SQLite".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U02-A06 -->
-
 # Aula 06: Consultas Avançadas, Joins/Expand e Performance no ORM e PocketBase auxiliados por IA
 
 ![Diagrama Consultas e Relacionamentos](./assets/DW3-U02-DIAG01.png)
@@ -1054,24 +877,8 @@ Verifique que a consulta retornada inclui `expand: 'aluno_id,turma_id'`, reduzin
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U02-DIAG01`)
-```text
-[TIPO]: DIAG
-[TEMA]: Otimização de Consultas Relacionais e Eliminação do Problema N+1 com Expand no PocketBase
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
-[COMPOSIÇÃO]: Technical diagram showing single relational query with expand=aluno_id,turma_id fetching joined records from SQLite in one roundtrip.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "Alunos", "Matriculas (N:N)", "Turmas", "SQLite".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U02-A07 -->
-
 # Aula 07: Atividade de Fixação: Mapeamento de Tabelas Complexas e API Rules no PocketBase
 
 ![Diagrama API Rules e Segurança no PocketBase](./assets/DW3-U02-DIAG01.png)
@@ -1132,24 +939,8 @@ Teste a função `avaliarRegraAcessoPocketBase` passando um usuário com `role: 
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U02-DIAG01`)
-```text
-[TIPO]: DIAG
-[TEMA]: Controle de Acesso Row-Level Security com API Rules no PocketBase
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
-[COMPOSIÇÃO]: Security shield filter inspecting @request.auth.id and role before permitting access to SQLite collections.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "API Rules", "JWT Auth", "SQLite".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U03-A01 -->
-
 # Aula 01: Do JavaScript Vanilla ao React: Componentes Visuais, Reatividade e Ciclo de Vida
 
 ![Banner da Unidade III](./assets/DW3-U03-ART01.png)
@@ -1220,24 +1011,8 @@ Invoque `renderizarCardAlunoVanilla` e `CardAluno` com o mesmo objeto de aluno e
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U03-ART01` & `DW3-U03-INFO01`)
-```text
-[TIPO]: INFO
-[TEMA]: Imperative Vanilla JS DOM vs Declarative React State
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
-[COMPOSIÇÃO]: Side-by-side comparison infographic showing manual querySelector mutations on the left vs declarative useState rendering on the right.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "Imperative Vanilla JS DOM", "Declarative React State".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U03-A02 -->
-
 # Aula 02: Soluções de Gerenciamento de Conteúdo (PocketBase Headless CMS) e Prototipagem No-Code (v0 / Figma)
 
 ![Diagrama React e PocketBase Headless CMS](./assets/DW3-U03-DIAG01.png)
@@ -1301,24 +1076,8 @@ Verifique se `construirUrlArquivoPocketBase('http://127.0.0.1:8090', { collectio
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U03-DIAG01`)
-```text
-[TIPO]: DIAG
-[TEMA]: React Front-end API Integration & PocketBase Headless CMS
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#6366F1, #F59E0B).
-[COMPOSIÇÃO]: Technical vector flow diagram illustrating a reactive React Component tree on the left, consuming JSON payload via async Fetch API from a central REST API Gateway, connected to a PocketBase Headless CMS and Node.js Server on the right.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "React Tree", "REST Gateway", "PocketBase CMS".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U03-A03 -->
-
 # Aula 03: Integração do Front-end React com APIs RESTful e Gerenciamento de Estado
 
 ![Diagrama Fluxo React e REST Gateway](./assets/DW3-U03-DIAG01.png)
@@ -1389,24 +1148,8 @@ Confirme que o `reducerAlunos` utiliza o operador *spread* (`...estadoAtual`) pa
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U03-DIAG01`)
-```text
-[TIPO]: DIAG
-[TEMA]: Ciclo de Vida de Requisições Assíncronas com useState e useEffect no React
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#6366F1, #F59E0B).
-[COMPOSIÇÃO]: Flow diagram connecting React Component state (loading, data, error) with REST API Gateway and PocketBase backend.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "useState", "useEffect", "PocketBase API".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U03-A04 -->
-
 # Aula 04: Requisições Assíncronas (`fetch` / SDK `pocketbase`) e Manipulação de Estado Reativo
 
 ![Infográfico JS Vanilla vs Estado Reativo React](./assets/DW3-U03-INFO01.png)
@@ -1485,24 +1228,8 @@ Teste `validarFormularioAluno({ nome: 'Li', matricula: '123' })` e confirme que 
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U03-INFO01`)
-```text
-[TIPO]: INFO
-[TEMA]: Formulários Controlados e Subscrição Realtime React + PocketBase
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
-[COMPOSIÇÃO]: Infographic contrasting manual DOM input reading with Controlled React Forms and Realtime PocketBase updates.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "Imperative Vanilla JS DOM", "Declarative React State".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U03-A05 -->
-
 # Aula 05: Laboratório Prático: Consumo de Dados e Renderização Dinâmica na Interface React
 
 ![Diagrama Dashboard React e PocketBase](./assets/DW3-U03-DIAG01.png)
@@ -1581,24 +1308,8 @@ export function calcularResumoDashboard(alunos = []) {
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U03-DIAG01`)
-```text
-[TIPO]: DIAG
-[TEMA]: Arquitetura do Dashboard Acadêmico Reativo em React + Node.js + PocketBase
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#6366F1, #F59E0B).
-[COMPOSIÇÃO]: Component hierarchy showing Dashboard KPIs, SearchBar, AlunoTable, and ModalForm communicating with Node.js API and PocketBase.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "React Dashboard", "Derived State", "PocketBase".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U04-A01 -->
-
 # Aula 01: Planejamento de Projeto: Escopo e Levantamento de Requisitos com SDD
 
 ![Banner da Unidade IV](./assets/DW3-U04-ART01.png)
@@ -1656,24 +1367,8 @@ Preencha o objeto `spec` do seu projeto final e execute `validarEscopoProjetoSDD
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U04-ART01`)
-```text
-[TIPO]: ART
-[TEMA]: Full-Stack Project, AI Testing & Cloud Deploy
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #A855F7, #34D399).
-[COMPOSIÇÃO]: Conceptual cover art for Unidade IV showing a complete web system with React, Node.js, PocketBase, automated test shields, and cloud deployment containers.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "FULL-STACK & CLOUD DEPLOY".
-[ASPECT RATIO]: 21:9
-```
-
-
----
-
 
 <!-- DW3-U04-A02 -->
-
 # Aula 02: Modelagem de Interface (UI/UX) e Fluxos de Navegação em React
 
 ![Banner Full-Stack UI/UX e Deploy](./assets/DW3-U04-ART01.png)
@@ -1735,24 +1430,8 @@ Teste `resolverRotaNavegacao('/lancamento-notas', { isValid: true, model: { role
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U04-ART01`)
-```text
-[TIPO]: ART
-[TEMA]: Fluxo de Navegação SPA em React e Rotas Protegidas
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #A855F7, #34D399).
-[COMPOSIÇÃO]: UI/UX wireframe flow connecting Login Screen, Route Guard Shield, and Reactive Dashboard in React.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "FULL-STACK & CLOUD DEPLOY".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U04-A03 -->
-
 # Aula 03: Camada de Persistência no PocketBase/Node.js, Autenticação e Segurança da Informação
 
 ![Diagrama Pipeline e Segurança Full-Stack](./assets/DW3-U04-DIAG01.png)
@@ -1822,24 +1501,8 @@ Passe `<script>alert("hack")</script>` para `escaparHtmlXSS` e verifique se as t
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U04-DIAG01`)
-```text
-[TIPO]: DIAG
-[TEMA]: Autenticação JWT e Camadas de Segurança OWASP entre React, Node.js e PocketBase
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
-[COMPOSIÇÃO]: Security architecture diagram showing Bearer JWT token flow and XSS/Injection sanitization shields.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "JWT Auth", "Node.js API", "PocketBase SQLite".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U04-A04 -->
-
 # Aula 04: Padrões Avançados de Arquitetura Full-Stack e Integração de Sistemas
 
 ![Diagrama Integração Full-Stack](./assets/DW3-U04-DIAG01.png)
@@ -1894,24 +1557,8 @@ Verifique que um discente com `mediaXs = 4.4` que obtém `notaEFP = 6.0` atinge 
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U04-DIAG01`)
-```text
-[TIPO]: DIAG
-[TEMA]: Arquitetura BFF (Backend for Frontend) com React, Node.js e PocketBase
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
-[COMPOSIÇÃO]: Full-stack integration diagram showing React UI requesting consolidated report from Node.js BFF connected to PocketBase SQLite.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "React Frontend", "Node.js API", "PocketBase SQLite".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U04-A05 -->
-
 # Aula 05: Codificação Supervisionada do Projeto Final
 
 ![Banner Projeto Full-Stack](./assets/DW3-U04-ART01.png)
@@ -1965,24 +1612,8 @@ Confirme que `validarCommitConvencional('feat(pocketbase): configura regras de a
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U04-ART01`)
-```text
-[TIPO]: ART
-[TEMA]: Desenvolvimento Full-Stack Supervisionado com Git, React, Node.js e PocketBase
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #A855F7, #34D399).
-[COMPOSIÇÃO]: Full-stack developer workflow showing Git branches, React UI components, Node.js server, and PocketBase storage.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "FULL-STACK & CLOUD DEPLOY".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U04-A06 -->
-
 # Aula 06: Testes Automatizados Gerados por IA (`node:test`) e Estratégias de Deploy
 
 ![Diagrama CI/CD, Testes por IA e Deploy na Nuvem](./assets/DW3-U04-DIAG01.png)
@@ -2044,24 +1675,8 @@ Execute `npm test` (que aciona `node --test`) no terminal e confirme 100% de apr
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U04-DIAG01`)
-```text
-[TIPO]: DIAG
-[TEMA]: CI/CD Pipeline, AI Automated Tests (node:test) & Cloud Deployment
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
-[COMPOSIÇÃO]: Technical vector architecture diagram showing Git Push -> AI Automated Tests (node:test) -> Docker Build -> Cloud Production Environment hosting React Front-end, Node.js API, and PocketBase SQLite Persistence.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "Git Push", "AI Tests (node:test)", "Docker Build", "Cloud Production".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U04-A07 -->
-
 # Aula 07: Laboratório Prático: Publicação Prática (Deploy) e Testes de Carga Finais
 
 ![Diagrama Deploy em Produção](./assets/DW3-U04-DIAG01.png)
@@ -2120,24 +1735,8 @@ Execute `executarTesteCargaConcorrente` com 50 chamadas simultâneas e verifique
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U04-DIAG01`)
-```text
-[TIPO]: DIAG
-[TEMA]: Monitoramento de Healthcheck e Testes de Carga em Produção Cloud
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
-[COMPOSIÇÃO]: Production cloud cluster receiving concurrent load test requests with healthcheck status indicators.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "Docker Build", "Cloud Production", "PocketBase SQLite".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U04-A08 -->
-
 # Aula 08: Code Review, Análise de Performance e Apresentação de Projetos
 
 ![Banner Revisão Técnica e Pitch](./assets/DW3-U04-ART01.png)
@@ -2204,24 +1803,8 @@ export function calcularNotaCodeReview({
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U04-ART01`)
-```text
-[TIPO]: ART
-[TEMA]: Code Review, Auditoria de Performance e Pitch Técnico Full-Stack
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #A855F7, #34D399).
-[COMPOSIÇÃO]: Technical review dashboard showing code quality metrics, test coverage, and full-stack architecture verification.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "FULL-STACK & CLOUD DEPLOY".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U04-A09 -->
-
 # Aula 09: Envio Final do Repositório do Projeto no AVA Moodle (2ª Atividade Avaliativa)
 
 ![Diagrama Pipeline de Entrega Final](./assets/DW3-U04-DIAG01.png)
@@ -2284,24 +1867,8 @@ Execute a verificação sobre os metadados da sua entrega antes de clicar em **"
 
 ---
 
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U04-DIAG01`)
-```text
-[TIPO]: DIAG
-[TEMA]: Checklist de Entrega Contínua e Publicação Final no AVA Moodle
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #818CF8, #34D399).
-[COMPOSIÇÃO]: Verification pipeline from Git Repository and Automated Tests to Cloud Production and Moodle Submission.
-[TEXT RENDERING]: Crisp legible text rendering for labels: "Git Push", "AI Tests (node:test)", "Cloud Production".
-[ASPECT RATIO]: 16:9
-```
-
-
----
-
 
 <!-- DW3-U04-A10 -->
-
 # Aula 10: Fechamento de Diário de Classe e Orientações para Exame Final
 
 ![Banner Encerramento e Consolidação DWIII](./assets/DW3-U04-ART01.png)
@@ -2372,20 +1939,5 @@ export function simularFechamentoSemestreIFCE({ notaAD, notaAP, frequencia, nota
 
 ### Passo 3: Teste de Validação
 Simule um estudante com `notaAD = 5.0`, `notaAP = 5.0` e `frequencia = 85` e verifique que `mediaXs = 5.0` e `notaMinimaEFP = 5.0`.
-
----
-
-## 4. Especificação de Ativos Visuais
-
-### Prompt de Imagem (`DW3-U04-ART01`)
-```text
-[TIPO]: ART
-[TEMA]: Consolidação da Arquitetura Full-Stack e Fechamento Semestral DWIII
-[ESTILO]: Modern minimalist tech vector illustration, clean lines, dark mode background (#0F172A), vibrant accent colors (#38BDF8, #A855F7, #34D399).
-[COMPOSIÇÃO]: Panoramic synthesis banner connecting Unidade I (Node.js), Unidade II (PocketBase), Unidade III (React), and Unidade IV (Cloud Deploy & IFCE Approval).
-[TEXT RENDERING]: Crisp legible text rendering for labels: "FULL-STACK & CLOUD DEPLOY".
-[ASPECT RATIO]: 21:9
-```
-
 
 ---

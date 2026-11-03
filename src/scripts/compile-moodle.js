@@ -34,8 +34,18 @@ function parseFrontmatterECorpo(raw) {
   return { meta, corpo };
 }
 
+function removerSecaoAtivosVisuaisDoBuild(md) {
+  // Remove a seção de metadados/prompts "Especificação de Ativos Visuais" (e o divisor --- imediatamente anterior)
+  // pois as imagens já foram geradas e embutidas nas páginas finais do estudante.
+  return md
+    .replace(/\r?\n---\r?\n+\s*##\s*\d*\.?\s*Especificação de Ativos Visuais[\s\S]*$/i, '')
+    .replace(/\r?\n+##\s*\d*\.?\s*Especificação de Ativos Visuais[\s\S]*$/i, '')
+    .trim();
+}
+
 function markdownParaHtmlBasico(md, pastaUnidadeRelativa) {
-  let html = md
+  const mdLimpo = removerSecaoAtivosVisuaisDoBuild(md);
+  let html = mdLimpo
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
@@ -220,7 +230,8 @@ export function compilarMaterialMoodleEPdf() {
         ${htmlAulaCorpo}
       </section>\n`;
 
-      markdownConsolidado += `\n\n<!-- ${meta.modulo_id} -->\n` + corpo + `\n\n---\n`;
+      const corpoParaBuild = removerSecaoAtivosVisuaisDoBuild(corpo);
+      markdownConsolidado += `\n\n<!-- ${meta.modulo_id} -->\n` + corpoParaBuild + `\n\n---\n`;
     }
   }
 
