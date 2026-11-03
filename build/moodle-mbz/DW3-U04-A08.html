@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 08: Code Review, Análise de Performance e Apresentação de Projetos</h1>
+      <h1 class="lesson-main-title">Aula 08: Code Review, Análise de Performance e Apresentação de Projetos</h1>
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Revisão Técnica e Pitch" loading="lazy" /><figcaption>Banner Revisão Técnica e Pitch</figcaption></figure>
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Revisão Técnica e Pitch" /><figcaption>Banner Revisão Técnica e Pitch</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,27 +124,27 @@ Ao concluir este encontro síncrono de apresentações, você será capaz de:
 <li class="task-item">✅ <strong>Explicar</strong> com clareza e domínio técnico todo o código gerado com auxílio de IA durante o projeto.</li>
 <li class="task-item">✅ <strong>Demonstrar</strong> a aplicação rodando ao vivo com <strong>React</strong>, <strong>Node.js</strong> e <strong>PocketBase</strong>.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Cultura de Code Review na Era da IA Generativa</h3>
 Em equipes modernas que utilizam <strong>Vibe Coding</strong>, o <em>Code Review</em> deixa de focar em detalhes triviais de formatação (resolvidos por <em>linters</em>) e passa a focar em 4 pilares arquiteturais:
-1. <strong>Compreensão e Autoria Responsável</strong>: O autor sabe explicar exatamente como cada função em <strong>Node.js</strong> e cada hook em <strong>React</strong> funciona?
-2. <strong>Segurança nas Bordas</strong>: As <em>API Rules</em> do <strong>PocketBase</strong> e os validadores do Node.js bloqueiam acessos indevidos?
-3. <strong>Desacoplamento</strong>: A lógica de negócios está separada dos componentes visuais?
-4. <strong>Cobertura de Testes</strong>: Os fluxos críticos possuem testes automatizados passando?
+<li class="num-item"><span class="num-badge">1.</span> <strong>Compreensão e Autoria Responsável</strong>: O autor sabe explicar exatamente como cada função em <strong>Node.js</strong> e cada hook em <strong>React</strong> funciona?</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>Segurança nas Bordas</strong>: As <em>API Rules</em> do <strong>PocketBase</strong> e os validadores do Node.js bloqueiam acessos indevidos?</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Desacoplamento</strong>: A lógica de negócios está separada dos componentes visuais?</li>
+<li class="num-item"><span class="num-badge">4.</span> <strong>Cobertura de Testes</strong>: Os fluxos críticos possuem testes automatizados passando?</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt para Avaliador Automatizado de Checklist de Code Review</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Crie uma função calcularNotaCodeReview(criterios) em JavaScript que receba as notas de 0 a 10 nos 4 pilares da apresentação técnica (arquiteturaNode, segurancaPocketBase, reatividadeReact, testesDeploy) e retorne o parecer estruturado da banca.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Crie uma função calcularNotaCodeReview(criterios) em JavaScript que receba as notas de 0 a 10 nos 4 pilares da apresentação técnica (arquiteturaNode, segurancaPocketBase, reatividadeReact, testesDeploy) e retorne o parecer estruturado da banca.</code></pre>
 
 <h3>Passo 2: Calculadora de Rubrica de Code Review e Apresentação</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/projeto/rubricaCodeReview.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/projeto/rubricaCodeReview.js
 export function calcularNotaCodeReview({
   arquiteturaNode = 0,
   segurancaPocketBase = 0,
@@ -145,10 +168,10 @@ export function calcularNotaCodeReview({
 }</code></pre>
 
 <h3>Passo 3: Roteiro de Apresentação (Pitch Técnico de 10 Minutos)</h3>
-1. <strong>2 min</strong>: Problema resolvido e especificação SDD (<code class="inline-code">project.spec.md</code>).
-2. <strong>4 min</strong>: Demonstração ao vivo da interface <strong>React</strong> e das coleções/regras no <strong>PocketBase</strong>.
-3. <strong>2 min</strong>: Demonstração de um trecho de código <strong>Node.js</strong> e execução do <code class="inline-code">npm test</code>.
-4. <strong>2 min</strong>: Perguntas da banca docente.
+<li class="num-item"><span class="num-badge">1.</span> <strong>2 min</strong>: Problema resolvido e especificação SDD (<code class="inline-code">project.spec.md</code>).</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>4 min</strong>: Demonstração ao vivo da interface <strong>React</strong> e das coleções/regras no <strong>PocketBase</strong>.</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>2 min</strong>: Demonstração de um trecho de código <strong>Node.js</strong> e execução do <code class="inline-code">npm test</code>.</li>
+<li class="num-item"><span class="num-badge">4.</span> <strong>2 min</strong>: Perguntas da banca docente.</li>
     </main>
   </div>
 </body>

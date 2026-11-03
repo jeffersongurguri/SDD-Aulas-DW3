@@ -1,4 +1,4 @@
-# Caderno Didático Consolidado — Desenvolvimento Web III (UC17-DWIII)
+# E-Book & Caderno Didático — Desenvolvimento Web III (UC17-DWIII)
 ## IFCE Campus Baturité | Stack: JavaScript Vanilla, Node.js, PocketBase e React
 
 ---

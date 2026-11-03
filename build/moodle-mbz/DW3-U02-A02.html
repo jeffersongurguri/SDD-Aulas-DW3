@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade II: Framework ORM, Persistência & Backend Low-Code / BaaS</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 02: Mapeamento de Atributos, Chaves e Relacionamentos no ORM</h1>
+      <h1 class="lesson-main-title">Aula 02: Mapeamento de Atributos, Chaves e Relacionamentos no ORM</h1>
 
-<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama Relacionamentos e Regras" loading="lazy" /><figcaption>Diagrama Relacionamentos e Regras</figcaption></figure>
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama Relacionamentos e Regras" /><figcaption>Diagrama Relacionamentos e Regras</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,7 +124,7 @@ Ao concluir esta aula síncrona, você será capaz de:
 <li class="task-item">✅ <strong>Implementar</strong> associações Um-para-Muitos (<code class="inline-code">1:N</code>) e Muitos-para-Muitos (<code class="inline-code">N:N</code>) com tabela associativa (<code class="inline-code">matriculas_turmas</code>).</li>
 <li class="task-item">✅ <strong>Configurar</strong> políticas de integridade referencial (<code class="inline-code">ON DELETE CASCADE</code> vs. <code class="inline-code">RESTRICT</code>).</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -110,16 +133,16 @@ Em um sistema acadêmico real do IFCE, as entidades não existem isoladas:
 <li><strong>Relacionamento <code class="inline-code">1:N</code> (Um para Muitos)</strong>: Um <strong>Curso</strong> (<code class="inline-code">cursos</code>) possui várias <strong>Turmas</strong> (<code class="inline-code">turmas</code>), mas cada turma pertence a um único curso principal via chave estrangeira <code class="inline-code">curso_id</code>.</li>
 <li><strong>Relacionamento <code class="inline-code">N:N</code> (Muitos para Muitos)</strong>: Um <strong>Aluno</strong> pode cursar várias <strong>Disciplinas/Turmas</strong>, e uma <strong>Turma</strong> contém vários <strong>Alunos</strong>. Essa relação é resolvida pela entidade associativa <strong>Matrícula</strong> (<code class="inline-code">matriculas</code>), que armazena também os atributos próprios do vínculo (<code class="inline-code">nota_ad</code>, <code class="inline-code">nota_ap</code>, <code class="inline-code">frequencia</code>).</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação de Relacionamentos SQL/ORM</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere o schema DDL relacional (compatível com SQLite / PocketBase) e a representação em objetos JavaScript para as tabelas cursos, alunos e matriculas, garantindo chaves estrangeiras e restrição UNIQUE composta para impedir que o mesmo aluno se matricule duas vezes na mesma disciplina.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere o schema DDL relacional (compatível com SQLite / PocketBase) e a representação em objetos JavaScript para as tabelas cursos, alunos e matriculas, garantindo chaves estrangeiras e restrição UNIQUE composta para impedir que o mesmo aluno se matricule duas vezes na mesma disciplina.</code></pre>
 
 <h3>Passo 2: Schema Relacional Declarativo</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/orm/schemaRelacional.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/orm/schemaRelacional.js
 export const DDL_SISTEMA_ACADEMICO = `
 CREATE TABLE IF NOT EXISTS cursos (
   id TEXT PRIMARY KEY,

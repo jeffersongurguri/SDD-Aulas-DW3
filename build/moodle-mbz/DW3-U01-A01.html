@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade I: Framework Back-end, Padrões de Software & Vibe Coding</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 01: Introdução ao Node.js, Frameworks Web e Gerenciamento de Pacotes com IA</h1>
+      <h1 class="lesson-main-title">Aula 01: Introdução ao Node.js, Frameworks Web e Gerenciamento de Pacotes com IA</h1>
 
-<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-ART01.png" alt="Banner da Unidade I" loading="lazy" /><figcaption>Banner da Unidade I</figcaption></figure>
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-ART01.png" alt="Banner da Unidade I" /><figcaption>Banner da Unidade I</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,7 +124,7 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Diferenciar</strong> a escrita de código em <strong>JavaScript Vanilla (ES6+)</strong> no navegador e no servidor utilizando <em>ES Modules</em> (<code class="inline-code">import</code> / <code class="inline-code">export</code>).</li>
 <li class="task-item">✅ <strong>Estruturar</strong> um projeto back-end com <code class="inline-code">npm</code>, configurando o manifesto <code class="inline-code">package.json</code> e utilizando <strong>Vibe Coding</strong> para geração e auditoria de configurações iniciais.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -109,9 +132,9 @@ Ao concluir esta aula assíncrona, você será capaz de:
 Historicamente, o <strong>JavaScript Vanilla</strong> nascia restrito ao contexto do navegador para manipulação do DOM. Com a criação do <strong>Node.js</strong> sobre a engine <strong>V8</strong> (do Google Chrome) combinada à biblioteca <code class="inline-code">libuv</code>, o JavaScript consolidou-se como uma linguagem <em>full-stack</em> de alta performance para servidores Web e APIs RESTful.
 
 Diferente de servidores tradicionais que alocam uma <em>thread</em> pesada do sistema operacional para cada requisição HTTP recebida, o Node.js opera sob o modelo <strong>Single-Threaded Event Loop</strong> com I/O assíncrono não bloqueante:
-1. A requisição HTTP chega ao Event Loop.
-2. Operações custosas de entrada/saída (consulta ao banco SQLite/PocketBase, leitura de arquivos ou chamadas de rede) são delegadas de forma assíncrona (<code class="inline-code">Promises</code> e <code class="inline-code">async/await</code>).
-3. O processo principal continua livre para atender centenas de outros clientes simultaneamente.
+<li class="num-item"><span class="num-badge">1.</span> A requisição HTTP chega ao Event Loop.</li>
+<li class="num-item"><span class="num-badge">2.</span> Operações custosas de entrada/saída (consulta ao banco SQLite/PocketBase, leitura de arquivos ou chamadas de rede) são delegadas de forma assíncrona (<code class="inline-code">Promises</code> e <code class="inline-code">async/await</code>).</li>
+<li class="num-item"><span class="num-badge">3.</span> O processo principal continua livre para atender centenas de outros clientes simultaneamente.</li>
 
 <h3>2.2 Frameworks Web em Node.js e Gerenciamento de Pacotes (<code class="inline-code">npm</code>)</h3>
 Embora o módulo nativo <code class="inline-code">node:http</code> forneça toda a base de rede para criar servidores Web sem dependências externas, frameworks minimalistas (como <strong>Express</strong> e <strong>Fastify</strong>) adicionam camadas ergonômicas de roteamento, <em>middlewares</em> e serialização JSON.
@@ -121,32 +144,32 @@ O <strong>Node Package Manager (<code class="inline-code">npm</code>)</strong> c
 <h3>2.3 Vibe Coding no Setup Arquitetural</h3>
 No paradigma de <strong>Desenvolvimento Orientado a Especificação (SDD)</strong> e <strong>Vibe Coding</strong>, o desenvolvedor não perde tempo memorizando flags obscuras de configuração: ele especifica requisitos técnicos claros (versão da engine Node, scripts de execução com <code class="inline-code">--watch</code>, política de módulos ES6 e dependências estritamente necessárias) e audita o artefato gerado pela IA.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação para Inicialização do Projeto (Vibe Coding)</h3>
 Utilize o seguinte prompt estruturado no seu assistente de código (Cursor, GitHub Copilot ou Gemini Code Assist):
 
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere um arquivo package.json para uma API acadêmica do IFCE Campus Baturité em Node.js 20+, utilizando ES Modules ("type": "module"), sem dependências externas desnecessárias, contendo scripts para desenvolvimento com live-reload nativo (--watch) e execução de testes nativos (node --test). Em seguida, crie um módulo utilitário src/infoSistema.js em JavaScript Vanilla que retorne metadados da plataforma e um servidor HTTP básico em src/index.js.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere um arquivo package.json para uma API acadêmica do IFCE Campus Baturité em Node.js 20+, utilizando ES Modules ("type": "module"), sem dependências externas desnecessárias, contendo scripts para desenvolvimento com live-reload nativo (--watch) e execução de testes nativos (node --test). Em seguida, crie um módulo utilitário src/infoSistema.js em JavaScript Vanilla que retorne metadados da plataforma e um servidor HTTP básico em src/index.js.</code></pre>
 
 <h3>Passo 2: Implementação e Inspeção do Código Gerado</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/infoSistema.js — Módulo ES6+ em JavaScript Vanilla
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/infoSistema.js — Módulo ES6+ em JavaScript Vanilla
 import os from 'node:os';
 
 export function obterStatusServidor() {
   return {
     instituicao: 'IFCE Campus Baturité',
     disciplina: 'Desenvolvimento Web III (UC17-DWIII)',
-    runtime: <code class="inline-code">Node.js ${process.version}</code>,
-    plataforma: <code class="inline-code">${os.type()} (${os.arch()})</code>,
+    runtime: `Node.js ${process.version}`,
+    plataforma: `${os.type()} (${os.arch()})`,
     memoriaLivreMB: Math.round(os.freemem() / (1024 * 1024)),
     timestamp: new Date().toISOString()
   };
 }</code></pre>
 
-<pre class="code-block" data-lang="javascript"><code>// src/index.js — Servidor HTTP Nativo em Node.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/index.js — Servidor HTTP Nativo em Node.js
 import http from 'node:http';
 import { obterStatusServidor } from './infoSistema.js';
 
@@ -164,12 +187,12 @@ const server = http.createServer((req, res) =&gt; {
 });
 
 server.listen(PORT, () =&gt; {
-  console.log(<code class="inline-code">Servidor ativo em http://localhost:${PORT}/status</code>);
+  console.log(`Servidor ativo em http://localhost:${PORT}/status`);
 });</code></pre>
 
 <h3>Passo 3: Teste de Validação</h3>
 Execute o comando abaixo no terminal e valide se o JSON retornado apresenta o código HTTP <code class="inline-code">200</code> e a versão do Node.js:
-<pre class="code-block" data-lang="bash"><code>node --check src/index.js</code></pre>
+<pre class="code-block" data-lang="bash"><div class="code-lang">BASH</div><code>node --check src/index.js</code></pre>
     </main>
   </div>
 </body>

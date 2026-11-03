@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade II: Framework ORM, Persistência & Backend Low-Code / BaaS</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 01: Conceitos Fundamentais de ORM em Node.js e Abstração de Entidades</h1>
+      <h1 class="lesson-main-title">Aula 01: Conceitos Fundamentais de ORM em Node.js e Abstração de Entidades</h1>
 
-<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-ART01.png" alt="Banner da Unidade II" loading="lazy" /><figcaption>Banner da Unidade II</figcaption></figure>
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-ART01.png" alt="Banner da Unidade II" /><figcaption>Banner da Unidade II</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,7 +124,7 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Diferenciar</strong> drivers SQL puros (<code class="inline-code">node:sqlite</code>), <em>Query Builders</em> e frameworks <strong>ORM</strong> (Prisma / Drizzle / Sequelize).</li>
 <li class="task-item">✅ <strong>Modelar</strong> entidades do domínio escolar como classes e schemas tipados em Node.js.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -110,19 +133,19 @@ Na Unidade I, armazenamos os discentes em estruturas <code class="inline-code">M
 
 <h3>2.2 O Papel do ORM (Object-Relational Mapping)</h3>
 Enquanto o código em <strong>Node.js / JavaScript</strong> manipula grafos de objetos dinâmicos, propriedades aninhadas e arrays, o banco relacional opera sobre tuplas (linhas), colunas tipadas e chaves estrangeiras. O <strong>ORM</strong> atua como uma camada tradutora que:
-1. Converte operações de métodos JavaScript (<code class="inline-code">AlunoModel.create()</code>, <code class="inline-code">AlunoModel.findMany()</code>) em instruções SQL parametrizadas seguras contra <em>SQL Injection</em>.
-2. Hidrata as linhas retornadas pelo banco em objetos JavaScript prontos para serialização JSON.
+<li class="num-item"><span class="num-badge">1.</span> Converte operações de métodos JavaScript (<code class="inline-code">AlunoModel.create()</code>, <code class="inline-code">AlunoModel.findMany()</code>) em instruções SQL parametrizadas seguras contra <em>SQL Injection</em>.</li>
+<li class="num-item"><span class="num-badge">2.</span> Hidrata as linhas retornadas pelo banco em objetos JavaScript prontos para serialização JSON.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação de Entidade ORM em Node.js</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere uma classe de repositório ORM leve em JavaScript ES6+ que abstraia uma tabela SQL "alunos" (id, nome, matricula, curso, ativo, criado_em), gerando queries SQL parametrizadas seguras (Prepared Statements) e hidratando os registros para objetos camelCase.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere uma classe de repositório ORM leve em JavaScript ES6+ que abstraia uma tabela SQL "alunos" (id, nome, matricula, curso, ativo, criado_em), gerando queries SQL parametrizadas seguras (Prepared Statements) e hidratando os registros para objetos camelCase.</code></pre>
 
 <h3>Passo 2: Implementação de Abstração de Entidade Relacional</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/orm/AlunoModel.js — Abstração Objeto-Relacional Parametrizada
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/orm/AlunoModel.js — Abstração Objeto-Relacional Parametrizada
 export class AlunoEntity {
   constructor(row) {
     this.id = row.id;
@@ -135,7 +158,7 @@ export class AlunoEntity {
 
   static toSqlInsert(dados) {
     return {
-      sql: <code class="inline-code">INSERT INTO alunos (nome, matricula, curso, ativo, criado_em) VALUES (?, ?, ?, ?, ?)</code>,
+      sql: `INSERT INTO alunos (nome, matricula, curso, ativo, criado_em) VALUES (?, ?, ?, ?, ?)`,
       params: [
         dados.nome.trim(),
         String(dados.matricula),

@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade II: Framework ORM, Persistência & Backend Low-Code / BaaS</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 06: Consultas Avançadas, Joins/Expand e Performance no ORM e PocketBase auxiliados por IA</h1>
+      <h1 class="lesson-main-title">Aula 06: Consultas Avançadas, Joins/Expand e Performance no ORM e PocketBase auxiliados por IA</h1>
 
-<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama Consultas e Relacionamentos" loading="lazy" /><figcaption>Diagrama Consultas e Relacionamentos</figcaption></figure>
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama Consultas e Relacionamentos" /><figcaption>Diagrama Consultas e Relacionamentos</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,7 +124,7 @@ Ao concluir esta aula síncrona, você será capaz de:
 <li class="task-item">✅ <strong>Construir</strong> consultas relacionais eficientes utilizando <code class="inline-code">JOIN</code> no ORM e o operador <code class="inline-code">expand</code> no <strong>PocketBase</strong>.</li>
 <li class="task-item">✅ <strong>Otimizar</strong> buscas utilizando índices (<code class="inline-code">CREATE INDEX</code>) e paginação baseada em limites (<code class="inline-code">page</code> / <code class="inline-code">perPage</code>).</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -113,18 +136,18 @@ Imagine listar 50 matrículas e, dentro de um laço <code class="inline-code">fo
 <h3>2.2 Solução no ORM (<code class="inline-code">JOIN</code> / <code class="inline-code">include</code>) e no PocketBase (<code class="inline-code">expand</code>)</h3>
 No <strong>PocketBase</strong>, eliminamos o problema <code class="inline-code">N+1</code> passando o parâmetro <code class="inline-code">expand=aluno_id,curso_id</code> em uma única requisição HTTP. O PocketBase resolve os relacionamentos internamente no SQLite e já aninha os objetos expandidos dentro da propriedade <code class="inline-code">record.expand</code>.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Otimização de Query com Vibe Coding</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Escreva uma função em JavaScript que construa parâmetros de consulta avançados para o PocketBase, combinando filtro composto (notas maiores ou iguais a 6 e frequência &gt;= 75), ordenação decrescente por média e expansão automática das relações aluno_id e turma_id (expand) para evitar o problema N+1.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Escreva uma função em JavaScript que construa parâmetros de consulta avançados para o PocketBase, combinando filtro composto (notas maiores ou iguais a 6 e frequência &gt;= 75), ordenação decrescente por média e expansão automática das relações aluno_id e turma_id (expand) para evitar o problema N+1.</code></pre>
 
 <h3>Passo 2: Construtor de Consultas Otimizadas no PocketBase</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/orm/queryBuilderPocketBase.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/orm/queryBuilderPocketBase.js
 export function construirQueryAprovados({ cursoCodigo = 'INFO-INT', pagina = 1 } = {}) {
-  const filtro = <code class="inline-code">mediaXs &gt;= 6.0 &amp;&amp; frequencia &gt;= 75 &amp;&amp; turma_id.curso_codigo = "${cursoCodigo}"</code>;
+  const filtro = `mediaXs &gt;= 6.0 &amp;&amp; frequencia &gt;= 75 &amp;&amp; turma_id.curso_codigo = "${cursoCodigo}"`;
   return {
     page: pagina,
     perPage: 25,

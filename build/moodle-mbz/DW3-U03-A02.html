@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade III: Framework Front-end, Headless CMS & No-Code UI</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 02: Soluções de Gerenciamento de Conteúdo (PocketBase Headless CMS) e Prototipagem No-Code (v0 / Figma)</h1>
+      <h1 class="lesson-main-title">Aula 02: Soluções de Gerenciamento de Conteúdo (PocketBase Headless CMS) e Prototipagem No-Code (v0 / Figma)</h1>
 
-<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-DIAG01.png" alt="Diagrama React e PocketBase Headless CMS" loading="lazy" /><figcaption>Diagrama React e PocketBase Headless CMS</figcaption></figure>
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-DIAG01.png" alt="Diagrama React e PocketBase Headless CMS" /><figcaption>Diagrama React e PocketBase Headless CMS</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,7 +124,7 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Elaborar</strong> prompts visuais/estruturais para ferramentas de <strong>UI Generativa (<code class="inline-code">v0</code> / Figma-to-Code)</strong> gerarem componentes React acessíveis e responsivos.</li>
 <li class="task-item">✅ <strong>Conectar</strong> os componentes gerados ao esquema de coleções do PocketBase.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -115,21 +138,21 @@ O <strong>PocketBase</strong> funciona como um Headless CMS perfeito para projet
 <h3>2.2 UI Generativa (<code class="inline-code">v0</code>, Figma-to-Code e Vibe Coding no Front-end)</h3>
 Ferramentas de UI Generativa recebem a especificação dos campos de uma coleção do PocketBase e geram imediatamente a árvore de componentes React com layouts em CSS Grid/Flexbox, estados vazios (<em>Empty States</em>) e esqueletos de carregamento (<em>Skeletons</em>).
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt para Geração de Componente React (UI Generativa <code class="inline-code">v0</code>)</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere um componente React &lt;MuralEditaisIFCE /&gt; estilizado em modo escuro que consuma a coleção "editais" do PocketBase (campos: id, titulo, categoria, data_publicacao, anexo_pdf) e construa a URL pública de download do arquivo anexo via /api/files/editais/:id/:filename.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere um componente React &lt;MuralEditaisIFCE /&gt; estilizado em modo escuro que consuma a coleção "editais" do PocketBase (campos: id, titulo, categoria, data_publicacao, anexo_pdf) e construa a URL pública de download do arquivo anexo via /api/files/editais/:id/:filename.</code></pre>
 
 <h3>Passo 2: Utilitário de Mídia e Headless CMS para PocketBase + React</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/frontend/pocketbaseCmsHelper.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/frontend/pocketbaseCmsHelper.js
 export function construirUrlArquivoPocketBase(baseUrl, record, nomeArquivo, thumb = '') {
   if (!record || !record.collectionId || !record.id || !nomeArquivo) return null;
   const base = baseUrl.replace(/\/$/, '');
-  const sufixoThumb = thumb ? <code class="inline-code">?thumb=${encodeURIComponent(thumb)}</code> : '';
-  return <code class="inline-code">${base}/api/files/${record.collectionId}/${record.id}/${nomeArquivo}${sufixoThumb}</code>;
+  const sufixoThumb = thumb ? `?thumb=${encodeURIComponent(thumb)}` : '';
+  return `${base}/api/files/${record.collectionId}/${record.id}/${nomeArquivo}${sufixoThumb}`;
 }
 
 export function formatarEditalParaComponente(record, baseUrl = 'http://127.0.0.1:8090') {

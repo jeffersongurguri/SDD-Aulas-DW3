@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade I: Framework Back-end, Padrões de Software & Vibe Coding</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 06: Resolução de Exercícios Práticos Virtuais de Construção de APIs REST em Node.js</h1>
+      <h1 class="lesson-main-title">Aula 06: Resolução de Exercícios Práticos Virtuais de Construção de APIs REST em Node.js</h1>
 
-<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-DIAG01.png" alt="Diagrama Workflow API REST Node.js" loading="lazy" /><figcaption>Diagrama Workflow API REST Node.js</figcaption></figure>
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-DIAG01.png" alt="Diagrama Workflow API REST Node.js" /><figcaption>Diagrama Workflow API REST Node.js</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,7 +124,7 @@ Ao concluir esta atividade prática de consolidação da Unidade I, você será 
 <li class="task-item">✅ <strong>Integrar</strong> validação de schemas, códigos HTTP (<code class="inline-code">200</code>, <code class="inline-code">201</code>, <code class="inline-code">400</code>, <code class="inline-code">404</code>, <code class="inline-code">422</code>) e respostas padronizadas em JSON.</li>
 <li class="task-item">✅ <strong>Validar</strong> todos os cenários de sucesso e de erro por meio do script executável em <code class="inline-code">src/code-samples/u1-node-api/server.js</code>.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -110,16 +133,16 @@ Ao longo das 5 aulas anteriores, evoluímos do entendimento do runtime <strong>N
 
 Nesta atividade prática de 6 horas, consolidamos a <strong>API de Gestão de Alunos (DWIII)</strong>, que servirá de base para a persistência relacional e BaaS (<strong>PocketBase</strong>) na Unidade II e para o consumo pelo front-end <strong>React</strong> na Unidade III.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Especificação Completa da API de Alunos (Vibe Coding SDD)</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Implemente um módulo completo em Node.js (src/code-samples/u1-node-api/server.js) contendo o repositório em memória, validador de AlunoSchema (nome &gt;= 3 caracteres, matrícula com 10 dígitos numéricos e curso padrão "Técnico em Informática para Internet"), funções CRUD (criarAluno, listarAlunos, buscarAlunoPorMatricula, removerAluno) e um servidor HTTP RESTful com suporte a CORS e tratamento de exceções HTTP 400, 404 e 422.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Implemente um módulo completo em Node.js (src/code-samples/u1-node-api/server.js) contendo o repositório em memória, validador de AlunoSchema (nome &gt;= 3 caracteres, matrícula com 10 dígitos numéricos e curso padrão "Técnico em Informática para Internet"), funções CRUD (criarAluno, listarAlunos, buscarAlunoPorMatricula, removerAluno) e um servidor HTTP RESTful com suporte a CORS e tratamento de exceções HTTP 400, 404 e 422.</code></pre>
 
 <h3>Passo 2: Implementação Completa da API (<code class="inline-code">src/code-samples/u1-node-api/server.js</code>)</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// Exemplo consolidado da Unidade I (disponível em src/code-samples/u1-node-api/server.js)
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// Exemplo consolidado da Unidade I (disponível em src/code-samples/u1-node-api/server.js)
 export class ApiAlunosNode {
   constructor() {
     this.dbAlunos = new Map();
@@ -157,9 +180,9 @@ export class ApiAlunosNode {
 }</code></pre>
 
 <h3>Passo 3: Exercícios de Validação Obrigatórios (Entrega no Moodle)</h3>
-1. <strong>Cenário 1 (Sucesso <code class="inline-code">201</code>)</strong>: Cadastre um discente com matrícula <code class="inline-code">"2026100123"</code> e verifique o retorno JSON.
-2. <strong>Cenário 2 (Duplicidade <code class="inline-code">400</code>)</strong>: Tente recadastrar a mesma matrícula <code class="inline-code">"2026100123"</code> e confirme a exceção HTTP <code class="inline-code">400</code>.
-3. <strong>Cenário 3 (Validação <code class="inline-code">422</code>)</strong>: Envie uma matrícula com letras (<code class="inline-code">"2026ABC"</code>), confirmando o bloqueio pelo validador de schema.
+<li class="num-item"><span class="num-badge">1.</span> <strong>Cenário 1 (Sucesso <code class="inline-code">201</code>)</strong>: Cadastre um discente com matrícula <code class="inline-code">"2026100123"</code> e verifique o retorno JSON.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>Cenário 2 (Duplicidade <code class="inline-code">400</code>)</strong>: Tente recadastrar a mesma matrícula <code class="inline-code">"2026100123"</code> e confirme a exceção HTTP <code class="inline-code">400</code>.</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Cenário 3 (Validação <code class="inline-code">422</code>)</strong>: Envie uma matrícula com letras (<code class="inline-code">"2026ABC"</code>), confirmando o bloqueio pelo validador de schema.</li>
     </main>
   </div>
 </body>

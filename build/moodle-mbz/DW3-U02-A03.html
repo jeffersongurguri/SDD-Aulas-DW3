@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade II: Framework ORM, Persistência & Backend Low-Code / BaaS</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 03: Modelagem e Geração Automática de Migrações (Migrations)</h1>
+      <h1 class="lesson-main-title">Aula 03: Modelagem e Geração Automática de Migrações (Migrations)</h1>
 
-<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-INFO01.png" alt="Infográfico ORM e Migrations vs PocketBase" loading="lazy" /><figcaption>Infográfico ORM e Migrations vs PocketBase</figcaption></figure>
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-INFO01.png" alt="Infográfico ORM e Migrations vs PocketBase" /><figcaption>Infográfico ORM e Migrations vs PocketBase</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,7 +124,7 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Escrever</strong> scripts de migração reversíveis (<code class="inline-code">up</code> para aplicar mudanças e <code class="inline-code">down</code> para reverter/<em>rollback</em>) em JavaScript/Node.js.</li>
 <li class="task-item">✅ <strong>Implementar</strong> scripts de <em>Seed</em> para popular automaticamente o ambiente de desenvolvimento.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -110,16 +133,16 @@ Assim como o Git controla o histórico de alterações do código-fonte JavaScri
 <li><strong><code class="inline-code">up(db)</code></strong>: Aplica a evolução (ex.: cria a coleção/tabela <code class="inline-code">projetos</code> ou adiciona a coluna <code class="inline-code">github_url</code>).</li>
 <li><strong><code class="inline-code">down(db)</code></strong>: Desfaz a alteração com segurança caso um deploy apresente falhas.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Especificação de Migration Compatível com Node.js / PocketBase</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere uma estrutura de migração em JavaScript (padrão up/down) que adicione o campo "github_repo" e "nota_final" na coleção/tabela de alunos, acompanhada de uma função de seed que insira 3 discentes de exemplo do IFCE Campus Baturité.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere uma estrutura de migração em JavaScript (padrão up/down) que adicione o campo "github_repo" e "nota_final" na coleção/tabela de alunos, acompanhada de uma função de seed que insira 3 discentes de exemplo do IFCE Campus Baturité.</code></pre>
 
 <h3>Passo 2: Implementação de Migration e Seed</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/orm/migrations/20261102_add_github_repo.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/orm/migrations/20261102_add_github_repo.js
 export const migrationAddGithubRepo = {
   id: '20261102_01_add_github_repo',
   up(schemaState) {

@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 01: Planejamento de Projeto: Escopo e Levantamento de Requisitos com SDD</h1>
+      <h1 class="lesson-main-title">Aula 01: Planejamento de Projeto: Escopo e Levantamento de Requisitos com SDD</h1>
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner da Unidade IV" loading="lazy" /><figcaption>Banner da Unidade IV</figcaption></figure>
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner da Unidade IV" /><figcaption>Banner da Unidade IV</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,26 +124,26 @@ Ao concluir esta aula síncrona de abertura da Unidade IV, você será capaz de:
 <li class="task-item">✅ <strong>Estruturar</strong> Histórias de Usuário (<em>User Stories</em>) com Critérios de Aceitação verificáveis (<em>Given / When / Then</em>).</li>
 <li class="task-item">✅ <strong>Elaborar</strong> o arquivo <code class="inline-code">project.spec.md</code> que servirá de contexto mestre para os assistentes de IA na geração de código e testes.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Por que projetos guiados por IA falham sem uma Especificação Técnica?</h3>
 Quando equipes iniciam o desenvolvimento pedindo telas e rotas aleatórias para a IA sem um plano arquitetural, os nomes de campos divergem entre o <strong>React</strong>, o servidor <strong>Node.js</strong> e as coleções do <strong>PocketBase</strong>. No <strong>Desenvolvimento Orientado a Especificação (SDD)</strong>, o primeiro entregável do projeto é o contrato formal de dados e requisitos:
-1. <strong>Entidades e Coleções PocketBase</strong>: Definição exata de nomes de campos e tipos.
-2. <strong>Contratos de Endpoints Node.js</strong>: Payloads de entrada, regras de negócio e status HTTP.
-3. <strong>Critérios de Aceitação</strong>: Condições objetivas que serão transformadas em testes automatizados (<code class="inline-code">node:test</code>).
+<li class="num-item"><span class="num-badge">1.</span> <strong>Entidades e Coleções PocketBase</strong>: Definição exata de nomes de campos e tipos.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>Contratos de Endpoints Node.js</strong>: Payloads de entrada, regras de negócio e status HTTP.</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Critérios de Aceitação</strong>: Condições objetivas que serão transformadas em testes automatizados (<code class="inline-code">node:test</code>).</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt para Geração de Especificação e Validador de Escopo SDD</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere um validador de especificação de projeto (validarEscopoProjetoSDD) em JavaScript que verifique se o manifesto do projeto final do estudante contém título, coleções do PocketBase, rotas Node.js, componentes React e pelo menos 3 histórias de usuário com critérios de aceitação.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere um validador de especificação de projeto (validarEscopoProjetoSDD) em JavaScript que verifique se o manifesto do projeto final do estudante contém título, coleções do PocketBase, rotas Node.js, componentes React e pelo menos 3 histórias de usuário com critérios de aceitação.</code></pre>
 
 <h3>Passo 2: Validador de Especificação do Projeto Final</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/projeto/validadorEscopoProjeto.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/projeto/validadorEscopoProjeto.js
 export function validarEscopoProjetoSDD(spec) {
   const erros = [];
   if (!spec?.titulo || spec.titulo.trim().length &lt; 5) {

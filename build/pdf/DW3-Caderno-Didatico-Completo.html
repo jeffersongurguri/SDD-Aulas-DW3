@@ -1,83 +1,674 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/><title>Caderno Completo DWIII - IFCE Baturité</title><style>
-  :root {
-    --bg-dark: #0f172a;
-    --bg-card: #1e293b;
-    --accent-cyan: #38bdf8;
-    --accent-indigo: #818cf8;
-    --accent-emerald: #34d399;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>E-Book: Desenvolvimento Web III (UC17-DWIII) — IFCE Campus Baturité</title>
+  <style>
+  @page {
+    size: A4 portrait;
+    margin: 16mm 15mm 18mm 15mm;
   }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
   body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background: var(--bg-dark);
-    color: var(--text-main);
+    color: #0f172a;
+    background: #ffffff;
     margin: 0;
-    padding: 2rem;
-    line-height: 1.65;
+    padding: 0;
+    line-height: 1.58;
+    font-size: 10.5pt;
   }
-  .container { max-width: 1080px; margin: 0 auto; }
-  header.hero {
-    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-    border: 1px solid #334155;
-    border-left: 6px solid var(--accent-emerald);
-    border-radius: 12px;
-    padding: 1.75rem 2rem;
-    margin-bottom: 2rem;
+  /* CAPA EDITORIAL */
+  .ebook-cover {
+    background: linear-gradient(145deg, #090d16 0%, #0f172a 55%, #1e1b4b 100%);
+    color: #f8fafc;
+    min-height: 262mm;
+    padding: 18mm 16mm;
+    border-radius: 10px;
+    border: 2px solid #1e293b;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    page-break-after: always;
+    break-after: page;
   }
-  .badge {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
+  .cover-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #10b981;
+    padding-bottom: 12px;
+  }
+  .inst-tag {
+    font-size: 9.5pt;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #34d399;
+  }
+  .code-tag {
+    background: rgba(56, 189, 248, 0.18);
+    border: 1px solid #38bdf8;
+    color: #38bdf8;
+    padding: 4px 12px;
     border-radius: 999px;
-    font-size: 0.8rem;
+    font-size: 8.5pt;
+    font-weight: 700;
+  }
+  .cover-hero {
+    margin: 12mm 0 8mm 0;
+  }
+  .cover-pretitle {
+    color: #38bdf8;
+    font-size: 11pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+  .cover-title {
+    font-size: 27pt;
+    line-height: 1.15;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 12px 0;
+  }
+  .cover-subtitle {
+    font-size: 12.5pt;
+    color: #cbd5e1;
+    font-weight: 400;
+    margin: 0 0 18px 0;
+  }
+  .cover-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .cover-pill {
+    background: rgba(129, 140, 248, 0.2);
+    border: 1px solid #818cf8;
+    color: #e0e7ff;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 9pt;
     font-weight: 600;
-    background: rgba(56, 189, 248, 0.15);
-    color: var(--accent-cyan);
-    margin-right: 0.5rem;
   }
-  .lesson-card {
-    background: var(--bg-card);
+  .cover-banner-box {
+    margin: 6mm 0;
+    border-radius: 10px;
+    overflow: hidden;
     border: 1px solid #334155;
-    border-radius: 12px;
-    padding: 2rem;
-    margin-bottom: 2rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
   }
-  h1, h2, h3 { color: var(--accent-cyan); }
-  pre.code-block {
-    background: #020617;
-    border: 1px solid #334155;
-    border-left: 4px solid var(--accent-indigo);
-    padding: 1rem 1.25rem;
+  .cover-banner-box img {
+    width: 100%;
+    max-height: 78mm;
+    object-fit: cover;
+    display: block;
+  }
+  .cover-footer {
+    border-top: 1px solid #334155;
+    padding-top: 14px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    font-size: 9.5pt;
+    color: #cbd5e1;
+  }
+  .cover-footer strong { color: #38bdf8; display: block; font-size: 8.5pt; text-transform: uppercase; }
+
+  /* SEÇÃO DE AUTOR E FICHA TÉCNICA */
+  .author-page {
+    page-break-after: always;
+    break-after: page;
+    padding-top: 4mm;
+  }
+  .section-eyebrow {
+    color: #0284c7;
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .page-header-title {
+    font-size: 20pt;
+    color: #0f172a;
+    margin: 0 0 14px 0;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #0f172a;
+  }
+  .author-card {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-left: 6px solid #0284c7;
     border-radius: 8px;
-    overflow-x: auto;
+    padding: 16px 20px;
+    margin-bottom: 18px;
+  }
+  .author-card h3 {
+    margin: 0 0 6px 0;
+    color: #0f172a;
+    font-size: 13.5pt;
+  }
+  .author-role {
+    color: #0369a1;
+    font-weight: 600;
+    font-size: 10pt;
+    margin-bottom: 10px;
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .meta-box {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .meta-box h4 {
+    margin: 0 0 6px 0;
+    font-size: 9.5pt;
+    text-transform: uppercase;
+    color: #0f172a;
+  }
+  .formula-box {
+    background: #0f172a;
+    color: #f8fafc;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 12px;
+  }
+  .formula-box h4 { color: #34d399; margin: 0 0 8px 0; }
+
+  /* SUMÁRIO EXECUTIVO E NAVEGÁVEL */
+  .toc-page {
+    page-break-after: always;
+    break-after: page;
+  }
+  .toc-unit-block {
+    margin-bottom: 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .toc-unit-header {
+    background: #0f172a;
+    color: #ffffff;
+    padding: 8px 14px;
+    font-weight: 700;
+    font-size: 10.5pt;
+    display: flex;
+    justify-content: space-between;
+  }
+  .toc-unit-header span.ch { color: #34d399; }
+  .toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 6px 14px;
+    background: #ffffff;
+  }
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 5px 0;
+    border-bottom: 1px dashed #e2e8f0;
+    font-size: 9.5pt;
+  }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item a {
+    color: #0f172a;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .toc-item .toc-code {
+    color: #0284c7;
+    font-weight: 700;
+    margin-right: 8px;
+    font-family: Consolas, monospace;
+  }
+  .toc-item .toc-meta {
+    font-size: 8.5pt;
+    color: #475569;
+    white-space: nowrap;
+    margin-left: 10px;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 99px;
+  }
+
+  /* CAPA DE UNIDADE */
+  .unit-divider {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #ffffff;
+    padding: 18px 22px;
+    border-radius: 10px;
+    border-left: 8px solid #10b981;
+    margin-bottom: 16px;
+    page-break-before: always;
+    break-before: page;
+  }
+  .unit-divider h2 {
+    color: #38bdf8;
+    margin: 4px 0 8px 0;
+    font-size: 16pt;
+  }
+  .unit-divider p {
+    margin: 0;
     color: #e2e8f0;
-    font-size: 0.9rem;
+    font-size: 10pt;
+  }
+
+  /* PÁGINA DE AULA */
+  .ebook-lesson {
+    page-break-before: always;
+    break-before: page;
+    padding-bottom: 10mm;
+  }
+  .lesson-meta-bar {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .lesson-meta-bar .mod-id {
+    color: #38bdf8;
+    font-weight: 800;
+    font-size: 10.5pt;
+  }
+  .lesson-meta-bar .mod-info {
+    background: rgba(52, 211, 153, 0.2);
+    color: #34d399;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 8.5pt;
+    font-weight: 700;
+  }
+  .competencias-box {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-left: 4px solid #0284c7;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-size: 9.2pt;
+  }
+  .competencias-box strong { color: #0369a1; }
+  h1.lesson-main-title {
+    font-size: 16pt;
+    color: #0f172a;
+    margin: 8px 0 12px 0;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 6px;
+  }
+  .ebook-lesson h2 {
+    font-size: 12.5pt;
+    color: #0369a1;
+    margin: 14px 0 6px 0;
+  }
+  .ebook-lesson h3 {
+    font-size: 10.8pt;
+    color: #1e293b;
+    margin: 10px 0 4px 0;
+  }
+  pre.code-block {
+    background: #0f172a;
+    color: #f8fafc;
+    border: 1px solid #334155;
+    border-left: 4px solid #6366f1;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 8.3pt;
+    line-height: 1.42;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin: 10px 0;
+  }
+  .code-lang {
+    color: #818cf8;
+    font-size: 7.2pt;
+    font-weight: 700;
+    margin-bottom: 4px;
   }
   code.inline-code {
-    background: rgba(129, 140, 248, 0.15);
-    color: #c7d2fe;
-    padding: 0.1rem 0.35rem;
+    background: #f1f5f9;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+    padding: 1px 4px;
     border-radius: 4px;
+    font-family: Consolas, monospace;
+    font-size: 9pt;
   }
   figure.visual-asset {
-    margin: 1.5rem 0;
+    margin: 10px auto;
     text-align: center;
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
   figure.visual-asset img {
-    max-width: 100%;
-    border-radius: 10px;
-    border: 1px solid #475569;
+    max-width: 92%;
+    max-height: 68mm;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
   }
   figure.visual-asset figcaption {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    margin-top: 0.5rem;
+    font-size: 8.2pt;
+    color: #475569;
+    margin-top: 4px;
+    font-style: italic;
   }
-</style></head><body><div class="container"><section class="lesson-card" id="DW3-U01-A01">
-        <div><span class="badge">DW3-U01-A01</span><span class="badge">Assíncrono - 4h</span></div>
-        <h1>Aula 01: Introdução ao Node.js, Frameworks Web e Gerenciamento de Pacotes com IA</h1>
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 8.8pt;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #cbd5e1;
+    padding: 6px 8px;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #0f172a;
+    color: #38bdf8;
+  }
+  li.task-item, li.num-item {
+    list-style: none;
+    margin: 4px 0;
+  }
+  .num-badge {
+    font-weight: 700;
+    color: #0284c7;
+  }
+  hr.section-divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 12px 0;
+  }
+</style>
+</head>
+<body>
 
-<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-ART01.png" alt="Banner da Unidade I" loading="lazy" /><figcaption>Banner da Unidade I</figcaption></figure>
+  <!-- 1. CAPA DO E-BOOK -->
+  <section class="ebook-cover">
+    <div>
+      <div class="cover-top-bar">
+        <span class="inst-tag">Instituto Federal do Ceará (IFCE) — Campus Baturité</span>
+        <span class="code-tag">UC17-DWIII • 80h (4 Créditos)</span>
+      </div>
+
+      <div class="cover-hero">
+        <div class="cover-pretitle">Curso Técnico Subsequente em Informática para Internet (EaD)</div>
+        <h1 class="cover-title">Desenvolvimento Web III</h1>
+        <p class="cover-subtitle">
+          Arquitetura Back-end com Node.js, Persistência Low-Code com PocketBase, Interfaces Reativas com JavaScript Vanilla &amp; React e Engenharia Assistida por IA (Vibe Coding &amp; SDD)
+        </p>
+
+        <div class="cover-pills">
+          <span class="cover-pill">JavaScript Vanilla (ES6+)</span>
+          <span class="cover-pill">Node.js REST APIs</span>
+          <span class="cover-pill">PocketBase BaaS &amp; ORM</span>
+          <span class="cover-pill">React &amp; Headless CMS</span>
+          <span class="cover-pill">Vibe Coding &amp; Cloud Deploy</span>
+        </div>
+      </div>
+
+      <div class="cover-banner-box">
+        <img src="./u1-backend-vibe/assets/DW3-U01-ART01.png" alt="Capa Desenvolvimento Web III" />
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <div>
+        <strong>Autoria &amp; Coordenação Pedagógica</strong>
+        Equipe Docente de Desenvolvimento Web &amp; Design Instrucional — IFCE Campus Baturité
+      </div>
+      <div>
+        <strong>Metodologia &amp; Edição</strong>
+        Specification-Driven Development (SDD) • Edição Acadêmica 2026
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. SEÇÃO DE AUTOR, FICHA CATALOGRÁFICA E ARQUITETURA PEDAGÓGICA -->
+  <section class="author-page">
+    <div class="section-eyebrow">Expediente Acadêmico &amp; Ficha Técnica</div>
+    <h2 class="page-header-title">Sobre os Autores e a Obra Didática</h2>
+
+    <div class="author-card">
+      <h3>Equipe Docente — Eixo de Informação e Comunicação (IFCE Campus Baturité)</h3>
+      <div class="author-role">Autoria Técnica, Arquitetura de Software Educacional e Design Instrucional EaD</div>
+      <p>
+        Este livro digital (E-Book) foi concebido e desenvolvido pelo corpo docente da disciplina <strong>Desenvolvimento Web III (UC17-DWIII)</strong> do <strong>Instituto Federal de Educação, Ciência e Tecnologia do Ceará (IFCE) — Campus Baturité</strong>, destinado aos discentes do Curso Técnico Subsequente em Informática para Internet na modalidade de Educação a Distância (EaD).
+      </p>
+      <p>
+        A obra adota pioneiramente a abordagem de <strong>Desenvolvimento Orientado a Especificação (Specification-Driven Development — SDD)</strong> aliada à tríade contemporânea de engenharia de software: <em>Programação Assistida por IA (Vibe Coding Responsável)</em>, <em>Backend-as-a-Service (PocketBase &amp; ORM)</em> e <em>Interfaces Declarativas Reativas (JavaScript Vanilla, React &amp; UI Generativa)</em>.
+      </p>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-box">
+        <h4>Dados Curriculares Oficiais (PPC / IFCE)</h4>
+        <p><strong>Unidade Curricular:</strong> Desenvolvimento Web III (UC17-DWIII)</p>
+        <p><strong>Carga Horária Total:</strong> 80 horas-aula (4 créditos acadêmicos)</p>
+        <p><strong>Distribuição Modal:</strong> 16h Presenciais • 14h Síncronas • 50h Assíncronas (AVA Moodle)</p>
+      </div>
+      <div class="meta-box">
+        <h4>Stack Tecnológica Padronizada</h4>
+        <p><strong>Linguagem &amp; Runtime:</strong> JavaScript Vanilla (ES6+) &amp; Node.js LTS</p>
+        <p><strong>Persistência &amp; BaaS:</strong> ORM Relacional, SQLite &amp; PocketBase</p>
+        <p><strong>Front-end &amp; Testes:</strong> React (Hooks), UI Generativa (v0), <code>node:test</code> &amp; Docker</p>
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <h4>Sistema de Avaliação e Matriz de Aprovação (ROD / IFCE)</h4>
+      <p>
+        Conforme o Regulamento da Organização Didática (ROD) do IFCE, exige-se frequência mínima obrigatória de <strong>75%</strong>. A Média Semestral Parcial (<strong>Xs</strong>) combina a nota das Atividades a Distância (<strong>AD</strong>, peso 2) e das Avaliações Presenciais (<strong>AP</strong>, peso 3):
+      </p>
+      <p style="font-family: Consolas, monospace; font-size: 11pt; color: #38bdf8; margin: 6px 0;">
+        Xs = (2 × AD + 3 × AP) / 5
+      </p>
+      <p style="margin: 0; font-size: 9.5pt;">
+        • <strong>Aprovado por Média:</strong> Xs ≥ 6,0 e Frequência ≥ 75%.<br/>
+        • <strong>Exame Presencial Final (EFP):</strong> 3,0 ≤ Xs &lt; 6,0 → Média Final <strong>Xf = (Xs + EFP) / 2 ≥ 5,0</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. SUMÁRIO GERAL NAVEGÁVEL -->
+  <section class="toc-page">
+    <div class="section-eyebrow">Estrutura Curricular Completa • 4 Unidades • 28 Aulas (80h)</div>
+    <h2 class="page-header-title">Sumário Geral</h2>
+    
+      <div class="toc-unit-block">
+        <div class="toc-unit-header">
+          <span>Unidade I: Framework Back-end (Node.js), Padrões & Vibe Coding</span>
+          <span class="ch">6 Aulas • 20h</span>
+        </div>
+        <ul class="toc-list">
+          
+            <li class="toc-item">
+              <a href="#DW3-U01-A01"><span class="toc-code">DW3-U01-A01</span>Introdução ao Node.js, Frameworks Web e Gerenciamento de Pacotes com IA</a>
+              <span class="toc-meta">Assíncrono • 4h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U01-A02"><span class="toc-code">DW3-U01-A02</span>Configuração de Ambiente Node.js e Arquitetura Web na Prática (Laboratório)</a>
+              <span class="toc-meta">Presencial • 4h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U01-A03"><span class="toc-code">DW3-U01-A03</span>Padrões de Arquitetura Back-end (MVC/Controllers) e Scaffolding com Vibe Coding</a>
+              <span class="toc-meta">Síncrono • 2h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U01-A04"><span class="toc-code">DW3-U01-A04</span>Estudo Dirigido: Análise Crítica e Auditoria de Código Node.js Gerado por IA</a>
+              <span class="toc-meta">Assíncrono • 2h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U01-A05"><span class="toc-code">DW3-U01-A05</span>Arquitetura RESTful, Verbos HTTP, Middlewares e Tratamento de Exceções</a>
+              <span class="toc-meta">Síncrono • 2h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U01-A06"><span class="toc-code">DW3-U01-A06</span>Resolução de Exercícios Práticos Virtuais de Construção de APIs REST em Node.js</a>
+              <span class="toc-meta">Assíncrono • 6h</span>
+            </li>
+        </ul>
+      </div>
+
+      <div class="toc-unit-block">
+        <div class="toc-unit-header">
+          <span>Unidade II: Framework ORM, Persistência & Backend Low-Code (PocketBase)</span>
+          <span class="ch">7 Aulas • 20h</span>
+        </div>
+        <ul class="toc-list">
+          
+            <li class="toc-item">
+              <a href="#DW3-U02-A01"><span class="toc-code">DW3-U02-A01</span>Conceitos Fundamentais de ORM em Node.js e Abstração de Entidades</a>
+              <span class="toc-meta">Assíncrono • 4h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U02-A02"><span class="toc-code">DW3-U02-A02</span>Mapeamento de Atributos, Chaves e Relacionamentos no ORM</a>
+              <span class="toc-meta">Síncrono • 2h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U02-A03"><span class="toc-code">DW3-U02-A03</span>Modelagem e Geração Automática de Migrações (Migrations)</a>
+              <span class="toc-meta">Assíncrono • 2h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U02-A04"><span class="toc-code">DW3-U02-A04</span>Automação de Scripts de Banco de Dados e Introdução ao BaaS com PocketBase</a>
+              <span class="toc-meta">Assíncrono • 4h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U02-A05"><span class="toc-code">DW3-U02-A05</span>Laboratório Prático: Integração Back-end Node.js + ORM/PocketBase + Banco Relacional (1ª Avaliação)</a>
+              <span class="toc-meta">Presencial • 4h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U02-A06"><span class="toc-code">DW3-U02-A06</span>Consultas Avançadas, Joins/Expand e Performance no ORM e PocketBase auxiliados por IA</a>
+              <span class="toc-meta">Síncrono • 2h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U02-A07"><span class="toc-code">DW3-U02-A07</span>Atividade de Fixação: Mapeamento de Tabelas Complexas e API Rules no PocketBase</a>
+              <span class="toc-meta">Assíncrono • 2h</span>
+            </li>
+        </ul>
+      </div>
+
+      <div class="toc-unit-block">
+        <div class="toc-unit-header">
+          <span>Unidade III: Framework Front-end (JS Vanilla & React), Headless CMS & No-Code UI</span>
+          <span class="ch">5 Aulas • 16h</span>
+        </div>
+        <ul class="toc-list">
+          
+            <li class="toc-item">
+              <a href="#DW3-U03-A01"><span class="toc-code">DW3-U03-A01</span>Do JavaScript Vanilla ao React: Componentes Visuais, Reatividade e Ciclo de Vida</a>
+              <span class="toc-meta">Assíncrono • 4h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U03-A02"><span class="toc-code">DW3-U03-A02</span>Soluções de Gerenciamento de Conteúdo (PocketBase Headless CMS) e Prototipagem No-Code (v0 / Figma)</a>
+              <span class="toc-meta">Assíncrono • 4h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U03-A03"><span class="toc-code">DW3-U03-A03</span>Integração do Front-end React com APIs RESTful e Gerenciamento de Estado (useState / useEffect)</a>
+              <span class="toc-meta">Síncrono • 2h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U03-A04"><span class="toc-code">DW3-U03-A04</span>Requisições Assíncronas (fetch / SDK pocketbase) e Manipulação de Estado Reativo</a>
+              <span class="toc-meta">Assíncrono • 2h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U03-A05"><span class="toc-code">DW3-U03-A05</span>Laboratório Prático: Consumo de Dados e Renderização Dinâmica na Interface React</a>
+              <span class="toc-meta">Presencial • 4h</span>
+            </li>
+        </ul>
+      </div>
+
+      <div class="toc-unit-block">
+        <div class="toc-unit-header">
+          <span>Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem</span>
+          <span class="ch">10 Aulas • 24h</span>
+        </div>
+        <ul class="toc-list">
+          
+            <li class="toc-item">
+              <a href="#DW3-U04-A01"><span class="toc-code">DW3-U04-A01</span>Planejamento de Projeto: Escopo e Levantamento de Requisitos com SDD</a>
+              <span class="toc-meta">Síncrono • 2h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U04-A02"><span class="toc-code">DW3-U04-A02</span>Modelagem de Interface (UI/UX) e Fluxos de Navegação em React</a>
+              <span class="toc-meta">Assíncrono • 2h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U04-A03"><span class="toc-code">DW3-U04-A03</span>Camada de Persistência no PocketBase/Node.js, Autenticação e Segurança da Informação</a>
+              <span class="toc-meta">Assíncrono • 4h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U04-A04"><span class="toc-code">DW3-U04-A04</span>Padrões Avançados de Arquitetura Full-Stack e Integração de Sistemas</a>
+              <span class="toc-meta">Síncrono • 1h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U04-A05"><span class="toc-code">DW3-U04-A05</span>Codificação Supervisionada do Projeto Final</a>
+              <span class="toc-meta">Assíncrono • 2h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U04-A06"><span class="toc-code">DW3-U04-A06</span>Testes Automatizados Gerados por IA (node:test) e Estratégias de Deploy (Docker/Vercel/Render/Fly.io)</a>
+              <span class="toc-meta">Assíncrono • 4h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U04-A07"><span class="toc-code">DW3-U04-A07</span>Laboratório Prático: Publicação Prática (Deploy) e Testes de Carga Finais</a>
+              <span class="toc-meta">Presencial • 4h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U04-A08"><span class="toc-code">DW3-U04-A08</span>Code Review, Análise de Performance e Apresentação de Projetos</a>
+              <span class="toc-meta">Síncrono • 1h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U04-A09"><span class="toc-code">DW3-U04-A09</span>Envio Final do Repositório do Projeto no AVA Moodle (2ª Atividade Avaliativa - Projeto Final)</a>
+              <span class="toc-meta">Assíncrono • 2h</span>
+            </li>
+            <li class="toc-item">
+              <a href="#DW3-U04-A10"><span class="toc-code">DW3-U04-A10</span>Fechamento de Diário de Classe e Orientações para Exame Final</a>
+              <span class="toc-meta">Assíncrono • 2h</span>
+            </li>
+        </ul>
+      </div>
+  </section>
+
+  <!-- 4. CONTEÚDO INTEGRAL DAS 4 UNIDADES E 28 AULAS -->
+  
+      <section class="unit-section" id="unidade-U1">
+        <div class="unit-divider">
+          <div class="inst-tag">Unidade Curricular • Carga Horária: 20h</div>
+          <h2>Unidade I: Framework Back-end (Node.js), Padrões & Vibe Coding</h2>
+          <p>Arquitetura cliente-servidor com Node.js e JavaScript Vanilla (ES6+), gerenciamento de pacotes npm, padrões MVC/Services/Controllers, construção de APIs RESTful, middlewares, tratamento de exceções HTTP e auditoria crítica de código gerado por IA (Vibe Coding).</p>
+        </div>
+        
+        <article class="ebook-lesson" id="DW3-U01-A01">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U01-A01 — Unidade I</span>
+            <span class="mod-info">Assíncrono • Carga Horária: 4h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Compreender a arquitetura orientada a eventos do Node.js e o uso de módulos ES6+ no servidor • Gerenciar dependências e scripts de automação via npm e package.json com auxílio de IA</div>
+          <h1 class="lesson-main-title">Aula 01: Introdução ao Node.js, Frameworks Web e Gerenciamento de Pacotes com IA</h1>
+
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-ART01.png" alt="Banner da Unidade I" /><figcaption>Banner da Unidade I</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -86,7 +677,7 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Diferenciar</strong> a escrita de código em <strong>JavaScript Vanilla (ES6+)</strong> no navegador e no servidor utilizando <em>ES Modules</em> (<code class="inline-code">import</code> / <code class="inline-code">export</code>).</li>
 <li class="task-item">✅ <strong>Estruturar</strong> um projeto back-end com <code class="inline-code">npm</code>, configurando o manifesto <code class="inline-code">package.json</code> e utilizando <strong>Vibe Coding</strong> para geração e auditoria de configurações iniciais.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -94,9 +685,9 @@ Ao concluir esta aula assíncrona, você será capaz de:
 Historicamente, o <strong>JavaScript Vanilla</strong> nascia restrito ao contexto do navegador para manipulação do DOM. Com a criação do <strong>Node.js</strong> sobre a engine <strong>V8</strong> (do Google Chrome) combinada à biblioteca <code class="inline-code">libuv</code>, o JavaScript consolidou-se como uma linguagem <em>full-stack</em> de alta performance para servidores Web e APIs RESTful.
 
 Diferente de servidores tradicionais que alocam uma <em>thread</em> pesada do sistema operacional para cada requisição HTTP recebida, o Node.js opera sob o modelo <strong>Single-Threaded Event Loop</strong> com I/O assíncrono não bloqueante:
-1. A requisição HTTP chega ao Event Loop.
-2. Operações custosas de entrada/saída (consulta ao banco SQLite/PocketBase, leitura de arquivos ou chamadas de rede) são delegadas de forma assíncrona (<code class="inline-code">Promises</code> e <code class="inline-code">async/await</code>).
-3. O processo principal continua livre para atender centenas de outros clientes simultaneamente.
+<li class="num-item"><span class="num-badge">1.</span> A requisição HTTP chega ao Event Loop.</li>
+<li class="num-item"><span class="num-badge">2.</span> Operações custosas de entrada/saída (consulta ao banco SQLite/PocketBase, leitura de arquivos ou chamadas de rede) são delegadas de forma assíncrona (<code class="inline-code">Promises</code> e <code class="inline-code">async/await</code>).</li>
+<li class="num-item"><span class="num-badge">3.</span> O processo principal continua livre para atender centenas de outros clientes simultaneamente.</li>
 
 <h3>2.2 Frameworks Web em Node.js e Gerenciamento de Pacotes (<code class="inline-code">npm</code>)</h3>
 Embora o módulo nativo <code class="inline-code">node:http</code> forneça toda a base de rede para criar servidores Web sem dependências externas, frameworks minimalistas (como <strong>Express</strong> e <strong>Fastify</strong>) adicionam camadas ergonômicas de roteamento, <em>middlewares</em> e serialização JSON.
@@ -106,32 +697,32 @@ O <strong>Node Package Manager (<code class="inline-code">npm</code>)</strong> c
 <h3>2.3 Vibe Coding no Setup Arquitetural</h3>
 No paradigma de <strong>Desenvolvimento Orientado a Especificação (SDD)</strong> e <strong>Vibe Coding</strong>, o desenvolvedor não perde tempo memorizando flags obscuras de configuração: ele especifica requisitos técnicos claros (versão da engine Node, scripts de execução com <code class="inline-code">--watch</code>, política de módulos ES6 e dependências estritamente necessárias) e audita o artefato gerado pela IA.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação para Inicialização do Projeto (Vibe Coding)</h3>
 Utilize o seguinte prompt estruturado no seu assistente de código (Cursor, GitHub Copilot ou Gemini Code Assist):
 
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere um arquivo package.json para uma API acadêmica do IFCE Campus Baturité em Node.js 20+, utilizando ES Modules ("type": "module"), sem dependências externas desnecessárias, contendo scripts para desenvolvimento com live-reload nativo (--watch) e execução de testes nativos (node --test). Em seguida, crie um módulo utilitário src/infoSistema.js em JavaScript Vanilla que retorne metadados da plataforma e um servidor HTTP básico em src/index.js.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere um arquivo package.json para uma API acadêmica do IFCE Campus Baturité em Node.js 20+, utilizando ES Modules ("type": "module"), sem dependências externas desnecessárias, contendo scripts para desenvolvimento com live-reload nativo (--watch) e execução de testes nativos (node --test). Em seguida, crie um módulo utilitário src/infoSistema.js em JavaScript Vanilla que retorne metadados da plataforma e um servidor HTTP básico em src/index.js.</code></pre>
 
 <h3>Passo 2: Implementação e Inspeção do Código Gerado</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/infoSistema.js — Módulo ES6+ em JavaScript Vanilla
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/infoSistema.js — Módulo ES6+ em JavaScript Vanilla
 import os from 'node:os';
 
 export function obterStatusServidor() {
   return {
     instituicao: 'IFCE Campus Baturité',
     disciplina: 'Desenvolvimento Web III (UC17-DWIII)',
-    runtime: <code class="inline-code">Node.js ${process.version}</code>,
-    plataforma: <code class="inline-code">${os.type()} (${os.arch()})</code>,
+    runtime: `Node.js ${process.version}`,
+    plataforma: `${os.type()} (${os.arch()})`,
     memoriaLivreMB: Math.round(os.freemem() / (1024 * 1024)),
     timestamp: new Date().toISOString()
   };
 }</code></pre>
 
-<pre class="code-block" data-lang="javascript"><code>// src/index.js — Servidor HTTP Nativo em Node.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/index.js — Servidor HTTP Nativo em Node.js
 import http from 'node:http';
 import { obterStatusServidor } from './infoSistema.js';
 
@@ -149,18 +740,24 @@ const server = http.createServer((req, res) =&gt; {
 });
 
 server.listen(PORT, () =&gt; {
-  console.log(<code class="inline-code">Servidor ativo em http://localhost:${PORT}/status</code>);
+  console.log(`Servidor ativo em http://localhost:${PORT}/status`);
 });</code></pre>
 
 <h3>Passo 3: Teste de Validação</h3>
 Execute o comando abaixo no terminal e valide se o JSON retornado apresenta o código HTTP <code class="inline-code">200</code> e a versão do Node.js:
-<pre class="code-block" data-lang="bash"><code>node --check src/index.js</code></pre>
-      </section>
-<section class="lesson-card" id="DW3-U01-A02">
-        <div><span class="badge">DW3-U01-A02</span><span class="badge">Presencial - 4h</span></div>
-        <h1>Aula 02: Configuração de Ambiente Node.js e Arquitetura Web na Prática (Laboratório)</h1>
+<pre class="code-block" data-lang="bash"><div class="code-lang">BASH</div><code>node --check src/index.js</code></pre>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-DIAG01.png" alt="Fluxo Vibe Coding no Back-end" loading="lazy" /><figcaption>Fluxo Vibe Coding no Back-end</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U01-A02">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U01-A02 — Unidade I</span>
+            <span class="mod-info">Presencial • Carga Horária: 4h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Configurar ambiente de desenvolvimento profissional com Node.js LTS, Git e variáveis de ambiente (.env) • Inspecionar o ciclo completo de Requisição e Resposta HTTP (Headers, Query Params, Body e Status Codes)</div>
+          <h1 class="lesson-main-title">Aula 02: Configuração de Ambiente Node.js e Arquitetura Web na Prática (Laboratório)</h1>
+
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-DIAG01.png" alt="Fluxo Vibe Coding no Back-end" /><figcaption>Fluxo Vibe Coding no Back-end</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -169,7 +766,7 @@ Ao concluir este laboratório presencial, você será capaz de:
 <li class="task-item">✅ <strong>Implementar</strong> o roteamento básico e a leitura de <em>streams</em> de dados JSON em requisições <code class="inline-code">POST</code> usando JavaScript Vanilla no Node.js.</li>
 <li class="task-item">✅ <strong>Diagnosticar</strong> cabeçalhos HTTP (<em>Headers</em>), códigos de status e tempos de resposta em chamadas locais.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -181,18 +778,18 @@ Toda comunicação entre um front-end (seja em <strong>JavaScript Vanilla</stron
 <h3>2.2 Variáveis de Ambiente Nativas no Node.js</h3>
 Boas práticas de engenharia de software (12-Factor App) determinam que portas de rede, chaves secretas e URLs do <strong>PocketBase</strong> jamais devem ser escritas diretamente no código-fonte (<em>hardcoded</em>). A partir do Node.js 20.6+, carregamos variáveis diretamente sem pacotes externos usando a flag <code class="inline-code">--env-file=.env</code>.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Especificação de Parser JSON Assíncrono com Vibe Coding</h3>
 Solicite ao assistente de IA a criação de uma função utilitária para ler o corpo (<em>stream</em>) de uma requisição HTTP em Node.js puro com limite de tamanho contra ataques de sobrecarga:
 
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Escreva uma função assíncrona lerBodyJson(req) em Node.js puro (JavaScript ES6+) que colete os chunks da requisição HTTP, aplique um limite de segurança de 1MB e faça o JSON.parse, lançando um erro com statusCode 400 caso o JSON seja inválido.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Escreva uma função assíncrona lerBodyJson(req) em Node.js puro (JavaScript ES6+) que colete os chunks da requisição HTTP, aplique um limite de segurança de 1MB e faça o JSON.parse, lançando um erro com statusCode 400 caso o JSON seja inválido.</code></pre>
 
 <h3>Passo 2: Código de Referência do Laboratório</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/httpParser.js — Leitura Segura de Stream JSON em Node.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/httpParser.js — Leitura Segura de Stream JSON em Node.js
 export async function lerBodyJson(req, limiteBytes = 1024 * 1024) {
   return new Promise((resolve, reject) =&gt; {
     let dados = '';
@@ -227,12 +824,18 @@ export async function lerBodyJson(req, limiteBytes = 1024 * 1024) {
 
 <h3>Passo 3: Teste de Validação no Laboratório</h3>
 Teste o parser enviando um JSON válido e um JSON malformado via <code class="inline-code">curl</code> ou script de teste para verificar o retorno exato do código <code class="inline-code">400 Bad Request</code>.
-      </section>
-<section class="lesson-card" id="DW3-U01-A03">
-        <div><span class="badge">DW3-U01-A03</span><span class="badge">Síncrono - 2h</span></div>
-        <h1>Aula 03: Padrões de Arquitetura Back-end (MVC/Controllers) e Scaffolding com Vibe Coding</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-INFO01.png" alt="Infográfico Código Manual vs Vibe Coding" loading="lazy" /><figcaption>Infográfico Código Manual vs Vibe Coding</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U01-A03">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U01-A03 — Unidade I</span>
+            <span class="mod-info">Síncrono • Carga Horária: 2h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Desacoplar aplicações Node.js em camadas de Rotas, Controllers, Services e Models/Schemas • Aplicar Scaffolding assistido por IA para gerar controladores coesos e testáveis</div>
+          <h1 class="lesson-main-title">Aula 03: Padrões de Arquitetura Back-end (MVC/Controllers) e Scaffolding com Vibe Coding</h1>
+
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-INFO01.png" alt="Infográfico Código Manual vs Vibe Coding" /><figcaption>Infográfico Código Manual vs Vibe Coding</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -241,29 +844,29 @@ Ao concluir este encontro síncrono, você será capaz de:
 <li class="task-item">✅ <strong>Elaborar</strong> especificações de <em>Scaffolding</em> para assistentes de IA gerarem controladores padronizados sem misturar regras de negócio com manipulação de HTTP.</li>
 <li class="task-item">✅ <strong>Refatorar</strong> um código monolítico em camadas modulares em JavaScript ES6+.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 O Padrão MVC e Arquitetura em Camadas para APIs REST</h3>
 No desenvolvimento tradicional com renderização no servidor, o padrão <strong>MVC (Model-View-Controller)</strong> dividia a aplicação em Dados (<em>Model</em>), Tela HTML (<em>View</em>) e Controle (<em>Controller</em>). Em arquiteturas modernas onde a <em>View</em> é um front-end desacoplado em <strong>React</strong> ou <strong>JavaScript Vanilla</strong>, adaptamos o MVC no Node.js para três camadas essenciais:
-1. <strong>Controller (Controlador HTTP)</strong>: Recebe <code class="inline-code">req</code> e <code class="inline-code">res</code>, extrai parâmetros, aciona o <em>Service</em> e devolve o status HTTP adequado.
-2. <strong>Service (Regra de Negócio)</strong>: Aplica validações acadêmicas (ex.: verificar se o aluno já possui matrícula ativa) de forma independente do protocolo HTTP.
-3. <strong>Repository / Model (Persistência)</strong>: Comunica-se com o banco de dados em memória, ORM ou <strong>PocketBase</strong>.
+<li class="num-item"><span class="num-badge">1.</span> <strong>Controller (Controlador HTTP)</strong>: Recebe <code class="inline-code">req</code> e <code class="inline-code">res</code>, extrai parâmetros, aciona o <em>Service</em> e devolve o status HTTP adequado.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>Service (Regra de Negócio)</strong>: Aplica validações acadêmicas (ex.: verificar se o aluno já possui matrícula ativa) de forma independente do protocolo HTTP.</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Repository / Model (Persistência)</strong>: Comunica-se com o banco de dados em memória, ORM ou <strong>PocketBase</strong>.</li>
 
 <h3>2.2 Scaffolding Acelerado com Vibe Coding</h3>
 Quando pedimos a uma IA apenas <em>"crie uma API de alunos"</em>, ela tende a gerar um único arquivo gigante difícil de manter. No <strong>Vibe Coding orientado a especificação</strong>, instruímos explicitamente a arquitetura em camadas desejada.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Scaffolding em Camadas</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere um Service (AlunoService) e um Controller (AlunoController) em JavaScript ES6+ para Node.js seguindo o princípio da responsabilidade única. O AlunoService deve validar matrícula de 10 dígitos e nome mínimo de 3 letras, impedindo duplicidades. O AlunoController deve apenas traduzir chamadas HTTP em invocações ao Service.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere um Service (AlunoService) e um Controller (AlunoController) em JavaScript ES6+ para Node.js seguindo o princípio da responsabilidade única. O AlunoService deve validar matrícula de 10 dígitos e nome mínimo de 3 letras, impedindo duplicidades. O AlunoController deve apenas traduzir chamadas HTTP em invocações ao Service.</code></pre>
 
 <h3>Passo 2: Implementação Desacoplada (<code class="inline-code">Service</code> + <code class="inline-code">Controller</code>)</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/services/AlunoService.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/services/AlunoService.js
 export class AlunoService {
   constructor() {
     this.repositorio = new Map();
@@ -304,12 +907,18 @@ export class AlunoService {
 
 <h3>Passo 3: Teste de Validação</h3>
 Instancie <code class="inline-code">AlunoService</code> em um teste isolado sem precisar subir a porta de rede HTTP, comprovando a vantagem do desacoplamento arquitetural.
-      </section>
-<section class="lesson-card" id="DW3-U01-A04">
-        <div><span class="badge">DW3-U01-A04</span><span class="badge">Assíncrono - 2h</span></div>
-        <h1>Aula 04: Estudo Dirigido: Análise Crítica e Auditoria de Código Node.js Gerado por IA</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-INFO01.png" alt="Infográfico Auditoria de Código" loading="lazy" /><figcaption>Infográfico Auditoria de Código</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U01-A04">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U01-A04 — Unidade I</span>
+            <span class="mod-info">Assíncrono • Carga Horária: 2h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Auditar códigos JavaScript/Node.js gerados por IA identificando falhas de segurança e bloqueio do Event Loop • Corrigir vulnerabilidades de validação, tratamento de Promises e exposição de dados sensíveis</div>
+          <h1 class="lesson-main-title">Aula 04: Estudo Dirigido: Análise Crítica e Auditoria de Código Node.js Gerado por IA</h1>
+
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-INFO01.png" alt="Infográfico Auditoria de Código" /><figcaption>Infográfico Auditoria de Código</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -318,25 +927,25 @@ Ao concluir este estudo dirigido assíncrono, você será capaz de:
 <li class="task-item">✅ <strong>Refatorar</strong> trechos defeituosos aplicando programação defensiva em JavaScript Vanilla.</li>
 <li class="task-item">✅ <strong>Aplicar</strong> um checklist de auditoria SDD antes de aceitar sugestões de assistentes de código.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Por que Auditar Código Gerado por IA?</h3>
 No paradigma de <strong>Vibe Coding</strong>, a velocidade de geração aumenta exponencialmente, mas a responsabilidade técnica permanece 100% humana. Assistentes de IA treinados em repositórios públicos frequentemente reproduzem práticas obsoletas ou inseguras em Node.js:
-1. <strong>Bloqueio do Event Loop</strong>: Uso de <code class="inline-code">fs.readFileSync</code> dentro de rotas HTTP, travando todas as requisições concorrentes.
-2. <strong>Alucinação de Pacotes (<em>Package Hallucination</em>)</strong>: Sugestão de bibliotecas inexistentes ou depreciadas no <code class="inline-code">npm</code>.
-3. <strong>Ausência de Sanitização e Tipagem</strong>: Confiar cegamente em <code class="inline-code">req.body</code> sem validar tipos primitivos (<code class="inline-code">typeof</code>, expressões regulares).
-4. <strong>Exposição de Stack Trace</strong>: Retornar <code class="inline-code">err.stack</code> diretamente ao cliente em produção.
+<li class="num-item"><span class="num-badge">1.</span> <strong>Bloqueio do Event Loop</strong>: Uso de <code class="inline-code">fs.readFileSync</code> dentro de rotas HTTP, travando todas as requisições concorrentes.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>Alucinação de Pacotes (<em>Package Hallucination</em>)</strong>: Sugestão de bibliotecas inexistentes ou depreciadas no <code class="inline-code">npm</code>.</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Ausência de Sanitização e Tipagem</strong>: Confiar cegamente em <code class="inline-code">req.body</code> sem validar tipos primitivos (<code class="inline-code">typeof</code>, expressões regulares).</li>
+<li class="num-item"><span class="num-badge">4.</span> <strong>Exposição de Stack Trace</strong>: Retornar <code class="inline-code">err.stack</code> diretamente ao cliente em produção.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Cenário de Auditoria (Código Vulnerável vs. Código Auditado)</h3>
 Analise o código problemático abaixo (frequentemente sugerido por prompts vagos) e compare-o com a versão refatorada:
 
-<pre class="code-block" data-lang="javascript"><code>// ❌ CÓDIGO VULNERÁVEL (NÃO UTILIZAR EM PRODUÇÃO)
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// ❌ CÓDIGO VULNERÁVEL (NÃO UTILIZAR EM PRODUÇÃO)
 import fs from 'node:fs';
 
 export function rotaInseguraBuscarAluno(req, res) {
@@ -348,7 +957,7 @@ export function rotaInseguraBuscarAluno(req, res) {
   res.end(JSON.stringify(alunos.filter(filtro)));
 }</code></pre>
 
-<pre class="code-block" data-lang="javascript"><code>// ✅ CÓDIGO AUDITADO E REFATORADO (PADRÃO SDD DWIII)
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// ✅ CÓDIGO AUDITADO E REFATORADO (PADRÃO SDD DWIII)
 import fs from 'node:fs/promises';
 
 export async function rotaSeguraBuscarAluno(termoMatricula) {
@@ -370,15 +979,21 @@ export async function rotaSeguraBuscarAluno(termoMatricula) {
 
 <h3>Passo 2: Checklist de Validação do Estudo Dirigido</h3>
 Sempre execute os 3 questionamentos de auditoria antes de fazer <em>commit</em>:
-1. Todas as operações de I/O utilizam <code class="inline-code">async/await</code> ou <code class="inline-code">Promises</code>?
-2. Todos os dados vindos do usuário passam por validação explícita de tipo e formato?
-3. As dependências importadas são nativas do Node.js (<code class="inline-code">node:*</code>) ou estritamente homologadas no <code class="inline-code">package.json</code>?
-      </section>
-<section class="lesson-card" id="DW3-U01-A05">
-        <div><span class="badge">DW3-U01-A05</span><span class="badge">Síncrono - 2h</span></div>
-        <h1>Aula 05: Arquitetura RESTful, Verbos HTTP, Middlewares e Tratamento de Exceções</h1>
+<li class="num-item"><span class="num-badge">1.</span> Todas as operações de I/O utilizam <code class="inline-code">async/await</code> ou <code class="inline-code">Promises</code>?</li>
+<li class="num-item"><span class="num-badge">2.</span> Todos os dados vindos do usuário passam por validação explícita de tipo e formato?</li>
+<li class="num-item"><span class="num-badge">3.</span> As dependências importadas são nativas do Node.js (<code class="inline-code">node:*</code>) ou estritamente homologadas no <code class="inline-code">package.json</code>?</li>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-DIAG01.png" alt="Diagrama REST e Error Handling" loading="lazy" /><figcaption>Diagrama REST e Error Handling</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U01-A05">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U01-A05 — Unidade I</span>
+            <span class="mod-info">Síncrono • Carga Horária: 2h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Projetar endpoints semânticos seguindo as restrições REST e os códigos de status HTTP corretos • Implementar pipeline de Middlewares e tratamento centralizado de exceções em Node.js</div>
+          <h1 class="lesson-main-title">Aula 05: Arquitetura RESTful, Verbos HTTP, Middlewares e Tratamento de Exceções</h1>
+
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-DIAG01.png" alt="Diagrama REST e Error Handling" /><figcaption>Diagrama REST e Error Handling</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -387,34 +1002,35 @@ Ao concluir esta aula síncrona, você será capaz de:
 <li class="task-item">✅ <strong>Construir</strong> funções de <em>Middleware</em> (logging, CORS e autenticação) no fluxo de requisição Node.js.</li>
 <li class="task-item">✅ <strong>Padronizar</strong> respostas de erro JSON com classes customizadas (<code class="inline-code">HttpError</code>) e tratador global de exceções.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Semântica RESTful e Idempotência</h3>
 Uma API verdadeiramente <strong>RESTful</strong> utiliza substantivos no plural para identificar recursos (<code class="inline-code">/alunos</code>, <code class="inline-code">/turmas</code>) e delega a ação ao verbo HTTP:
 
-| Verbo HTTP | Rota Exemplo | Ação Semântica | Idempotente? | Status de Sucesso |
-| :--- | :--- | :--- | :---: | :---: |
-| <code class="inline-code">GET</code> | <code class="inline-code">/alunos</code> | Listar todos os discentes | Sim | <code class="inline-code">200 OK</code> |
-| <code class="inline-code">GET</code> | <code class="inline-code">/alunos/:matricula</code> | Buscar discente específico | Sim | <code class="inline-code">200 OK</code> (ou <code class="inline-code">404</code>) |
-| <code class="inline-code">POST</code> | <code class="inline-code">/alunos</code> | Cadastrar novo discente | Não | <code class="inline-code">201 Created</code> |
-| <code class="inline-code">PUT</code> / <code class="inline-code">PATCH</code> | <code class="inline-code">/alunos/:matricula</code> | Atualizar cadastro do discente | Sim | <code class="inline-code">200 OK</code> |
-| <code class="inline-code">DELETE</code> | <code class="inline-code">/alunos/:matricula</code> | Remover registro acadêmico | Sim | <code class="inline-code">200 OK</code> / <code class="inline-code">204 No Content</code> |
+<table class="md-table">
+<thead><tr><th>Verbo HTTP</th><th>Rota Exemplo</th><th>Ação Semântica</th><th>Idempotente?</th><th>Status de Sucesso</th></tr></thead><tbody>
+<tr><td><code class="inline-code">GET</code></td><td><code class="inline-code">/alunos</code></td><td>Listar todos os discentes</td><td>Sim</td><td><code class="inline-code">200 OK</code></td></tr>
+<tr><td><code class="inline-code">GET</code></td><td><code class="inline-code">/alunos/:matricula</code></td><td>Buscar discente específico</td><td>Sim</td><td><code class="inline-code">200 OK</code> (ou <code class="inline-code">404</code>)</td></tr>
+<tr><td><code class="inline-code">POST</code></td><td><code class="inline-code">/alunos</code></td><td>Cadastrar novo discente</td><td>Não</td><td><code class="inline-code">201 Created</code></td></tr>
+<tr><td><code class="inline-code">PUT</code> / <code class="inline-code">PATCH</code></td><td><code class="inline-code">/alunos/:matricula</code></td><td>Atualizar cadastro do discente</td><td>Sim</td><td><code class="inline-code">200 OK</code></td></tr>
+<tr><td><code class="inline-code">DELETE</code></td><td><code class="inline-code">/alunos/:matricula</code></td><td>Remover registro acadêmico</td><td>Sim</td><td><code class="inline-code">200 OK</code> / <code class="inline-code">204 No Content</code></td></tr>
+</tbody></table>
 
 <h3>2.2 Tratamento Centralizado de Exceções (<code class="inline-code">HttpError</code>)</h3>
 Em vez de espalhar blocos <code class="inline-code">res.writeHead(400)...</code> por dezenas de funções, criamos uma classe <code class="inline-code">HttpError extends Error</code> que carrega o <code class="inline-code">statusCode</code> e os detalhes do erro, capturando qualquer falha em um único bloco <code class="inline-code">try / catch</code> de alto nível no servidor.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Especificação de Tratador Global de Erros e CORS via Vibe Coding</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Crie em JavaScript ES6+ uma classe HttpError(statusCode, message, details) e um wrapper de servidor HTTP em Node.js que configure cabeçalhos CORS para o front-end React e capture qualquer exceção assíncrona retornando um JSON padronizado { erro, statusCode, timestamp }.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Crie em JavaScript ES6+ uma classe HttpError(statusCode, message, details) e um wrapper de servidor HTTP em Node.js que configure cabeçalhos CORS para o front-end React e capture qualquer exceção assíncrona retornando um JSON padronizado { erro, statusCode, timestamp }.</code></pre>
 
 <h3>Passo 2: Implementação de <code class="inline-code">HttpError</code> e Middleware Handler</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/errors/HttpError.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/errors/HttpError.js
 export class HttpError extends Error {
   constructor(statusCode, message, details = null) {
     super(message);
@@ -438,12 +1054,18 @@ export function responderJson(res, statusCode, payload) {
 
 <h3>Passo 3: Teste de Validação</h3>
 Verifique se uma exceção <code class="inline-code">throw new HttpError(422, 'Matrícula inválida')</code> é automaticamente convertida em uma resposta HTTP <code class="inline-code">422 Unprocessable Entity</code> com cabeçalhos CORS ativos.
-      </section>
-<section class="lesson-card" id="DW3-U01-A06">
-        <div><span class="badge">DW3-U01-A06</span><span class="badge">Assíncrono - 6h</span></div>
-        <h1>Aula 06: Resolução de Exercícios Práticos Virtuais de Construção de APIs REST em Node.js</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-DIAG01.png" alt="Diagrama Workflow API REST Node.js" loading="lazy" /><figcaption>Diagrama Workflow API REST Node.js</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U01-A06">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U01-A06 — Unidade I</span>
+            <span class="mod-info">Assíncrono • Carga Horária: 6h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Construir uma API RESTful completa em Node.js com operações CRUD, filtros e validações • Executar testes automatizados de validação dos endpoints da Unidade I</div>
+          <h1 class="lesson-main-title">Aula 06: Resolução de Exercícios Práticos Virtuais de Construção de APIs REST em Node.js</h1>
+
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-DIAG01.png" alt="Diagrama Workflow API REST Node.js" /><figcaption>Diagrama Workflow API REST Node.js</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -452,7 +1074,7 @@ Ao concluir esta atividade prática de consolidação da Unidade I, você será 
 <li class="task-item">✅ <strong>Integrar</strong> validação de schemas, códigos HTTP (<code class="inline-code">200</code>, <code class="inline-code">201</code>, <code class="inline-code">400</code>, <code class="inline-code">404</code>, <code class="inline-code">422</code>) e respostas padronizadas em JSON.</li>
 <li class="task-item">✅ <strong>Validar</strong> todos os cenários de sucesso e de erro por meio do script executável em <code class="inline-code">src/code-samples/u1-node-api/server.js</code>.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -461,16 +1083,16 @@ Ao longo das 5 aulas anteriores, evoluímos do entendimento do runtime <strong>N
 
 Nesta atividade prática de 6 horas, consolidamos a <strong>API de Gestão de Alunos (DWIII)</strong>, que servirá de base para a persistência relacional e BaaS (<strong>PocketBase</strong>) na Unidade II e para o consumo pelo front-end <strong>React</strong> na Unidade III.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Especificação Completa da API de Alunos (Vibe Coding SDD)</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Implemente um módulo completo em Node.js (src/code-samples/u1-node-api/server.js) contendo o repositório em memória, validador de AlunoSchema (nome &gt;= 3 caracteres, matrícula com 10 dígitos numéricos e curso padrão "Técnico em Informática para Internet"), funções CRUD (criarAluno, listarAlunos, buscarAlunoPorMatricula, removerAluno) e um servidor HTTP RESTful com suporte a CORS e tratamento de exceções HTTP 400, 404 e 422.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Implemente um módulo completo em Node.js (src/code-samples/u1-node-api/server.js) contendo o repositório em memória, validador de AlunoSchema (nome &gt;= 3 caracteres, matrícula com 10 dígitos numéricos e curso padrão "Técnico em Informática para Internet"), funções CRUD (criarAluno, listarAlunos, buscarAlunoPorMatricula, removerAluno) e um servidor HTTP RESTful com suporte a CORS e tratamento de exceções HTTP 400, 404 e 422.</code></pre>
 
 <h3>Passo 2: Implementação Completa da API (<code class="inline-code">src/code-samples/u1-node-api/server.js</code>)</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// Exemplo consolidado da Unidade I (disponível em src/code-samples/u1-node-api/server.js)
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// Exemplo consolidado da Unidade I (disponível em src/code-samples/u1-node-api/server.js)
 export class ApiAlunosNode {
   constructor() {
     this.dbAlunos = new Map();
@@ -508,15 +1130,29 @@ export class ApiAlunosNode {
 }</code></pre>
 
 <h3>Passo 3: Exercícios de Validação Obrigatórios (Entrega no Moodle)</h3>
-1. <strong>Cenário 1 (Sucesso <code class="inline-code">201</code>)</strong>: Cadastre um discente com matrícula <code class="inline-code">"2026100123"</code> e verifique o retorno JSON.
-2. <strong>Cenário 2 (Duplicidade <code class="inline-code">400</code>)</strong>: Tente recadastrar a mesma matrícula <code class="inline-code">"2026100123"</code> e confirme a exceção HTTP <code class="inline-code">400</code>.
-3. <strong>Cenário 3 (Validação <code class="inline-code">422</code>)</strong>: Envie uma matrícula com letras (<code class="inline-code">"2026ABC"</code>), confirmando o bloqueio pelo validador de schema.
+<li class="num-item"><span class="num-badge">1.</span> <strong>Cenário 1 (Sucesso <code class="inline-code">201</code>)</strong>: Cadastre um discente com matrícula <code class="inline-code">"2026100123"</code> e verifique o retorno JSON.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>Cenário 2 (Duplicidade <code class="inline-code">400</code>)</strong>: Tente recadastrar a mesma matrícula <code class="inline-code">"2026100123"</code> e confirme a exceção HTTP <code class="inline-code">400</code>.</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Cenário 3 (Validação <code class="inline-code">422</code>)</strong>: Envie uma matrícula com letras (<code class="inline-code">"2026ABC"</code>), confirmando o bloqueio pelo validador de schema.</li>
+        </article>
+      
       </section>
-<section class="lesson-card" id="DW3-U02-A01">
-        <div><span class="badge">DW3-U02-A01</span><span class="badge">Assíncrono - 4h</span></div>
-        <h1>Aula 01: Conceitos Fundamentais de ORM em Node.js e Abstração de Entidades</h1>
 
-<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-ART01.png" alt="Banner da Unidade II" loading="lazy" /><figcaption>Banner da Unidade II</figcaption></figure>
+      <section class="unit-section" id="unidade-U2">
+        <div class="unit-divider">
+          <div class="inst-tag">Unidade Curricular • Carga Horária: 20h</div>
+          <h2>Unidade II: Framework ORM, Persistência & Backend Low-Code (PocketBase)</h2>
+          <p>Impedância objeto-relacional, modelagem de entidades e relacionamentos (1:1, 1:N, N:N), geração de Migrations e Seeds, integração com PocketBase BaaS (SQLite embutido, Collections, Auth JWT, Realtime), otimização de queries (expand vs N+1) e segurança declarativa com API Rules.</p>
+        </div>
+        
+        <article class="ebook-lesson" id="DW3-U02-A01">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U02-A01 — Unidade II</span>
+            <span class="mod-info">Assíncrono • Carga Horária: 4h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Compreender o problema da impedância objeto-relacional entre objetos JavaScript e tabelas SQL • Mapear entidades de domínio acadêmico utilizando modelos declarativos em Node.js</div>
+          <h1 class="lesson-main-title">Aula 01: Conceitos Fundamentais de ORM em Node.js e Abstração de Entidades</h1>
+
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-ART01.png" alt="Banner da Unidade II" /><figcaption>Banner da Unidade II</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -525,7 +1161,7 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Diferenciar</strong> drivers SQL puros (<code class="inline-code">node:sqlite</code>), <em>Query Builders</em> e frameworks <strong>ORM</strong> (Prisma / Drizzle / Sequelize).</li>
 <li class="task-item">✅ <strong>Modelar</strong> entidades do domínio escolar como classes e schemas tipados em Node.js.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -534,19 +1170,19 @@ Na Unidade I, armazenamos os discentes em estruturas <code class="inline-code">M
 
 <h3>2.2 O Papel do ORM (Object-Relational Mapping)</h3>
 Enquanto o código em <strong>Node.js / JavaScript</strong> manipula grafos de objetos dinâmicos, propriedades aninhadas e arrays, o banco relacional opera sobre tuplas (linhas), colunas tipadas e chaves estrangeiras. O <strong>ORM</strong> atua como uma camada tradutora que:
-1. Converte operações de métodos JavaScript (<code class="inline-code">AlunoModel.create()</code>, <code class="inline-code">AlunoModel.findMany()</code>) em instruções SQL parametrizadas seguras contra <em>SQL Injection</em>.
-2. Hidrata as linhas retornadas pelo banco em objetos JavaScript prontos para serialização JSON.
+<li class="num-item"><span class="num-badge">1.</span> Converte operações de métodos JavaScript (<code class="inline-code">AlunoModel.create()</code>, <code class="inline-code">AlunoModel.findMany()</code>) em instruções SQL parametrizadas seguras contra <em>SQL Injection</em>.</li>
+<li class="num-item"><span class="num-badge">2.</span> Hidrata as linhas retornadas pelo banco em objetos JavaScript prontos para serialização JSON.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação de Entidade ORM em Node.js</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere uma classe de repositório ORM leve em JavaScript ES6+ que abstraia uma tabela SQL "alunos" (id, nome, matricula, curso, ativo, criado_em), gerando queries SQL parametrizadas seguras (Prepared Statements) e hidratando os registros para objetos camelCase.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere uma classe de repositório ORM leve em JavaScript ES6+ que abstraia uma tabela SQL "alunos" (id, nome, matricula, curso, ativo, criado_em), gerando queries SQL parametrizadas seguras (Prepared Statements) e hidratando os registros para objetos camelCase.</code></pre>
 
 <h3>Passo 2: Implementação de Abstração de Entidade Relacional</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/orm/AlunoModel.js — Abstração Objeto-Relacional Parametrizada
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/orm/AlunoModel.js — Abstração Objeto-Relacional Parametrizada
 export class AlunoEntity {
   constructor(row) {
     this.id = row.id;
@@ -559,7 +1195,7 @@ export class AlunoEntity {
 
   static toSqlInsert(dados) {
     return {
-      sql: <code class="inline-code">INSERT INTO alunos (nome, matricula, curso, ativo, criado_em) VALUES (?, ?, ?, ?, ?)</code>,
+      sql: `INSERT INTO alunos (nome, matricula, curso, ativo, criado_em) VALUES (?, ?, ?, ?, ?)`,
       params: [
         dados.nome.trim(),
         String(dados.matricula),
@@ -573,12 +1209,18 @@ export class AlunoEntity {
 
 <h3>Passo 3: Teste de Validação</h3>
 Verifique como <code class="inline-code">AlunoEntity.toSqlInsert()</code> separa a string SQL (<code class="inline-code">?</code>) do vetor de parâmetros (<code class="inline-code">params</code>), eliminando qualquer risco de concatenação maliciosa (<em>SQL Injection</em>).
-      </section>
-<section class="lesson-card" id="DW3-U02-A02">
-        <div><span class="badge">DW3-U02-A02</span><span class="badge">Síncrono - 2h</span></div>
-        <h1>Aula 02: Mapeamento de Atributos, Chaves e Relacionamentos no ORM</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama Relacionamentos e Regras" loading="lazy" /><figcaption>Diagrama Relacionamentos e Regras</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U02-A02">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U02-A02 — Unidade II</span>
+            <span class="mod-info">Síncrono • Carga Horária: 2h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Definir chaves primárias (PK), chaves estrangeiras (FK) e restrições de unicidade (UNIQUE) • Modelar relacionamentos 1:1, 1:N e N:N entre Cursos, Turmas, Alunos e Matrículas</div>
+          <h1 class="lesson-main-title">Aula 02: Mapeamento de Atributos, Chaves e Relacionamentos no ORM</h1>
+
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama Relacionamentos e Regras" /><figcaption>Diagrama Relacionamentos e Regras</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -587,7 +1229,7 @@ Ao concluir esta aula síncrona, você será capaz de:
 <li class="task-item">✅ <strong>Implementar</strong> associações Um-para-Muitos (<code class="inline-code">1:N</code>) e Muitos-para-Muitos (<code class="inline-code">N:N</code>) com tabela associativa (<code class="inline-code">matriculas_turmas</code>).</li>
 <li class="task-item">✅ <strong>Configurar</strong> políticas de integridade referencial (<code class="inline-code">ON DELETE CASCADE</code> vs. <code class="inline-code">RESTRICT</code>).</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -596,16 +1238,16 @@ Em um sistema acadêmico real do IFCE, as entidades não existem isoladas:
 <li><strong>Relacionamento <code class="inline-code">1:N</code> (Um para Muitos)</strong>: Um <strong>Curso</strong> (<code class="inline-code">cursos</code>) possui várias <strong>Turmas</strong> (<code class="inline-code">turmas</code>), mas cada turma pertence a um único curso principal via chave estrangeira <code class="inline-code">curso_id</code>.</li>
 <li><strong>Relacionamento <code class="inline-code">N:N</code> (Muitos para Muitos)</strong>: Um <strong>Aluno</strong> pode cursar várias <strong>Disciplinas/Turmas</strong>, e uma <strong>Turma</strong> contém vários <strong>Alunos</strong>. Essa relação é resolvida pela entidade associativa <strong>Matrícula</strong> (<code class="inline-code">matriculas</code>), que armazena também os atributos próprios do vínculo (<code class="inline-code">nota_ad</code>, <code class="inline-code">nota_ap</code>, <code class="inline-code">frequencia</code>).</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação de Relacionamentos SQL/ORM</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere o schema DDL relacional (compatível com SQLite / PocketBase) e a representação em objetos JavaScript para as tabelas cursos, alunos e matriculas, garantindo chaves estrangeiras e restrição UNIQUE composta para impedir que o mesmo aluno se matricule duas vezes na mesma disciplina.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere o schema DDL relacional (compatível com SQLite / PocketBase) e a representação em objetos JavaScript para as tabelas cursos, alunos e matriculas, garantindo chaves estrangeiras e restrição UNIQUE composta para impedir que o mesmo aluno se matricule duas vezes na mesma disciplina.</code></pre>
 
 <h3>Passo 2: Schema Relacional Declarativo</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/orm/schemaRelacional.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/orm/schemaRelacional.js
 export const DDL_SISTEMA_ACADEMICO = `
 CREATE TABLE IF NOT EXISTS cursos (
   id TEXT PRIMARY KEY,
@@ -635,12 +1277,18 @@ CREATE TABLE IF NOT EXISTS matriculas_disciplinas (
 
 <h3>Passo 3: Teste de Validação</h3>
 Analise a cláusula <code class="inline-code">UNIQUE(aluno_id, disciplina_codigo)</code> e explique como o próprio motor do banco de dados impede matrículas duplicadas mesmo sob requisições concorrentes.
-      </section>
-<section class="lesson-card" id="DW3-U02-A03">
-        <div><span class="badge">DW3-U02-A03</span><span class="badge">Assíncrono - 2h</span></div>
-        <h1>Aula 03: Modelagem e Geração Automática de Migrações (Migrations)</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-INFO01.png" alt="Infográfico ORM e Migrations vs PocketBase" loading="lazy" /><figcaption>Infográfico ORM e Migrations vs PocketBase</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U02-A03">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U02-A03 — Unidade II</span>
+            <span class="mod-info">Assíncrono • Carga Horária: 2h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Versionar a evolução estrutural do banco de dados usando scripts de Migration (up e down) • Automatizar a carga inicial de dados de teste (Database Seeding) com Node.js e IA</div>
+          <h1 class="lesson-main-title">Aula 03: Modelagem e Geração Automática de Migrações (Migrations)</h1>
+
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-INFO01.png" alt="Infográfico ORM e Migrations vs PocketBase" /><figcaption>Infográfico ORM e Migrations vs PocketBase</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -649,7 +1297,7 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Escrever</strong> scripts de migração reversíveis (<code class="inline-code">up</code> para aplicar mudanças e <code class="inline-code">down</code> para reverter/<em>rollback</em>) em JavaScript/Node.js.</li>
 <li class="task-item">✅ <strong>Implementar</strong> scripts de <em>Seed</em> para popular automaticamente o ambiente de desenvolvimento.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -658,16 +1306,16 @@ Assim como o Git controla o histórico de alterações do código-fonte JavaScri
 <li><strong><code class="inline-code">up(db)</code></strong>: Aplica a evolução (ex.: cria a coleção/tabela <code class="inline-code">projetos</code> ou adiciona a coluna <code class="inline-code">github_url</code>).</li>
 <li><strong><code class="inline-code">down(db)</code></strong>: Desfaz a alteração com segurança caso um deploy apresente falhas.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Especificação de Migration Compatível com Node.js / PocketBase</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere uma estrutura de migração em JavaScript (padrão up/down) que adicione o campo "github_repo" e "nota_final" na coleção/tabela de alunos, acompanhada de uma função de seed que insira 3 discentes de exemplo do IFCE Campus Baturité.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere uma estrutura de migração em JavaScript (padrão up/down) que adicione o campo "github_repo" e "nota_final" na coleção/tabela de alunos, acompanhada de uma função de seed que insira 3 discentes de exemplo do IFCE Campus Baturité.</code></pre>
 
 <h3>Passo 2: Implementação de Migration e Seed</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/orm/migrations/20261102_add_github_repo.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/orm/migrations/20261102_add_github_repo.js
 export const migrationAddGithubRepo = {
   id: '20261102_01_add_github_repo',
   up(schemaState) {
@@ -693,12 +1341,18 @@ export const seedAlunosIniciais = [
 
 <h3>Passo 3: Teste de Validação</h3>
 Execute a função <code class="inline-code">up()</code> seguida de <code class="inline-code">down()</code> sobre um objeto de estado inicial para comprovar a idempotência da reversão do esquema.
-      </section>
-<section class="lesson-card" id="DW3-U02-A04">
-        <div><span class="badge">DW3-U02-A04</span><span class="badge">Assíncrono - 4h</span></div>
-        <h1>Aula 04: Automação de Scripts de Banco de Dados e Introdução ao BaaS com PocketBase</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-INFO01.png" alt="Infográfico ORM vs PocketBase BaaS" loading="lazy" /><figcaption>Infográfico ORM vs PocketBase BaaS</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U02-A04">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U02-A04 — Unidade II</span>
+            <span class="mod-info">Assíncrono • Carga Horária: 4h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Compreender a arquitetura do PocketBase (SQLite embutido, Collections, Auth e Realtime SSE) • Integrar aplicações Node.js e JavaScript Vanilla ao PocketBase via SDK oficial e REST API</div>
+          <h1 class="lesson-main-title">Aula 04: Automação de Scripts de Banco de Dados e Introdução ao BaaS com PocketBase</h1>
+
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-INFO01.png" alt="Infográfico ORM vs PocketBase BaaS" /><figcaption>Infográfico ORM vs PocketBase BaaS</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -707,34 +1361,34 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Configurar</strong> coleções (<em>Base</em>, <em>Auth</em> e <em>View</em>) no painel administrativo do PocketBase (<code class="inline-code">http://127.0.0.1:8090/_/</code>).</li>
 <li class="task-item">✅ <strong>Consumir</strong> os endpoints RESTful gerados automaticamente pelo PocketBase usando <strong>JavaScript Vanilla / Node.js</strong>.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Por que PocketBase revolucionou o Desenvolvimento Low-Code / BaaS?</h3>
 O <strong>PocketBase</strong> é um Backend-as-a-Service <em>open-source</em> distribuído em um único executável leve que entrega instantaneamente:
-1. <strong>Banco de Dados SQLite Embutido (modo WAL)</strong>: Altíssima performance de leitura e escrita sem necessidade de configurar servidores pesados de banco de dados.
-2. <strong>REST API Automática</strong>: Ao criar uma coleção <code class="inline-code">alunos</code>, o PocketBase disponibiliza imediatamente endpoints prontos para paginação, ordenação, filtragem e CRUD (<code class="inline-code">/api/collections/alunos/records</code>).
-3. <strong>Autenticação Nativa (JWT + OAuth2)</strong>: Coleções do tipo <code class="inline-code">Auth</code> gerenciam cadastro de usuários, hash de senhas (<code class="inline-code">bcrypt</code>) e emissão de tokens JWT sem escrever boilerplate.
-4. <strong>Assinaturas em Tempo Real (<em>Realtime via Server-Sent Events</em>)</strong>: O front-end em <strong>React</strong> ou <strong>JS Vanilla</strong> pode escutar mudanças na tabela instantaneamente.
+<li class="num-item"><span class="num-badge">1.</span> <strong>Banco de Dados SQLite Embutido (modo WAL)</strong>: Altíssima performance de leitura e escrita sem necessidade de configurar servidores pesados de banco de dados.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>REST API Automática</strong>: Ao criar uma coleção <code class="inline-code">alunos</code>, o PocketBase disponibiliza imediatamente endpoints prontos para paginação, ordenação, filtragem e CRUD (<code class="inline-code">/api/collections/alunos/records</code>).</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Autenticação Nativa (JWT + OAuth2)</strong>: Coleções do tipo <code class="inline-code">Auth</code> gerenciam cadastro de usuários, hash de senhas (<code class="inline-code">bcrypt</code>) e emissão de tokens JWT sem escrever boilerplate.</li>
+<li class="num-item"><span class="num-badge">4.</span> <strong>Assinaturas em Tempo Real (<em>Realtime via Server-Sent Events</em>)</strong>: O front-end em <strong>React</strong> ou <strong>JS Vanilla</strong> pode escutar mudanças na tabela instantaneamente.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação de Cliente PocketBase em JS/Node.js</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Crie um cliente JavaScript modular (PocketBaseClient) que se comunique com a REST API padrão do PocketBase (/api/collections/alunos/records), suportando listagem paginada com filtros, criação de registro e simulação local para testes automatizados offline.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Crie um cliente JavaScript modular (PocketBaseClient) que se comunique com a REST API padrão do PocketBase (/api/collections/alunos/records), suportando listagem paginada com filtros, criação de registro e simulação local para testes automatizados offline.</code></pre>
 
 <h3>Passo 2: Implementação de Integração com PocketBase</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// Exemplo de consumo da API REST do PocketBase em JavaScript Vanilla / Node.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// Exemplo de consumo da API REST do PocketBase em JavaScript Vanilla / Node.js
 export class PocketBaseAlunosService {
   constructor(baseUrl = 'http://127.0.0.1:8090') {
     this.baseUrl = baseUrl;
   }
 
    montarUrlColecao(colecao = 'alunos', params = {}) {
-    const url = new URL(<code class="inline-code">/api/collections/${colecao}/records</code>, this.baseUrl);
+    const url = new URL(`/api/collections/${colecao}/records`, this.baseUrl);
     for (const [chave, valor] of Object.entries(params)) {
       if (valor !== undefined &amp;&amp; valor !== null) {
         url.searchParams.set(chave, String(valor));
@@ -749,7 +1403,7 @@ export class PocketBaseAlunosService {
       headers: { 'Content-Type': 'application/json' }
     });
     if (!resposta.ok) {
-      throw new Error(<code class="inline-code">Falha ao consultar PocketBase: HTTP ${resposta.status}</code>);
+      throw new Error(`Falha ao consultar PocketBase: HTTP ${resposta.status}`);
     }
     return resposta.json();
   }
@@ -757,12 +1411,18 @@ export class PocketBaseAlunosService {
 
 <h3>Passo 3: Teste de Validação</h3>
 Inspecione a URL gerada por <code class="inline-code">montarUrlColecao('alunos', { page: 1, perPage: 10, filter: 'ativo=true' })</code> e confirme que segue exatamente o contrato <code class="inline-code">/api/collections/alunos/records?page=1&amp;perPage=10&amp;filter=ativo%3Dtrue&amp;sort=-created</code>.
-      </section>
-<section class="lesson-card" id="DW3-U02-A05">
-        <div><span class="badge">DW3-U02-A05</span><span class="badge">Presencial - 4h</span></div>
-        <h1>Aula 05: Laboratório Prático: Integração Back-end Node.js + ORM/PocketBase (1ª Avaliação Prática)</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama Arquitetura PocketBase e Node.js" loading="lazy" /><figcaption>Diagrama Arquitetura PocketBase e Node.js</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U02-A05">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U02-A05 — Unidade II</span>
+            <span class="mod-info">Presencial • Carga Horária: 4h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Construir uma camada híbrida onde o Node.js orquestra regras de negócio complexas e persiste dados no PocketBase • Realizar a 1ª Atividade Avaliativa Prática Presencial integrando validação, cálculo acadêmico ROD/IFCE e persistência</div>
+          <h1 class="lesson-main-title">Aula 05: Laboratório Prático: Integração Back-end Node.js + ORM/PocketBase (1ª Avaliação Prática)</h1>
+
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama Arquitetura PocketBase e Node.js" /><figcaption>Diagrama Arquitetura PocketBase e Node.js</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -771,7 +1431,7 @@ Ao concluir este laboratório presencial avaliativo (AP1), você será capaz de:
 <li class="task-item">✅ <strong>Implementar</strong> a regra oficial de cálculo da Média Semestral Parcial ($X_S = \frac{2 \cdot AD + 3 \cdot AP}{5}$) do ROD/IFCE antes de gravar o boletim do aluno no banco.</li>
 <li class="task-item">✅ <strong>Demonstrar</strong> operações completas de criação, consulta filtrada e atualização de notas com persistência real.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -780,16 +1440,16 @@ Em aplicações reais:
 <li><strong>Operações CRUD diretas</strong> (listar cursos, exibir perfil do aluno) podem ser consumidas diretamente do <strong>PocketBase</strong> pelo front-end <strong>React</strong>, protegidas pelas <em>API Rules</em>.</li>
 <li><strong>Regras de negócio críticas ou integrações externas</strong> (cálculo oficial de médias segundo o ROD do IFCE, emissão de certificados assinados, disparo de e-mails ou geração de relatórios) são processadas pelo servidor <strong>Node.js</strong>, que atua como orquestrador confiável e persiste o resultado no PocketBase.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on — 1ª Avaliação Prática)</h2>
 
 <h3>Passo 1: Especificação do Serviço Avaliativo (ROD/IFCE + PocketBase)</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Implemente em JavaScript ES6+ a função calcularMediaSemestralIFCE(notaAD, notaAP, frequenciaPercentual) seguindo a fórmula oficial Xs = (2<em>AD + 3</em>AP)/5 do ROD/IFCE, determinando a situação ("APROVADO_POR_MEDIA", "EXAME_FINAL_EFP" ou "REPROVADO") e preparando o registro para persistência na coleção "matriculas" do PocketBase.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Implemente em JavaScript ES6+ a função calcularMediaSemestralIFCE(notaAD, notaAP, frequenciaPercentual) seguindo a fórmula oficial Xs = (2*AD + 3*AP)/5 do ROD/IFCE, determinando a situação ("APROVADO_POR_MEDIA", "EXAME_FINAL_EFP" ou "REPROVADO") e preparando o registro para persistência na coleção "matriculas" do PocketBase.</code></pre>
 
 <h3>Passo 2: Implementação da Regra de Negócio Acadêmica e Persistência</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Trecho da AP1)
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Trecho da AP1)
 export function calcularMediaSemestralIFCE(notaAD, notaAP, frequencia) {
   const ad = Number(notaAD);
   const ap = Number(notaAP);
@@ -802,7 +1462,7 @@ export function calcularMediaSemestralIFCE(notaAD, notaAP, frequencia) {
     throw new Error('O percentual de frequência deve estar entre 0 e 100.');
   }
 
-  const mediaXs = Number(((2 <em> ad + 3 </em> ap) / 5).toFixed(2));
+  const mediaXs = Number(((2 * ad + 3 * ap) / 5).toFixed(2));
   let situacao = 'REPROVADO';
 
   if (freq &lt; 75) {
@@ -817,15 +1477,21 @@ export function calcularMediaSemestralIFCE(notaAD, notaAP, frequencia) {
 }</code></pre>
 
 <h3>Passo 3: Rubrica de Validação Presencial (AP1)</h3>
-1. Testar aluno com <code class="inline-code">AD = 8.0</code>, <code class="inline-code">AP = 7.0</code>, <code class="inline-code">Frequência = 85%</code> → Deve resultar em <code class="inline-code">mediaXs = 7.4</code> e <code class="inline-code">APROVADO_POR_MEDIA</code>.
-2. Testar aluno com <code class="inline-code">AD = 5.0</code>, <code class="inline-code">AP = 4.0</code>, <code class="inline-code">Frequência = 80%</code> → Deve resultar em <code class="inline-code">mediaXs = 4.4</code> e <code class="inline-code">EXAME_FINAL_EFP</code>.
-3. Testar aluno com <code class="inline-code">AD = 9.0</code>, <code class="inline-code">AP = 9.0</code>, <code class="inline-code">Frequência = 70%</code> → Deve resultar em <code class="inline-code">REPROVADO_POR_FALTA</code>.
-      </section>
-<section class="lesson-card" id="DW3-U02-A06">
-        <div><span class="badge">DW3-U02-A06</span><span class="badge">Síncrono - 2h</span></div>
-        <h1>Aula 06: Consultas Avançadas, Joins/Expand e Performance no ORM e PocketBase auxiliados por IA</h1>
+<li class="num-item"><span class="num-badge">1.</span> Testar aluno com <code class="inline-code">AD = 8.0</code>, <code class="inline-code">AP = 7.0</code>, <code class="inline-code">Frequência = 85%</code> → Deve resultar em <code class="inline-code">mediaXs = 7.4</code> e <code class="inline-code">APROVADO_POR_MEDIA</code>.</li>
+<li class="num-item"><span class="num-badge">2.</span> Testar aluno com <code class="inline-code">AD = 5.0</code>, <code class="inline-code">AP = 4.0</code>, <code class="inline-code">Frequência = 80%</code> → Deve resultar em <code class="inline-code">mediaXs = 4.4</code> e <code class="inline-code">EXAME_FINAL_EFP</code>.</li>
+<li class="num-item"><span class="num-badge">3.</span> Testar aluno com <code class="inline-code">AD = 9.0</code>, <code class="inline-code">AP = 9.0</code>, <code class="inline-code">Frequência = 70%</code> → Deve resultar em <code class="inline-code">REPROVADO_POR_FALTA</code>.</li>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama Consultas e Relacionamentos" loading="lazy" /><figcaption>Diagrama Consultas e Relacionamentos</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U02-A06">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U02-A06 — Unidade II</span>
+            <span class="mod-info">Síncrono • Carga Horária: 2h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Diagnosticar e eliminar o problema de performance de queries N+1 em ORMs e APIs • Utilizar o parâmetro expand e filtros relacionais avançados no PocketBase</div>
+          <h1 class="lesson-main-title">Aula 06: Consultas Avançadas, Joins/Expand e Performance no ORM e PocketBase auxiliados por IA</h1>
+
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama Consultas e Relacionamentos" /><figcaption>Diagrama Consultas e Relacionamentos</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -834,7 +1500,7 @@ Ao concluir esta aula síncrona, você será capaz de:
 <li class="task-item">✅ <strong>Construir</strong> consultas relacionais eficientes utilizando <code class="inline-code">JOIN</code> no ORM e o operador <code class="inline-code">expand</code> no <strong>PocketBase</strong>.</li>
 <li class="task-item">✅ <strong>Otimizar</strong> buscas utilizando índices (<code class="inline-code">CREATE INDEX</code>) e paginação baseada em limites (<code class="inline-code">page</code> / <code class="inline-code">perPage</code>).</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -846,18 +1512,18 @@ Imagine listar 50 matrículas e, dentro de um laço <code class="inline-code">fo
 <h3>2.2 Solução no ORM (<code class="inline-code">JOIN</code> / <code class="inline-code">include</code>) e no PocketBase (<code class="inline-code">expand</code>)</h3>
 No <strong>PocketBase</strong>, eliminamos o problema <code class="inline-code">N+1</code> passando o parâmetro <code class="inline-code">expand=aluno_id,curso_id</code> em uma única requisição HTTP. O PocketBase resolve os relacionamentos internamente no SQLite e já aninha os objetos expandidos dentro da propriedade <code class="inline-code">record.expand</code>.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Otimização de Query com Vibe Coding</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Escreva uma função em JavaScript que construa parâmetros de consulta avançados para o PocketBase, combinando filtro composto (notas maiores ou iguais a 6 e frequência &gt;= 75), ordenação decrescente por média e expansão automática das relações aluno_id e turma_id (expand) para evitar o problema N+1.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Escreva uma função em JavaScript que construa parâmetros de consulta avançados para o PocketBase, combinando filtro composto (notas maiores ou iguais a 6 e frequência &gt;= 75), ordenação decrescente por média e expansão automática das relações aluno_id e turma_id (expand) para evitar o problema N+1.</code></pre>
 
 <h3>Passo 2: Construtor de Consultas Otimizadas no PocketBase</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/orm/queryBuilderPocketBase.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/orm/queryBuilderPocketBase.js
 export function construirQueryAprovados({ cursoCodigo = 'INFO-INT', pagina = 1 } = {}) {
-  const filtro = <code class="inline-code">mediaXs &gt;= 6.0 &amp;&amp; frequencia &gt;= 75 &amp;&amp; turma_id.curso_codigo = "${cursoCodigo}"</code>;
+  const filtro = `mediaXs &gt;= 6.0 &amp;&amp; frequencia &gt;= 75 &amp;&amp; turma_id.curso_codigo = "${cursoCodigo}"`;
   return {
     page: pagina,
     perPage: 25,
@@ -869,12 +1535,18 @@ export function construirQueryAprovados({ cursoCodigo = 'INFO-INT', pagina = 1 }
 
 <h3>Passo 3: Teste de Validação</h3>
 Verifique que a consulta retornada inclui <code class="inline-code">expand: 'aluno_id,turma_id'</code>, reduzindo 26 requisições sequenciais para apenas <strong>1 única requisição HTTP</strong>.
-      </section>
-<section class="lesson-card" id="DW3-U02-A07">
-        <div><span class="badge">DW3-U02-A07</span><span class="badge">Assíncrono - 2h</span></div>
-        <h1>Aula 07: Atividade de Fixação: Mapeamento de Tabelas Complexas e API Rules no PocketBase</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama API Rules e Segurança no PocketBase" loading="lazy" /><figcaption>Diagrama API Rules e Segurança no PocketBase</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U02-A07">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U02-A07 — Unidade II</span>
+            <span class="mod-info">Assíncrono • Carga Horária: 2h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Definir políticas de controle de acesso baseadas em linha (Row-Level Security / API Rules) no PocketBase • Validar permissões de leitura e escrita entre perfis de Discente, Docente e Coordenador</div>
+          <h1 class="lesson-main-title">Aula 07: Atividade de Fixação: Mapeamento de Tabelas Complexas e API Rules no PocketBase</h1>
+
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama API Rules e Segurança no PocketBase" /><figcaption>Diagrama API Rules e Segurança no PocketBase</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -883,29 +1555,30 @@ Ao concluir esta atividade assíncrona de fechamento da Unidade II, você será 
 <li class="task-item">✅ <strong>Escrever</strong> expressões de segurança utilizando o contexto <code class="inline-code">@request.auth.id</code> e <code class="inline-code">@request.auth.role</code>.</li>
 <li class="task-item">✅ <strong>Auditar</strong> regras de acesso com auxílio de IA para impedir que um estudante altere notas de outros estudantes.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Segurança Declarativa no Banco: As <em>API Rules</em> do PocketBase</h3>
 Por padrão, toda coleção criada no <strong>PocketBase</strong> vem bloqueada (<code class="inline-code">Admin Only</code> = <code class="inline-code">null</code>), impedindo acessos públicos acidentais. Para liberar o acesso seguro diretamente para o front-end <strong>React</strong>, configuramos expressões booleanas avaliadas a cada requisição:
 
-| Operação | Regra no PocketBase (<code class="inline-code">matriculas</code>) | Significado Pedagógico e de Segurança |
-| :--- | :--- | :--- |
-| <strong>List / View</strong> | <code class="inline-code">@request.auth.id != "" &amp;&amp; (aluno_id = @request.auth.id \|\| @request.auth.role = "docente")</code> | O aluno logado vê apenas seu próprio boletim; professores veem todos. |
-| <strong>Create / Update</strong> | <code class="inline-code">@request.auth.role = "docente" \|\| @request.auth.role = "coordenador"</code> | Apenas docentes ou coordenadores autenticados podem lançar ou alterar notas. |
-| <strong>Delete</strong> | <code class="inline-code">@request.auth.role = "coordenador"</code> | Somente a coordenação pode excluir registros de matrícula. |
+<table class="md-table">
+<thead><tr><th>Operação</th><th>Regra no PocketBase (<code class="inline-code">matriculas</code>)</th><th>Significado Pedagógico e de Segurança</th></tr></thead><tbody>
+<tr><td><strong>List / View</strong></td><td><code class="inline-code">@request.auth.id != "" &amp;&amp; (aluno_id = @request.auth.id \</td><td>\</td><td>@request.auth.role = "docente")</code></td><td>O aluno logado vê apenas seu próprio boletim; professores veem todos.</td></tr>
+<tr><td><strong>Create / Update</strong></td><td><code class="inline-code">@request.auth.role = "docente" \</td><td>\</td><td>@request.auth.role = "coordenador"</code></td><td>Apenas docentes ou coordenadores autenticados podem lançar ou alterar notas.</td></tr>
+<tr><td><strong>Delete</strong></td><td><code class="inline-code">@request.auth.role = "coordenador"</code></td><td>Somente a coordenação pode excluir registros de matrícula.</td></tr>
+</tbody></table>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação de Regras de Segurança no PocketBase</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere um avaliador em JavaScript que simule a validação das API Rules do PocketBase para a coleção "matriculas", verificando o objeto de contexto auth ({ id, role }) e o registro alvo ({ aluno_id }) para as operações view, update e delete.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere um avaliador em JavaScript que simule a validação das API Rules do PocketBase para a coleção "matriculas", verificando o objeto de contexto auth ({ id, role }) e o registro alvo ({ aluno_id }) para as operações view, update e delete.</code></pre>
 
 <h3>Passo 2: Simulador de Avaliação de API Rules em JavaScript</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Validador de API Rules)
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Validador de API Rules)
 export function avaliarRegraAcessoPocketBase(operacao, authUser, registroMatricula) {
   if (!authUser || !authUser.id) return false; // Não autenticado
 
@@ -925,12 +1598,26 @@ export function avaliarRegraAcessoPocketBase(operacao, authUser, registroMatricu
 
 <h3>Passo 3: Exercício de Fixação</h3>
 Teste a função <code class="inline-code">avaliarRegraAcessoPocketBase</code> passando um usuário com <code class="inline-code">role: 'discente'</code> tentando executar <code class="inline-code">'update'</code> no próprio boletim e confirme que o retorno é <code class="inline-code">false</code> (<code class="inline-code">403 Forbidden</code>).
+        </article>
+      
       </section>
-<section class="lesson-card" id="DW3-U03-A01">
-        <div><span class="badge">DW3-U03-A01</span><span class="badge">Assíncrono - 4h</span></div>
-        <h1>Aula 01: Do JavaScript Vanilla ao React: Componentes Visuais, Reatividade e Ciclo de Vida</h1>
 
-<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-ART01.png" alt="Banner da Unidade III" loading="lazy" /><figcaption>Banner da Unidade III</figcaption></figure>
+      <section class="unit-section" id="unidade-U3">
+        <div class="unit-divider">
+          <div class="inst-tag">Unidade Curricular • Carga Horária: 16h</div>
+          <h2>Unidade III: Framework Front-end (JS Vanilla & React), Headless CMS & No-Code UI</h2>
+          <p>Transição da manipulação imperativa do DOM (JavaScript Vanilla) para interfaces declarativas em React (JSX, Props, useState, useEffect, Estado Derivado), consumo do PocketBase como Headless CMS, prototipagem com UI Generativa (v0 / Figma) e requisições assíncronas.</p>
+        </div>
+        
+        <article class="ebook-lesson" id="DW3-U03-A01">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U03-A01 — Unidade III</span>
+            <span class="mod-info">Assíncrono • Carga Horária: 4h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Compreender a evolução da manipulação imperativa do DOM (JS Vanilla) para a UI declarativa em React • Criar componentes funcionais reutilizáveis utilizando JSX, Props e renderização condicional</div>
+          <h1 class="lesson-main-title">Aula 01: Do JavaScript Vanilla ao React: Componentes Visuais, Reatividade e Ciclo de Vida</h1>
+
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-ART01.png" alt="Banner da Unidade III" /><figcaption>Banner da Unidade III</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -939,7 +1626,7 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Decompor</strong> uma tela do sistema acadêmico em componentes funcionais desacoplados (<code class="inline-code">&lt;HeaderIFCE /&gt;</code>, <code class="inline-code">&lt;CardAluno /&gt;</code>, <code class="inline-code">&lt;BoletimBadge /&gt;</code>).</li>
 <li class="task-item">✅ <strong>Transmitir</strong> dados de componentes pais para filhos utilizando propriedades imutáveis (<code class="inline-code">props</code>).</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -950,18 +1637,18 @@ O <strong>React</strong> adota a programação <strong>declarativa</strong>: def
 $$\text{UI} = f(\text{state}, \text{props})$$
 Sempre que o estado muda, o React recalcula a árvore de componentes na memória e atualiza apenas os nós exatos do DOM que sofreram alteração.
 
-<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-INFO01.png" alt="Infográfico JS Vanilla DOM vs React" loading="lazy" /><figcaption>Infográfico JS Vanilla DOM vs React</figcaption></figure>
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-INFO01.png" alt="Infográfico JS Vanilla DOM vs React" /><figcaption>Infográfico JS Vanilla DOM vs React</figcaption></figure>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação (Comparativo JS Vanilla vs. React Component)</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere lado a lado uma função em JavaScript Vanilla que renderiza um card de aluno em HTML e o componente funcional equivalente em React (&lt;CardAluno /&gt;), exibindo nome, matrícula, curso e um selo visual colorido conforme a situação acadêmica.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere lado a lado uma função em JavaScript Vanilla que renderiza um card de aluno em HTML e o componente funcional equivalente em React (&lt;CardAluno /&gt;), exibindo nome, matrícula, curso e um selo visual colorido conforme a situação acadêmica.</code></pre>
 
 <h3>Passo 2: Implementação em JavaScript Vanilla e React</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// 1. Abordagem JavaScript Vanilla (Template String Segura)
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// 1. Abordagem JavaScript Vanilla (Template String Segura)
 export function renderizarCardAlunoVanilla(aluno) {
   const corBadge = aluno.situacao === 'APROVADO_POR_MEDIA' ? '#10B981' : '#F59E0B';
   return `
@@ -979,11 +1666,11 @@ export function CardAluno({ aluno, onSelecionar }) {
   return {
     type: 'article',
     props: {
-      className: <code class="inline-code">card-aluno ${aprovado ? 'aprovado' : 'pendente'}</code>,
+      className: `card-aluno ${aprovado ? 'aprovado' : 'pendente'}`,
       onClick: () =&gt; onSelecionar &amp;&amp; onSelecionar(aluno.matricula),
       children: [
         { type: 'h3', props: { children: aluno.nome } },
-        { type: 'p', props: { children: <code class="inline-code">Matrícula: ${aluno.matricula} — ${aluno.curso}</code> } }
+        { type: 'p', props: { children: `Matrícula: ${aluno.matricula} — ${aluno.curso}` } }
       ]
     }
   };
@@ -991,12 +1678,18 @@ export function CardAluno({ aluno, onSelecionar }) {
 
 <h3>Passo 3: Teste de Validação</h3>
 Invoque <code class="inline-code">renderizarCardAlunoVanilla</code> e <code class="inline-code">CardAluno</code> com o mesmo objeto de aluno e verifique a previsibilidade determinística da saída.
-      </section>
-<section class="lesson-card" id="DW3-U03-A02">
-        <div><span class="badge">DW3-U03-A02</span><span class="badge">Assíncrono - 4h</span></div>
-        <h1>Aula 02: Soluções de Gerenciamento de Conteúdo (PocketBase Headless CMS) e Prototipagem No-Code (v0 / Figma)</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-DIAG01.png" alt="Diagrama React e PocketBase Headless CMS" loading="lazy" /><figcaption>Diagrama React e PocketBase Headless CMS</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U03-A02">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U03-A02 — Unidade III</span>
+            <span class="mod-info">Assíncrono • Carga Horária: 4h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Utilizar o PocketBase como Headless CMS para gerenciar avisos, editais e conteúdos dinâmicos do portal • Acelerar a criação de interfaces em React utilizando geradores de UI por IA (v0 / Figma-to-Code)</div>
+          <h1 class="lesson-main-title">Aula 02: Soluções de Gerenciamento de Conteúdo (PocketBase Headless CMS) e Prototipagem No-Code (v0 / Figma)</h1>
+
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-DIAG01.png" alt="Diagrama React e PocketBase Headless CMS" /><figcaption>Diagrama React e PocketBase Headless CMS</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -1005,7 +1698,7 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Elaborar</strong> prompts visuais/estruturais para ferramentas de <strong>UI Generativa (<code class="inline-code">v0</code> / Figma-to-Code)</strong> gerarem componentes React acessíveis e responsivos.</li>
 <li class="task-item">✅ <strong>Conectar</strong> os componentes gerados ao esquema de coleções do PocketBase.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -1019,21 +1712,21 @@ O <strong>PocketBase</strong> funciona como um Headless CMS perfeito para projet
 <h3>2.2 UI Generativa (<code class="inline-code">v0</code>, Figma-to-Code e Vibe Coding no Front-end)</h3>
 Ferramentas de UI Generativa recebem a especificação dos campos de uma coleção do PocketBase e geram imediatamente a árvore de componentes React com layouts em CSS Grid/Flexbox, estados vazios (<em>Empty States</em>) e esqueletos de carregamento (<em>Skeletons</em>).
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt para Geração de Componente React (UI Generativa <code class="inline-code">v0</code>)</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere um componente React &lt;MuralEditaisIFCE /&gt; estilizado em modo escuro que consuma a coleção "editais" do PocketBase (campos: id, titulo, categoria, data_publicacao, anexo_pdf) e construa a URL pública de download do arquivo anexo via /api/files/editais/:id/:filename.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere um componente React &lt;MuralEditaisIFCE /&gt; estilizado em modo escuro que consuma a coleção "editais" do PocketBase (campos: id, titulo, categoria, data_publicacao, anexo_pdf) e construa a URL pública de download do arquivo anexo via /api/files/editais/:id/:filename.</code></pre>
 
 <h3>Passo 2: Utilitário de Mídia e Headless CMS para PocketBase + React</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/frontend/pocketbaseCmsHelper.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/frontend/pocketbaseCmsHelper.js
 export function construirUrlArquivoPocketBase(baseUrl, record, nomeArquivo, thumb = '') {
   if (!record || !record.collectionId || !record.id || !nomeArquivo) return null;
   const base = baseUrl.replace(/\/$/, '');
-  const sufixoThumb = thumb ? <code class="inline-code">?thumb=${encodeURIComponent(thumb)}</code> : '';
-  return <code class="inline-code">${base}/api/files/${record.collectionId}/${record.id}/${nomeArquivo}${sufixoThumb}</code>;
+  const sufixoThumb = thumb ? `?thumb=${encodeURIComponent(thumb)}` : '';
+  return `${base}/api/files/${record.collectionId}/${record.id}/${nomeArquivo}${sufixoThumb}`;
 }
 
 export function formatarEditalParaComponente(record, baseUrl = 'http://127.0.0.1:8090') {
@@ -1050,12 +1743,18 @@ export function formatarEditalParaComponente(record, baseUrl = 'http://127.0.0.1
 
 <h3>Passo 3: Teste de Validação</h3>
 Verifique se <code class="inline-code">construirUrlArquivoPocketBase('http://127.0.0.1:8090', { collectionId: 'pbc_editais', id: 'rec123' }, 'edital.pdf')</code> produz exatamente <code class="inline-code">http://127.0.0.1:8090/api/files/pbc_editais/rec123/edital.pdf</code>.
-      </section>
-<section class="lesson-card" id="DW3-U03-A03">
-        <div><span class="badge">DW3-U03-A03</span><span class="badge">Síncrono - 2h</span></div>
-        <h1>Aula 03: Integração do Front-end React com APIs RESTful e Gerenciamento de Estado</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-DIAG01.png" alt="Diagrama Fluxo React e REST Gateway" loading="lazy" /><figcaption>Diagrama Fluxo React e REST Gateway</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U03-A03">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U03-A03 — Unidade III</span>
+            <span class="mod-info">Síncrono • Carga Horária: 2h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Gerenciar estado local reativo e efeitos colaterais no React utilizando useState e useEffect • Modelar estados explícitos de interface (loading, data, error) durante chamadas a APIs REST</div>
+          <h1 class="lesson-main-title">Aula 03: Integração do Front-end React com APIs RESTful e Gerenciamento de Estado</h1>
+
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-DIAG01.png" alt="Diagrama Fluxo React e REST Gateway" /><figcaption>Diagrama Fluxo React e REST Gateway</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -1064,13 +1763,13 @@ Ao concluir esta aula síncrona, você será capaz de:
 <li class="task-item">✅ <strong>Evitar</strong> loops infinitos de renderização compreendendo o array de dependências do <code class="inline-code">useEffect</code>.</li>
 <li class="task-item">✅ <strong>Implementar</strong> a máquina de estados da interface (<code class="inline-code">idle</code> → <code class="inline-code">loading</code> → <code class="inline-code">success</code> | <code class="inline-code">error</code>).</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Hooks Fundamentais no React: <code class="inline-code">useState</code> e <code class="inline-code">useEffect</code></h3>
-1. <strong><code class="inline-code">useState(valorInicial)</code></strong>: Preserva o estado reativo entre renderizações. Ao invocar a função atualizadora (<code class="inline-code">setAlunos(novosAlunos)</code>), o React agenda uma nova renderização da árvore visual.
-2. <strong><code class="inline-code">useEffect(efeito, [dependencias])</code></strong>: Executa efeitos colaterais fora do cálculo puro de renderização (como buscar a lista de discentes na API Node.js/PocketBase assim que o componente é montado na tela).
+<li class="num-item"><span class="num-badge">1.</span> <strong><code class="inline-code">useState(valorInicial)</code></strong>: Preserva o estado reativo entre renderizações. Ao invocar a função atualizadora (<code class="inline-code">setAlunos(novosAlunos)</code>), o React agenda uma nova renderização da árvore visual.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong><code class="inline-code">useEffect(efeito, [dependencias])</code></strong>: Executa efeitos colaterais fora do cálculo puro de renderização (como buscar a lista de discentes na API Node.js/PocketBase assim que o componente é montado na tela).</li>
 
 <h3>2.2 A Tríade de Estado de Rede (<code class="inline-code">dados</code>, <code class="inline-code">carregando</code>, <code class="inline-code">erro</code>)</h3>
 Uma interface profissional nunca deixa o usuário diante de uma tela em branco enquanto a rede responde. Todo componente que consome uma API deve gerenciar três variáveis reativas:
@@ -1078,16 +1777,16 @@ Uma interface profissional nunca deixa o usuário diante de uma tela em branco e
 <li><code class="inline-code">erro</code> (<code class="inline-code">string | null</code>): Exibe um alerta amigável caso o servidor Node.js ou PocketBase esteja inacessível.</li>
 <li><code class="inline-code">dados</code> (<code class="inline-code">Array</code>): Renderiza a lista ou um aviso de <em>"Nenhum registro encontrado"</em>.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação de Gerenciador de Estado Reativo</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Crie um controlador de estado reativo em JavaScript/React (StoreAlunosReativo) que gerencie o estado { alunos, carregando, erro, filtroCurso }, permitindo buscar dados assíncronos da API e filtrar discentes em tempo real sem mutar o estado original.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Crie um controlador de estado reativo em JavaScript/React (StoreAlunosReativo) que gerencie o estado { alunos, carregando, erro, filtroCurso }, permitindo buscar dados assíncronos da API e filtrar discentes em tempo real sem mutar o estado original.</code></pre>
 
 <h3>Passo 2: Implementação de Gerenciamento de Estado Imutável</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u3-react-frontend/estadoReativo.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/code-samples/u3-react-frontend/estadoReativo.js
 export function criarEstadoInicialAlunos() {
   return {
     alunos: [],
@@ -1116,12 +1815,18 @@ export function reducerAlunos(estadoAtual, acao) {
 
 <h3>Passo 3: Teste de Validação</h3>
 Confirme que o <code class="inline-code">reducerAlunos</code> utiliza o operador <em>spread</em> (<code class="inline-code">...estadoAtual</code>) para retornar sempre uma <strong>nova referência de objeto</strong>, requisito indispensável para que o React detecte a mudança e re-renderize a tela.
-      </section>
-<section class="lesson-card" id="DW3-U03-A04">
-        <div><span class="badge">DW3-U03-A04</span><span class="badge">Assíncrono - 2h</span></div>
-        <h1>Aula 04: Requisições Assíncronas (<code class="inline-code">fetch</code> / SDK <code class="inline-code">pocketbase</code>) e Manipulação de Estado Reativo</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-INFO01.png" alt="Infográfico JS Vanilla vs Estado Reativo React" loading="lazy" /><figcaption>Infográfico JS Vanilla vs Estado Reativo React</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U03-A04">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U03-A04 — Unidade III</span>
+            <span class="mod-info">Assíncrono • Carga Horária: 2h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Executar chamadas HTTP assíncronas (GET, POST, DELETE) com Fetch API nativa e SDK do PocketBase • Implementar formulários controlados em React com validação instantânea e subscrição Realtime</div>
+          <h1 class="lesson-main-title">Aula 04: Requisições Assíncronas (<code class="inline-code">fetch</code> / SDK <code class="inline-code">pocketbase</code>) e Manipulação de Estado Reativo</h1>
+
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-INFO01.png" alt="Infográfico JS Vanilla vs Estado Reativo React" /><figcaption>Infográfico JS Vanilla vs Estado Reativo React</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -1130,7 +1835,7 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Construir</strong> formulários controlados (<em>Controlled Components</em>) em React para cadastro de discentes.</li>
 <li class="task-item">✅ <strong>Subscrever</strong> atualizações em tempo real (<em>Realtime SSE</em>) do <strong>PocketBase</strong> para atualizar a lista automaticamente quando outro usuário insere dados.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -1138,21 +1843,21 @@ Ao concluir esta aula assíncrona, você será capaz de:
 No <strong>JavaScript Vanilla</strong> e no <strong>React</strong> moderno, não precisamos instalar bibliotecas legadas para requisições simples: a <strong><code class="inline-code">fetch()</code> API</strong> é nativa tanto no navegador quanto no Node.js 18+.
 
 Quando nos conectamos ao <strong>PocketBase</strong>, podemos usar tanto <code class="inline-code">fetch()</code> direto quanto o SDK leve <code class="inline-code">pocketbase</code>, que adiciona conveniências poderosas como subscrição em tempo real com apenas 3 linhas de código:
-<pre class="code-block" data-lang="javascript"><code>// Escuta qualquer criação ou edição na coleção 'alunos' em tempo real!
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// Escuta qualquer criação ou edição na coleção 'alunos' em tempo real!
 pb.collection('alunos').subscribe('*', (evento) =&gt; {
   console.log('Ação em tempo real:', evento.action, evento.record);
 });</code></pre>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação de Serviço de Rede e Formulário Controlado</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Escreva uma função assíncrona cadastrarAlunoViaFetch(apiUrl, dadosAluno, fetchFn) que envie um POST JSON com tratamento de erro HTTP, e uma função de validação de formulário controlado para React que habilite o botão de envio apenas quando o nome (&gt;=3 letras) e matrícula (10 dígitos) forem válidos.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Escreva uma função assíncrona cadastrarAlunoViaFetch(apiUrl, dadosAluno, fetchFn) que envie um POST JSON com tratamento de erro HTTP, e uma função de validação de formulário controlado para React que habilite o botão de envio apenas quando o nome (&gt;=3 letras) e matrícula (10 dígitos) forem válidos.</code></pre>
 
 <h3>Passo 2: Implementação de Requisição Assíncrona e Validação Reativa</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u3-react-frontend/clienteApiReact.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/code-samples/u3-react-frontend/clienteApiReact.js
 export function validarFormularioAluno({ nome = '', matricula = '' }) {
   const erros = {};
   if (nome.trim().length &lt; 3) {
@@ -1173,7 +1878,7 @@ export async function enviarNovoAlunoFetch(apiUrl, payload, fetchFn = fetch) {
     throw new Error(Object.values(validacao.erros).join(' '));
   }
 
-  const res = await fetchFn(<code class="inline-code">${apiUrl}/alunos</code>, {
+  const res = await fetchFn(`${apiUrl}/alunos`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
@@ -1181,19 +1886,25 @@ export async function enviarNovoAlunoFetch(apiUrl, payload, fetchFn = fetch) {
 
   const dados = await res.json();
   if (!res.ok) {
-    throw new Error(dados.erro || dados.detail || <code class="inline-code">Erro HTTP ${res.status}</code>);
+    throw new Error(dados.erro || dados.detail || `Erro HTTP ${res.status}`);
   }
   return dados;
 }</code></pre>
 
 <h3>Passo 3: Teste de Validação</h3>
 Teste <code class="inline-code">validarFormularioAluno({ nome: 'Li', matricula: '123' })</code> e confirme que <code class="inline-code">valido</code> é <code class="inline-code">false</code> antes mesmo de disparar tráfego de rede desnecessário.
-      </section>
-<section class="lesson-card" id="DW3-U03-A05">
-        <div><span class="badge">DW3-U03-A05</span><span class="badge">Presencial - 4h</span></div>
-        <h1>Aula 05: Laboratório Prático: Consumo de Dados e Renderização Dinâmica na Interface React</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-DIAG01.png" alt="Diagrama Dashboard React e PocketBase" loading="lazy" /><figcaption>Diagrama Dashboard React e PocketBase</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U03-A05">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U03-A05 — Unidade III</span>
+            <span class="mod-info">Presencial • Carga Horária: 4h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Construir um Dashboard Acadêmico interativo em React consumindo a API Node.js e o PocketBase • Implementar busca em tempo real, indicadores estatísticos e feedback visual de ações do usuário</div>
+          <h1 class="lesson-main-title">Aula 05: Laboratório Prático: Consumo de Dados e Renderização Dinâmica na Interface React</h1>
+
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-DIAG01.png" alt="Diagrama Dashboard React e PocketBase" /><figcaption>Diagrama Dashboard React e PocketBase</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -1202,23 +1913,23 @@ Ao concluir este laboratório presencial de 4 horas da Unidade III, você será 
 <li class="task-item">✅ <strong>Implementar</strong> filtragem instantânea de discentes por nome ou matrícula usando estado derivado.</li>
 <li class="task-item">✅ <strong>Calcular</strong> e renderizar cartões de indicadores acadêmicos (Total de Alunos, Taxa de Aprovação e Média da Turma).</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Estado Derivado (<em>Derived State</em>) no React</h3>
 Um erro comum ao iniciar no React é criar múltiplos <code class="inline-code">useState</code> redundantes (por exemplo, um estado para <code class="inline-code">alunos</code>, outro para <code class="inline-code">alunosFiltrados</code> e outro para <code class="inline-code">totalAprovados</code>). Na arquitetura limpa em React, mantemos na memória apenas a <strong>fonte única da verdade</strong> (<code class="inline-code">alunos</code> e <code class="inline-code">termoBusca</code>) e calculamos os dados filtrados e as estatísticas dinamicamente durante a renderização.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação do Dashboard Acadêmico</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere o módulo de lógica de apresentação de um Dashboard em React (calcularResumoDashboard e filtrarAlunosReativo) que filtre discentes por nome ou matrícula (case-insensitive) e retorne os KPIs da turma (total, aprovados, em exame final e média geral).</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere o módulo de lógica de apresentação de um Dashboard em React (calcularResumoDashboard e filtrarAlunosReativo) que filtre discentes por nome ou matrícula (case-insensitive) e retorne os KPIs da turma (total, aprovados, em exame final e média geral).</code></pre>
 
 <h3>Passo 2: Implementação da Lógica do Dashboard React (<code class="inline-code">src/code-samples/u3-react-frontend/</code>)</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u3-react-frontend/dashboardLogica.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/code-samples/u3-react-frontend/dashboardLogica.js
 export function filtrarAlunosReativo(alunos = [], termoBusca = '') {
   const termo = termoBusca.trim().toLowerCase();
   if (!termo) return alunos;
@@ -1259,15 +1970,29 @@ export function calcularResumoDashboard(alunos = []) {
 }</code></pre>
 
 <h3>Passo 3: Roteiro de Validação em Laboratório</h3>
-1. Carregar os discentes da API no Dashboard.
-2. Digitar parte da matrícula no campo de busca e verificar a atualização instantânea da lista e dos contadores.
-3. Cadastrar um novo aluno pelo modal e observar a inserção imediata sem recarregar a página (<code class="inline-code">F5</code>).
+<li class="num-item"><span class="num-badge">1.</span> Carregar os discentes da API no Dashboard.</li>
+<li class="num-item"><span class="num-badge">2.</span> Digitar parte da matrícula no campo de busca e verificar a atualização instantânea da lista e dos contadores.</li>
+<li class="num-item"><span class="num-badge">3.</span> Cadastrar um novo aluno pelo modal e observar a inserção imediata sem recarregar a página (<code class="inline-code">F5</code>).</li>
+        </article>
+      
       </section>
-<section class="lesson-card" id="DW3-U04-A01">
-        <div><span class="badge">DW3-U04-A01</span><span class="badge">Síncrono - 2h</span></div>
-        <h1>Aula 01: Planejamento de Projeto: Escopo e Levantamento de Requisitos com SDD</h1>
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner da Unidade IV" loading="lazy" /><figcaption>Banner da Unidade IV</figcaption></figure>
+      <section class="unit-section" id="unidade-U4">
+        <div class="unit-divider">
+          <div class="inst-tag">Unidade Curricular • Carga Horária: 24h</div>
+          <h2>Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem</h2>
+          <p>Engenharia Full-Stack orientada a especificação (SDD), fluxos de navegação e rotas protegidas em React, autenticação JWT e segurança OWASP Top 10, padrão BFF, testes automatizados nativos com node:test gerados por IA, containerização Docker, deploy na nuvem e fechamento acadêmico segundo o ROD/IFCE.</p>
+        </div>
+        
+        <article class="ebook-lesson" id="DW3-U04-A01">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U04-A01 — Unidade IV</span>
+            <span class="mod-info">Síncrono • Carga Horária: 2h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Especificar Requisitos Funcionais (RF), Requisitos Não-Funcionais (RNF) e Histórias de Usuário • Redigir o documento de especificação técnica (project.spec.md) para guiar o Vibe Coding Full-Stack</div>
+          <h1 class="lesson-main-title">Aula 01: Planejamento de Projeto: Escopo e Levantamento de Requisitos com SDD</h1>
+
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner da Unidade IV" /><figcaption>Banner da Unidade IV</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -1276,26 +2001,26 @@ Ao concluir esta aula síncrona de abertura da Unidade IV, você será capaz de:
 <li class="task-item">✅ <strong>Estruturar</strong> Histórias de Usuário (<em>User Stories</em>) com Critérios de Aceitação verificáveis (<em>Given / When / Then</em>).</li>
 <li class="task-item">✅ <strong>Elaborar</strong> o arquivo <code class="inline-code">project.spec.md</code> que servirá de contexto mestre para os assistentes de IA na geração de código e testes.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Por que projetos guiados por IA falham sem uma Especificação Técnica?</h3>
 Quando equipes iniciam o desenvolvimento pedindo telas e rotas aleatórias para a IA sem um plano arquitetural, os nomes de campos divergem entre o <strong>React</strong>, o servidor <strong>Node.js</strong> e as coleções do <strong>PocketBase</strong>. No <strong>Desenvolvimento Orientado a Especificação (SDD)</strong>, o primeiro entregável do projeto é o contrato formal de dados e requisitos:
-1. <strong>Entidades e Coleções PocketBase</strong>: Definição exata de nomes de campos e tipos.
-2. <strong>Contratos de Endpoints Node.js</strong>: Payloads de entrada, regras de negócio e status HTTP.
-3. <strong>Critérios de Aceitação</strong>: Condições objetivas que serão transformadas em testes automatizados (<code class="inline-code">node:test</code>).
+<li class="num-item"><span class="num-badge">1.</span> <strong>Entidades e Coleções PocketBase</strong>: Definição exata de nomes de campos e tipos.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>Contratos de Endpoints Node.js</strong>: Payloads de entrada, regras de negócio e status HTTP.</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Critérios de Aceitação</strong>: Condições objetivas que serão transformadas em testes automatizados (<code class="inline-code">node:test</code>).</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt para Geração de Especificação e Validador de Escopo SDD</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere um validador de especificação de projeto (validarEscopoProjetoSDD) em JavaScript que verifique se o manifesto do projeto final do estudante contém título, coleções do PocketBase, rotas Node.js, componentes React e pelo menos 3 histórias de usuário com critérios de aceitação.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere um validador de especificação de projeto (validarEscopoProjetoSDD) em JavaScript que verifique se o manifesto do projeto final do estudante contém título, coleções do PocketBase, rotas Node.js, componentes React e pelo menos 3 histórias de usuário com critérios de aceitação.</code></pre>
 
 <h3>Passo 2: Validador de Especificação do Projeto Final</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/projeto/validadorEscopoProjeto.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/projeto/validadorEscopoProjeto.js
 export function validarEscopoProjetoSDD(spec) {
   const erros = [];
   if (!spec?.titulo || spec.titulo.trim().length &lt; 5) {
@@ -1315,12 +2040,18 @@ export function validarEscopoProjetoSDD(spec) {
 
 <h3>Passo 3: Teste de Validação</h3>
 Preencha o objeto <code class="inline-code">spec</code> do seu projeto final e execute <code class="inline-code">validarEscopoProjetoSDD(spec)</code> garantindo <code class="inline-code">aprovado: true</code>.
-      </section>
-<section class="lesson-card" id="DW3-U04-A02">
-        <div><span class="badge">DW3-U04-A02</span><span class="badge">Assíncrono - 2h</span></div>
-        <h1>Aula 02: Modelagem de Interface (UI/UX) e Fluxos de Navegação em React</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Full-Stack UI/UX e Deploy" loading="lazy" /><figcaption>Banner Full-Stack UI/UX e Deploy</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U04-A02">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U04-A02 — Unidade IV</span>
+            <span class="mod-info">Assíncrono • Carga Horária: 2h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Projetar fluxos de navegação SPA (Single Page Application) e rotas protegidas em React • Aplicar heurísticas de usabilidade (Nielsen) e acessibilidade Web (WCAG) em componentes gerados por IA</div>
+          <h1 class="lesson-main-title">Aula 02: Modelagem de Interface (UI/UX) e Fluxos de Navegação em React</h1>
+
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Full-Stack UI/UX e Deploy" /><figcaption>Banner Full-Stack UI/UX e Deploy</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -1329,7 +2060,7 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Implementar</strong> proteção de rotas no cliente (<em>Protected Routes</em>), redirecionando usuários não autenticados para a tela de login.</li>
 <li class="task-item">✅ <strong>Avaliar</strong> a interface segundo as heurísticas de Nielsen (visibilidade do status do sistema, prevenção de erros e contraste visual).</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -1337,20 +2068,20 @@ Ao concluir esta aula assíncrona, você será capaz de:
 Em uma aplicação <strong>React</strong> integrada ao <strong>PocketBase</strong>, páginas administrativas (como lançamento de notas ou edição de editais) só devem ser renderizadas se houver um token de autenticação válido (<code class="inline-code">pb.authStore.isValid</code>). Caso contrário, o roteador intercepta a navegação e redireciona o usuário para <code class="inline-code">/login</code>.
 
 <h3>2.2 Heurísticas de UI/UX Essenciais no Projeto Final</h3>
-1. <strong>Visibilidade do Status do Sistema</strong>: Botões de submissão devem exibir <code class="inline-code">"Salvando..."</code> e ficar desabilitados (<code class="inline-code">disabled</code>) durante requisições ao Node.js/PocketBase para evitar cliques duplos.
-2. <strong>Prevenção de Erros</strong>: Confirmação explícita antes de ações destrutivas (<code class="inline-code">DELETE</code>).
-3. <strong>Acessibilidade Semântica</strong>: Uso de tags <code class="inline-code">&lt;main&gt;</code>, <code class="inline-code">&lt;nav&gt;</code>, <code class="inline-code">&lt;label htmlFor="..."&gt;</code> e atributos <code class="inline-code">aria-live</code> para mensagens de erro.
+<li class="num-item"><span class="num-badge">1.</span> <strong>Visibilidade do Status do Sistema</strong>: Botões de submissão devem exibir <code class="inline-code">"Salvando..."</code> e ficar desabilitados (<code class="inline-code">disabled</code>) durante requisições ao Node.js/PocketBase para evitar cliques duplos.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>Prevenção de Erros</strong>: Confirmação explícita antes de ações destrutivas (<code class="inline-code">DELETE</code>).</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Acessibilidade Semântica</strong>: Uso de tags <code class="inline-code">&lt;main&gt;</code>, <code class="inline-code">&lt;nav&gt;</code>, <code class="inline-code">&lt;label htmlFor="..."&gt;</code> e atributos <code class="inline-code">aria-live</code> para mensagens de erro.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação de Guarda de Rotas React</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Escreva uma função pura de guarda de navegação resolverRotaNavegacao(rotaDestino, usuarioLogado) em JavaScript/React que proteja rotas administrativas (/admin, /lancamento-notas), exigindo autenticação e perfil adequado, ou redirecionando para /login ou /acesso-negado.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Escreva uma função pura de guarda de navegação resolverRotaNavegacao(rotaDestino, usuarioLogado) em JavaScript/React que proteja rotas administrativas (/admin, /lancamento-notas), exigindo autenticação e perfil adequado, ou redirecionando para /login ou /acesso-negado.</code></pre>
 
 <h3>Passo 2: Implementação de Guarda de Rotas (<code class="inline-code">RouteGuard</code>)</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/frontend/routeGuard.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/frontend/routeGuard.js
 const ROTAS_PUBLICAS = ['/login', '/catalogo-cursos', '/editais-publicos'];
 const ROTAS_DOCENTE = ['/lancamento-notas', '/fechamento-diario'];
 
@@ -1372,12 +2103,18 @@ export function resolverRotaNavegacao(rotaDestino, authStore) {
 
 <h3>Passo 3: Teste de Validação</h3>
 Teste <code class="inline-code">resolverRotaNavegacao('/lancamento-notas', { isValid: true, model: { role: 'discente' } })</code> e confirme o redirecionamento seguro para <code class="inline-code">'/acesso-negado'</code>.
-      </section>
-<section class="lesson-card" id="DW3-U04-A03">
-        <div><span class="badge">DW3-U04-A03</span><span class="badge">Assíncrono - 4h</span></div>
-        <h1>Aula 03: Camada de Persistência no PocketBase/Node.js, Autenticação e Segurança da Informação</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Pipeline e Segurança Full-Stack" loading="lazy" /><figcaption>Diagrama Pipeline e Segurança Full-Stack</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U04-A03">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U04-A03 — Unidade IV</span>
+            <span class="mod-info">Assíncrono • Carga Horária: 4h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Implementar autenticação baseada em JWT entre React, Node.js e PocketBase (pb.collection('users').authWithPassword) • Proteger a aplicação contra vulnerabilidades OWASP Top 10 (XSS, Broken Access Control, Injection e CORS)</div>
+          <h1 class="lesson-main-title">Aula 03: Camada de Persistência no PocketBase/Node.js, Autenticação e Segurança da Informação</h1>
+
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Pipeline e Segurança Full-Stack" /><figcaption>Diagrama Pipeline e Segurança Full-Stack</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -1386,30 +2123,30 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Sanitizar</strong> dados de entrada e saída para mitigar ataques de <em>Cross-Site Scripting (XSS)</em> e injeção.</li>
 <li class="task-item">✅ <strong>Configurar</strong> políticas restritivas de CORS e cabeçalhos HTTP de segurança.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Fluxo de Autenticação JWT Full-Stack (React ↔ PocketBase ↔ Node.js)</h3>
-1. O usuário envia e-mail e senha no formulário <strong>React</strong> para <code class="inline-code">pb.collection('users').authWithPassword(email, senha)</code>.
-2. O <strong>PocketBase</strong> valida o hash <code class="inline-code">bcrypt</code> e retorna um <strong>Token JWT</strong> assinado junto aos dados do perfil (<code class="inline-code">record</code>).
-3. Nas chamadas subsequentes à API <strong>Node.js</strong> ou ao próprio <strong>PocketBase</strong>, o cliente envia o cabeçalho <code class="inline-code">Authorization: Bearer &lt;token_jwt&gt;</code>.
-4. O servidor verifica a assinatura e a expiração do token antes de autorizar a operação.
+<li class="num-item"><span class="num-badge">1.</span> O usuário envia e-mail e senha no formulário <strong>React</strong> para <code class="inline-code">pb.collection('users').authWithPassword(email, senha)</code>.</li>
+<li class="num-item"><span class="num-badge">2.</span> O <strong>PocketBase</strong> valida o hash <code class="inline-code">bcrypt</code> e retorna um <strong>Token JWT</strong> assinado junto aos dados do perfil (<code class="inline-code">record</code>).</li>
+<li class="num-item"><span class="num-badge">3.</span> Nas chamadas subsequentes à API <strong>Node.js</strong> ou ao próprio <strong>PocketBase</strong>, o cliente envia o cabeçalho <code class="inline-code">Authorization: Bearer &lt;token_jwt&gt;</code>.</li>
+<li class="num-item"><span class="num-badge">4.</span> O servidor verifica a assinatura e a expiração do token antes de autorizar a operação.</li>
 
 <h3>2.2 Prevenção às Vulnerabilidades OWASP Top 10</h3>
 <li><strong>A01 — Broken Access Control</strong>: Nunca confie apenas em esconder botões no React; valide permissões no servidor Node.js e nas <em>API Rules</em> do PocketBase.</li>
 <li><strong>A03 — Injection &amp; XSS</strong>: Escape caracteres especiais HTML (<code class="inline-code">&lt;</code>, <code class="inline-code">&gt;</code>, <code class="inline-code">&amp;</code>, <code class="inline-code">"</code>, <code class="inline-code">'</code>) sempre que renderizar strings em <strong>JavaScript Vanilla</strong>, e evite <code class="inline-code">dangerouslySetInnerHTML</code> no <strong>React</strong>.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação de Sanitização XSS e Verificação de Token</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Crie em JavaScript ES6+ uma função escaparHtmlXSS(texto) para prevenir ataques Cross-Site Scripting e um middleware extrairBearerToken(authorizationHeader) que valide a estrutura de um token JWT no servidor Node.js.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Crie em JavaScript ES6+ uma função escaparHtmlXSS(texto) para prevenir ataques Cross-Site Scripting e um middleware extrairBearerToken(authorizationHeader) que valide a estrutura de um token JWT no servidor Node.js.</code></pre>
 
 <h3>Passo 2: Implementação de Utilitários de Segurança</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/seguranca/authSecurity.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/seguranca/authSecurity.js
 export function escaparHtmlXSS(input) {
   return String(input ?? '')
     .replace(/&amp;/g, '&amp;amp;')
@@ -1437,12 +2174,18 @@ export function extrairBearerToken(authHeader) {
 
 <h3>Passo 3: Teste de Validação</h3>
 Passe <code class="inline-code">&lt;script&gt;alert("hack")&lt;/script&gt;</code> para <code class="inline-code">escaparHtmlXSS</code> e verifique se as tags são neutralizadas em <code class="inline-code">&amp;lt;script&amp;gt;...</code>.
-      </section>
-<section class="lesson-card" id="DW3-U04-A04">
-        <div><span class="badge">DW3-U04-A04</span><span class="badge">Síncrono - 1h</span></div>
-        <h1>Aula 04: Padrões Avançados de Arquitetura Full-Stack e Integração de Sistemas</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Integração Full-Stack" loading="lazy" /><figcaption>Diagrama Integração Full-Stack</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U04-A04">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U04-A04 — Unidade IV</span>
+            <span class="mod-info">Síncrono • Carga Horária: 1h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Orquestrar fluxos completos entre React, API Node.js e PocketBase usando o padrão BFF (Backend for Frontend) • Implementar cálculo de Exame Presencial Final (EFP) e consolidação de diário de classe</div>
+          <h1 class="lesson-main-title">Aula 04: Padrões Avançados de Arquitetura Full-Stack e Integração de Sistemas</h1>
+
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Integração Full-Stack" /><figcaption>Diagrama Integração Full-Stack</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -1451,23 +2194,23 @@ Ao concluir esta aula síncrona, você será capaz de:
 <li class="task-item">✅ <strong>Implementar</strong> a regra completa de cálculo pós-Exame Final ($X_F = \frac{X_S + EFP}{2}$) conforme a Seção 5.1 do plano pedagógico do IFCE.</li>
 <li class="task-item">✅ <strong>Garantir</strong> consistência transacional na consolidação de notas.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 O Padrão BFF (Backend for Frontend) com Node.js e PocketBase</h3>
 Em telas complexas de fechamento de semestre, o front-end <strong>React</strong> precisa exibir simultaneamente dados do aluno, notas parciais ($AD$ e $AP$), nota de Exame Final ($EFP$), estatísticas da turma e situação final. Em vez de o React fazer 5 requisições separadas ao banco, o servidor <strong>Node.js</strong> atua como um <strong>BFF</strong>: busca os registros necessários no <strong>PocketBase</strong>, executa as fórmulas matemáticas oficiais do ROD/IFCE e entrega um único payload JSON pronto para a tela.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação do Cálculo Pós-Exame Final (ROD/IFCE)</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Implemente em JavaScript ES6+ a função calcularResultadoFinalPosExame(mediaXs, notaEFP) seguindo a regra oficial do IFCE: Xf = (Xs + EFP) / 2, aprovando o estudante em exame final se Xf &gt;= 5.0.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Implemente em JavaScript ES6+ a função calcularResultadoFinalPosExame(mediaXs, notaEFP) seguindo a regra oficial do IFCE: Xf = (Xs + EFP) / 2, aprovando o estudante em exame final se Xf &gt;= 5.0.</code></pre>
 
 <h3>Passo 2: Implementação Completa da Regra Pós-Exame (<code class="inline-code">EFP</code>)</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Consolidação Final)
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Consolidação Final)
 export function calcularResultadoFinalPosExame(mediaXs, notaEFP) {
   const xs = Number(mediaXs);
   const efp = Number(notaEFP);
@@ -1487,12 +2230,18 @@ export function calcularResultadoFinalPosExame(mediaXs, notaEFP) {
 
 <h3>Passo 3: Teste de Validação</h3>
 Verifique que um discente com <code class="inline-code">mediaXs = 4.4</code> que obtém <code class="inline-code">notaEFP = 6.0</code> atinge <code class="inline-code">mediaXf = 5.2</code> e recebe status <code class="inline-code">'APROVADO_POS_EXAME'</code>.
-      </section>
-<section class="lesson-card" id="DW3-U04-A05">
-        <div><span class="badge">DW3-U04-A05</span><span class="badge">Assíncrono - 2h</span></div>
-        <h1>Aula 05: Codificação Supervisionada do Projeto Final</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Projeto Full-Stack" loading="lazy" /><figcaption>Banner Projeto Full-Stack</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U04-A05">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U04-A05 — Unidade IV</span>
+            <span class="mod-info">Assíncrono • Carga Horária: 2h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Desenvolver iterativamente as funcionalidades Full-Stack mantendo histórico Git limpo com Conventional Commits • Integrar variáveis de ambiente (.env) e scripts de inicialização unificados entre front-end e back-end</div>
+          <h1 class="lesson-main-title">Aula 05: Codificação Supervisionada do Projeto Final</h1>
+
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Projeto Full-Stack" /><figcaption>Banner Projeto Full-Stack</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -1501,26 +2250,26 @@ Ao concluir esta etapa assíncrona de codificação supervisionada, você será 
 <li class="task-item">✅ <strong>Aplicar</strong> o padrão <em>Conventional Commits</em> (<code class="inline-code">feat:</code>, <code class="inline-code">fix:</code>, <code class="inline-code">test:</code>, <code class="inline-code">docs:</code>) em entregas incrementais.</li>
 <li class="task-item">✅ <strong>Validar</strong> a integração local entre as 3 camadas da aplicação.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Fluxo de Trabalho Profissional com Git e Vibe Coding Iterativo</h3>
 Durante a codificação do Projeto Final, evite pedir que a IA gere todo o sistema de uma só vez. Trabalhe em fatias verticais pequenas (<em>Vertical Slices</em>):
-1. <strong>Slice 1 (Persistência)</strong>: Crie a coleção no PocketBase e valide pelo painel Admin.
-2. <strong>Slice 2 (Regra de Negócio Node.js)</strong>: Implemente o serviço/endpoint e rode o teste unitário.
-3. <strong>Slice 3 (Componente React)</strong>: Construa a tela consumindo o endpoint e faça um commit semântico (<code class="inline-code">feat(matriculas): adiciona listagem e filtro de alunos no dashboard</code>).
+<li class="num-item"><span class="num-badge">1.</span> <strong>Slice 1 (Persistência)</strong>: Crie a coleção no PocketBase e valide pelo painel Admin.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>Slice 2 (Regra de Negócio Node.js)</strong>: Implemente o serviço/endpoint e rode o teste unitário.</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Slice 3 (Componente React)</strong>: Construa a tela consumindo o endpoint e faça um commit semântico (<code class="inline-code">feat(matriculas): adiciona listagem e filtro de alunos no dashboard</code>).</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt para Validador de Padronização de Commits e Variáveis de Ambiente</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Escreva uma função em JavaScript validarCommitConvencional(mensagem) que valide se a mensagem de commit segue a especificação Conventional Commits (feat, fix, docs, test, refactor, chore) exigida na avaliação do Projeto Final.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Escreva uma função em JavaScript validarCommitConvencional(mensagem) que valide se a mensagem de commit segue a especificação Conventional Commits (feat, fix, docs, test, refactor, chore) exigida na avaliação do Projeto Final.</code></pre>
 
 <h3>Passo 2: Validador de Qualidade de Repositório</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/projeto/gitQualityValidator.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/projeto/gitQualityValidator.js
 const REGEX_CONVENTIONAL_COMMIT = /^(feat|fix|docs|style|refactor|test|chore)(\([a-z0-9-]+\))?:\s.{5,100}$/;
 
 export function validarCommitConvencional(mensagem) {
@@ -1536,12 +2285,18 @@ export function validarCommitConvencional(mensagem) {
 
 <h3>Passo 3: Teste de Validação</h3>
 Confirme que <code class="inline-code">validarCommitConvencional('feat(pocketbase): configura regras de acesso da colecao alunos')</code> retorna <code class="inline-code">{ valido: true }</code>.
-      </section>
-<section class="lesson-card" id="DW3-U04-A06">
-        <div><span class="badge">DW3-U04-A06</span><span class="badge">Assíncrono - 4h</span></div>
-        <h1>Aula 06: Testes Automatizados Gerados por IA (<code class="inline-code">node:test</code>) e Estratégias de Deploy</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama CI/CD, Testes por IA e Deploy na Nuvem" loading="lazy" /><figcaption>Diagrama CI/CD, Testes por IA e Deploy na Nuvem</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U04-A06">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U04-A06 — Unidade IV</span>
+            <span class="mod-info">Assíncrono • Carga Horária: 4h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Gerar e executar suítes de testes automatizados nativos no Node.js (node:test e node:assert) • Empacotar a aplicação Node.js + PocketBase + React em containers Docker prontos para nuvem</div>
+          <h1 class="lesson-main-title">Aula 06: Testes Automatizados Gerados por IA (<code class="inline-code">node:test</code>) e Estratégias de Deploy</h1>
+
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama CI/CD, Testes por IA e Deploy na Nuvem" /><figcaption>Diagrama CI/CD, Testes por IA e Deploy na Nuvem</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -1550,7 +2305,7 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Criar</strong> um <code class="inline-code">Dockerfile</code> multi-stage otimizado para publicar a aplicação em nuvem.</li>
 <li class="task-item">✅ <strong>Selecionar</strong> a estratégia de hospedagem adequada para cada camada (Vercel para <strong>React</strong>, Render/Fly.io para <strong>Node.js</strong> e <strong>PocketBase</strong> com volume persistente para <code class="inline-code">pb_data</code>).</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -1563,16 +2318,16 @@ O Node.js 20+ inclui um <em>test runner</em> nativo ultrarrápido (<code class="
 <h3>2.2 Containerização e Deploy de PocketBase + Node.js + React</h3>
 Ao publicar o <strong>PocketBase</strong> em nuvem (Fly.io, Render ou Railway), um cuidado arquitetural é indispensável: como o banco SQLite e os uploads ficam salvos no diretório <code class="inline-code">pb_data/</code>, é obrigatório montar um <strong>Volume Persistente (Persistent Volume)</strong> nesse diretório para que os dados sobrevivam a novos deploys do container Docker.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt para Geração de Suíte <code class="inline-code">node:test</code> e <code class="inline-code">Dockerfile</code></h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere uma suíte de testes automatizados usando node:test e node:assert/strict que valide a API de Alunos (Node.js), o cálculo de médias do IFCE (PocketBase/ORM) e a filtragem reativa do Dashboard (React).</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere uma suíte de testes automatizados usando node:test e node:assert/strict que valide a API de Alunos (Node.js), o cálculo de médias do IFCE (PocketBase/ORM) e a filtragem reativa do Dashboard (React).</code></pre>
 
 <h3>Passo 2: Exemplo de Teste Nativo (<code class="inline-code">node:test</code>)</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// Exemplo executável em src/code-samples/u4-fullstack-tests/api.test.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// Exemplo executável em src/code-samples/u4-fullstack-tests/api.test.js
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
 import { calcularMediaSemestralIFCE } from '../u2-pocketbase-orm/pocketbase-client.js';
@@ -1593,12 +2348,18 @@ describe('Validação Automatizada das Regras Acadêmicas IFCE (ROD)', () =&gt; 
 
 <h3>Passo 3: Teste de Validação</h3>
 Execute <code class="inline-code">npm test</code> (que aciona <code class="inline-code">node --test</code>) no terminal e confirme 100% de aprovação na suíte.
-      </section>
-<section class="lesson-card" id="DW3-U04-A07">
-        <div><span class="badge">DW3-U04-A07</span><span class="badge">Presencial - 4h</span></div>
-        <h1>Aula 07: Laboratório Prático: Publicação Prática (Deploy) e Testes de Carga Finais</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Deploy em Produção" loading="lazy" /><figcaption>Diagrama Deploy em Produção</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U04-A07">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U04-A07 — Unidade IV</span>
+            <span class="mod-info">Presencial • Carga Horária: 4h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Publicar a aplicação completa em ambiente de produção e configurar variáveis de ambiente seguras • Implementar endpoints de Healthcheck e executar testes de carga e latência concorrentes</div>
+          <h1 class="lesson-main-title">Aula 07: Laboratório Prático: Publicação Prática (Deploy) e Testes de Carga Finais</h1>
+
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Deploy em Produção" /><figcaption>Diagrama Deploy em Produção</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -1607,23 +2368,23 @@ Ao concluir este laboratório presencial de 4 horas, você será capaz de:
 <li class="task-item">✅ <strong>Implementar</strong> uma rota de verificação de integridade (<code class="inline-code">/health</code>) que monitora o tempo de atividade (<em>uptime</em>) e a conexão com o banco.</li>
 <li class="task-item">✅ <strong>Executar</strong> uma bateria de requisições concorrentes (<code class="inline-code">Promise.all</code>) para aferir a latência média (<code class="inline-code">p95</code>) e a estabilidade do servidor.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Observabilidade, <em>Healthchecks</em> e Testes de Carga</h3>
 Plataformas modernas de nuvem (Render, Fly.io, Railway) monitoram periodicamente uma rota de <strong>Healthcheck</strong> (<code class="inline-code">/health</code> ou <code class="inline-code">/api/health</code> no PocketBase) para saber se o container está saudável ou precisa ser reiniciado automaticamente. Além disso, antes de entregar o sistema aos usuários finais, simulamos rajadas de acessos simultâneos para garantir que o Event Loop do Node.js permaneça responsivo.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt para Simulador de Carga e Healthcheck em Node.js</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Crie em JavaScript ES6+ um avaliador de saúde e carga (executarTesteCargaConcorrente) que dispare N requisições assíncronas simultâneas via Promise.all contra uma função de handler da API, medindo o tempo total, taxa de sucesso e latência média por requisição.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Crie em JavaScript ES6+ um avaliador de saúde e carga (executarTesteCargaConcorrente) que dispare N requisições assíncronas simultâneas via Promise.all contra uma função de handler da API, medindo o tempo total, taxa de sucesso e latência média por requisição.</code></pre>
 
 <h3>Passo 2: Implementação de Healthcheck e Teste de Carga</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/projeto/loadTester.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/projeto/loadTester.js
 import { performance } from 'node:perf_hooks';
 
 export async function executarTesteCargaConcorrente(fnRequisicao, totalRequisicoes = 50) {
@@ -1647,12 +2408,18 @@ export async function executarTesteCargaConcorrente(fnRequisicao, totalRequisico
 
 <h3>Passo 3: Teste de Validação em Laboratório</h3>
 Execute <code class="inline-code">executarTesteCargaConcorrente</code> com 50 chamadas simultâneas e verifique se <code class="inline-code">estavel === true</code> e <code class="inline-code">falhas === 0</code>.
-      </section>
-<section class="lesson-card" id="DW3-U04-A08">
-        <div><span class="badge">DW3-U04-A08</span><span class="badge">Síncrono - 1h</span></div>
-        <h1>Aula 08: Code Review, Análise de Performance e Apresentação de Projetos</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Revisão Técnica e Pitch" loading="lazy" /><figcaption>Banner Revisão Técnica e Pitch</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U04-A08">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U04-A08 — Unidade IV</span>
+            <span class="mod-info">Síncrono • Carga Horária: 1h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Conduzir revisão técnica de código (Code Review) avaliando legibilidade, segurança e arquitetura • Apresentar e defender as decisões técnicas do projeto Full-Stack perante a banca docente</div>
+          <h1 class="lesson-main-title">Aula 08: Code Review, Análise de Performance e Apresentação de Projetos</h1>
+
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Revisão Técnica e Pitch" /><figcaption>Banner Revisão Técnica e Pitch</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -1661,27 +2428,27 @@ Ao concluir este encontro síncrono de apresentações, você será capaz de:
 <li class="task-item">✅ <strong>Explicar</strong> com clareza e domínio técnico todo o código gerado com auxílio de IA durante o projeto.</li>
 <li class="task-item">✅ <strong>Demonstrar</strong> a aplicação rodando ao vivo com <strong>React</strong>, <strong>Node.js</strong> e <strong>PocketBase</strong>.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Cultura de Code Review na Era da IA Generativa</h3>
 Em equipes modernas que utilizam <strong>Vibe Coding</strong>, o <em>Code Review</em> deixa de focar em detalhes triviais de formatação (resolvidos por <em>linters</em>) e passa a focar em 4 pilares arquiteturais:
-1. <strong>Compreensão e Autoria Responsável</strong>: O autor sabe explicar exatamente como cada função em <strong>Node.js</strong> e cada hook em <strong>React</strong> funciona?
-2. <strong>Segurança nas Bordas</strong>: As <em>API Rules</em> do <strong>PocketBase</strong> e os validadores do Node.js bloqueiam acessos indevidos?
-3. <strong>Desacoplamento</strong>: A lógica de negócios está separada dos componentes visuais?
-4. <strong>Cobertura de Testes</strong>: Os fluxos críticos possuem testes automatizados passando?
+<li class="num-item"><span class="num-badge">1.</span> <strong>Compreensão e Autoria Responsável</strong>: O autor sabe explicar exatamente como cada função em <strong>Node.js</strong> e cada hook em <strong>React</strong> funciona?</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>Segurança nas Bordas</strong>: As <em>API Rules</em> do <strong>PocketBase</strong> e os validadores do Node.js bloqueiam acessos indevidos?</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Desacoplamento</strong>: A lógica de negócios está separada dos componentes visuais?</li>
+<li class="num-item"><span class="num-badge">4.</span> <strong>Cobertura de Testes</strong>: Os fluxos críticos possuem testes automatizados passando?</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt para Avaliador Automatizado de Checklist de Code Review</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Crie uma função calcularNotaCodeReview(criterios) em JavaScript que receba as notas de 0 a 10 nos 4 pilares da apresentação técnica (arquiteturaNode, segurancaPocketBase, reatividadeReact, testesDeploy) e retorne o parecer estruturado da banca.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Crie uma função calcularNotaCodeReview(criterios) em JavaScript que receba as notas de 0 a 10 nos 4 pilares da apresentação técnica (arquiteturaNode, segurancaPocketBase, reatividadeReact, testesDeploy) e retorne o parecer estruturado da banca.</code></pre>
 
 <h3>Passo 2: Calculadora de Rubrica de Code Review e Apresentação</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/projeto/rubricaCodeReview.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/projeto/rubricaCodeReview.js
 export function calcularNotaCodeReview({
   arquiteturaNode = 0,
   segurancaPocketBase = 0,
@@ -1705,16 +2472,22 @@ export function calcularNotaCodeReview({
 }</code></pre>
 
 <h3>Passo 3: Roteiro de Apresentação (Pitch Técnico de 10 Minutos)</h3>
-1. <strong>2 min</strong>: Problema resolvido e especificação SDD (<code class="inline-code">project.spec.md</code>).
-2. <strong>4 min</strong>: Demonstração ao vivo da interface <strong>React</strong> e das coleções/regras no <strong>PocketBase</strong>.
-3. <strong>2 min</strong>: Demonstração de um trecho de código <strong>Node.js</strong> e execução do <code class="inline-code">npm test</code>.
-4. <strong>2 min</strong>: Perguntas da banca docente.
-      </section>
-<section class="lesson-card" id="DW3-U04-A09">
-        <div><span class="badge">DW3-U04-A09</span><span class="badge">Assíncrono - 2h</span></div>
-        <h1>Aula 09: Envio Final do Repositório do Projeto no AVA Moodle (2ª Atividade Avaliativa)</h1>
+<li class="num-item"><span class="num-badge">1.</span> <strong>2 min</strong>: Problema resolvido e especificação SDD (<code class="inline-code">project.spec.md</code>).</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>4 min</strong>: Demonstração ao vivo da interface <strong>React</strong> e das coleções/regras no <strong>PocketBase</strong>.</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>2 min</strong>: Demonstração de um trecho de código <strong>Node.js</strong> e execução do <code class="inline-code">npm test</code>.</li>
+<li class="num-item"><span class="num-badge">4.</span> <strong>2 min</strong>: Perguntas da banca docente.</li>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Pipeline de Entrega Final" loading="lazy" /><figcaption>Diagrama Pipeline de Entrega Final</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U04-A09">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U04-A09 — Unidade IV</span>
+            <span class="mod-info">Assíncrono • Carga Horária: 2h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Documentar o repositório final de produção com README técnico, instruções de setup e diagrama de arquitetura • Submeter o pacote completo da 2ª Atividade Avaliativa no AVA Moodle do IFCE Campus Baturité</div>
+          <h1 class="lesson-main-title">Aula 09: Envio Final do Repositório do Projeto no AVA Moodle (2ª Atividade Avaliativa)</h1>
+
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Pipeline de Entrega Final" /><figcaption>Diagrama Pipeline de Entrega Final</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -1723,27 +2496,27 @@ Ao concluir esta atividade avaliativa assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Executar</strong> o checklist final de conformidade antes da submissão no AVA Moodle.</li>
 <li class="task-item">✅ <strong>Realizar</strong> o envio oficial do link do repositório GitHub/GitLab e da URL de deploy.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Anatomia de uma Entrega de Software Profissional</h3>
 Um projeto sem documentação clara não pode ser auditado nem mantido. Para a <strong>2ª Atividade Avaliativa (Projeto Final)</strong> no Moodle do IFCE <em>Campus</em> Baturité, o repositório deve conter obrigatoriamente:
-1. <strong><code class="inline-code">README.md</code> Completo</strong>: Descrição do projeto, stack tecnológica (<code class="inline-code">JS Vanilla</code>, <code class="inline-code">Node.js</code>, <code class="inline-code">PocketBase</code>, <code class="inline-code">React</code>), passo a passo para rodar localmente e link do ambiente em nuvem.
-2. <strong>Arquivo <code class="inline-code">.env.example</code></strong>: Documentando todas as variáveis de ambiente necessárias (sem expor segredos reais!).
-3. <strong>Exportação do Schema do PocketBase (<code class="inline-code">pb_schema.json</code> ou <code class="inline-code">pb_migrations/</code>)</strong>: Permitindo que o professor recrie as coleções e <em>API Rules</em> com um único comando.
-4. <strong>Suíte de Testes Automatizados (<code class="inline-code">npm test</code>)</strong>: Executando sem erros.
+<li class="num-item"><span class="num-badge">1.</span> <strong><code class="inline-code">README.md</code> Completo</strong>: Descrição do projeto, stack tecnológica (<code class="inline-code">JS Vanilla</code>, <code class="inline-code">Node.js</code>, <code class="inline-code">PocketBase</code>, <code class="inline-code">React</code>), passo a passo para rodar localmente e link do ambiente em nuvem.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>Arquivo <code class="inline-code">.env.example</code></strong>: Documentando todas as variáveis de ambiente necessárias (sem expor segredos reais!).</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Exportação do Schema do PocketBase (<code class="inline-code">pb_schema.json</code> ou <code class="inline-code">pb_migrations/</code>)</strong>: Permitindo que o professor recrie as coleções e <em>API Rules</em> com um único comando.</li>
+<li class="num-item"><span class="num-badge">4.</span> <strong>Suíte de Testes Automatizados (<code class="inline-code">npm test</code>)</strong>: Executando sem erros.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt para Verificador de Entrega Final no Moodle</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere uma função verificarChecklistEntregaMoodle(entrega) em JavaScript que valide se o pacote de submissão do aluno possui urlRepositorioGit, urlDeployNuvem, possuiEnvExample, possuiSchemaPocketBase e testesPassando.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere uma função verificarChecklistEntregaMoodle(entrega) em JavaScript que valide se o pacote de submissão do aluno possui urlRepositorioGit, urlDeployNuvem, possuiEnvExample, possuiSchemaPocketBase e testesPassando.</code></pre>
 
 <h3>Passo 2: Validador de Submissão do Projeto Final</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/projeto/checklistEntregaMoodle.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/projeto/checklistEntregaMoodle.js
 export function verificarChecklistEntregaMoodle(entrega) {
   const pendencias = [];
   if (!entrega?.urlRepositorioGit || !/^https?:\/\/(github|gitlab)\.com\/.+/.test(entrega.urlRepositorioGit)) {
@@ -1767,12 +2540,18 @@ export function verificarChecklistEntregaMoodle(entrega) {
 
 <h3>Passo 3: Teste de Validação</h3>
 Execute a verificação sobre os metadados da sua entrega antes de clicar em <strong>"Enviar tarefa"</strong> no Moodle.
-      </section>
-<section class="lesson-card" id="DW3-U04-A10">
-        <div><span class="badge">DW3-U04-A10</span><span class="badge">Assíncrono - 2h</span></div>
-        <h1>Aula 10: Fechamento de Diário de Classe e Orientações para Exame Final</h1>
+        </article>
+      
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Encerramento e Consolidação DWIII" loading="lazy" /><figcaption>Banner Encerramento e Consolidação DWIII</figcaption></figure>
+        <article class="ebook-lesson" id="DW3-U04-A10">
+          <div class="lesson-meta-bar">
+            <span class="mod-id">DW3-U04-A10 — Unidade IV</span>
+            <span class="mod-info">Assíncrono • Carga Horária: 2h</span>
+          </div>
+          <div class="competencias-box"><strong>Competências-Chave:</strong> Consolidar os conhecimentos das 4 Unidades Curriculares (Node.js, PocketBase, JS Vanilla e React) • Calcular a nota necessária no Exame Presencial Final (EFP) segundo as regras do ROD/IFCE</div>
+          <h1 class="lesson-main-title">Aula 10: Fechamento de Diário de Classe e Orientações para Exame Final</h1>
+
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Encerramento e Consolidação DWIII" /><figcaption>Banner Encerramento e Consolidação DWIII</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -1781,7 +2560,7 @@ Ao concluir esta última aula da disciplina <strong>Desenvolvimento Web III (UC1
 <li class="task-item">✅ <strong>Compreender</strong> o fechamento do diário de classe conforme o Regulamento da Organização Didática (ROD) do IFCE.</li>
 <li class="task-item">✅ <strong>Simular</strong> a nota mínima necessária no Exame Presencial Final ($EFP$), caso sua Média Semestral Parcial ($X_S$) tenha ficado entre $3,0$ e $5,9$.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -1796,18 +2575,18 @@ Ao longo de 28 aulas (16h presenciais, 14h síncronas e 50h assíncronas), você
 Segundo o ROD do IFCE, se $3,0 \le X_S &lt; 6,0$ e a frequência for $\ge 75\%$, o estudante realiza o $EFP$ precisando atingir média final $X_F = \frac{X_S + EFP}{2} \ge 5,0$. Portanto, a nota mínima necessária no exame é:
 $$EFP_{\text{mín}} = 10,0 - X_S$$
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt para Simulador de Fechamento de Diário do Aluno</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Escreva uma função simularFechamentoSemestreIFCE({ notaAD, notaAP, frequencia, notaEFP }) em JavaScript que calcule toda a trajetória acadêmica do estudante segundo o ROD/IFCE, informando inclusive quanto ele precisa tirar no EFP caso fique em exame.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Escreva uma função simularFechamentoSemestreIFCE({ notaAD, notaAP, frequencia, notaEFP }) em JavaScript que calcule toda a trajetória acadêmica do estudante segundo o ROD/IFCE, informando inclusive quanto ele precisa tirar no EFP caso fique em exame.</code></pre>
 
 <h3>Passo 2: Simulador Completo do Diário Acadêmico IFCE</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Fechamento Completo ROD/IFCE)
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Fechamento Completo ROD/IFCE)
 export function simularFechamentoSemestreIFCE({ notaAD, notaAP, frequencia, notaEFP = null }) {
-  const mediaXs = Number(((2 <em> Number(notaAD) + 3 </em> Number(notaAP)) / 5).toFixed(2));
+  const mediaXs = Number(((2 * Number(notaAD) + 3 * Number(notaAP)) / 5).toFixed(2));
 
   if (Number(frequencia) &lt; 75) {
     return { mediaXs, situacao: 'REPROVADO_POR_FALTA', notaMinimaEFP: null, mediaXf: mediaXs };
@@ -1836,5 +2615,9 @@ export function simularFechamentoSemestreIFCE({ notaAD, notaAP, frequencia, nota
 
 <h3>Passo 3: Teste de Validação</h3>
 Simule um estudante com <code class="inline-code">notaAD = 5.0</code>, <code class="inline-code">notaAP = 5.0</code> e <code class="inline-code">frequencia = 85</code> e verifique que <code class="inline-code">mediaXs = 5.0</code> e <code class="inline-code">notaMinimaEFP = 5.0</code>.
+        </article>
+      
       </section>
-</div></body></html>
+
+</body>
+</html>

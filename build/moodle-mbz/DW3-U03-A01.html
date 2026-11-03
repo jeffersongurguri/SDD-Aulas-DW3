@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade III: Framework Front-end, Headless CMS & No-Code UI</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 01: Do JavaScript Vanilla ao React: Componentes Visuais, Reatividade e Ciclo de Vida</h1>
+      <h1 class="lesson-main-title">Aula 01: Do JavaScript Vanilla ao React: Componentes Visuais, Reatividade e Ciclo de Vida</h1>
 
-<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-ART01.png" alt="Banner da Unidade III" loading="lazy" /><figcaption>Banner da Unidade III</figcaption></figure>
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-ART01.png" alt="Banner da Unidade III" /><figcaption>Banner da Unidade III</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,7 +124,7 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Decompor</strong> uma tela do sistema acadêmico em componentes funcionais desacoplados (<code class="inline-code">&lt;HeaderIFCE /&gt;</code>, <code class="inline-code">&lt;CardAluno /&gt;</code>, <code class="inline-code">&lt;BoletimBadge /&gt;</code>).</li>
 <li class="task-item">✅ <strong>Transmitir</strong> dados de componentes pais para filhos utilizando propriedades imutáveis (<code class="inline-code">props</code>).</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -112,18 +135,18 @@ O <strong>React</strong> adota a programação <strong>declarativa</strong>: def
 $$\text{UI} = f(\text{state}, \text{props})$$
 Sempre que o estado muda, o React recalcula a árvore de componentes na memória e atualiza apenas os nós exatos do DOM que sofreram alteração.
 
-<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-INFO01.png" alt="Infográfico JS Vanilla DOM vs React" loading="lazy" /><figcaption>Infográfico JS Vanilla DOM vs React</figcaption></figure>
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-INFO01.png" alt="Infográfico JS Vanilla DOM vs React" /><figcaption>Infográfico JS Vanilla DOM vs React</figcaption></figure>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação (Comparativo JS Vanilla vs. React Component)</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere lado a lado uma função em JavaScript Vanilla que renderiza um card de aluno em HTML e o componente funcional equivalente em React (&lt;CardAluno /&gt;), exibindo nome, matrícula, curso e um selo visual colorido conforme a situação acadêmica.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere lado a lado uma função em JavaScript Vanilla que renderiza um card de aluno em HTML e o componente funcional equivalente em React (&lt;CardAluno /&gt;), exibindo nome, matrícula, curso e um selo visual colorido conforme a situação acadêmica.</code></pre>
 
 <h3>Passo 2: Implementação em JavaScript Vanilla e React</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// 1. Abordagem JavaScript Vanilla (Template String Segura)
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// 1. Abordagem JavaScript Vanilla (Template String Segura)
 export function renderizarCardAlunoVanilla(aluno) {
   const corBadge = aluno.situacao === 'APROVADO_POR_MEDIA' ? '#10B981' : '#F59E0B';
   return `
@@ -141,11 +164,11 @@ export function CardAluno({ aluno, onSelecionar }) {
   return {
     type: 'article',
     props: {
-      className: <code class="inline-code">card-aluno ${aprovado ? 'aprovado' : 'pendente'}</code>,
+      className: `card-aluno ${aprovado ? 'aprovado' : 'pendente'}`,
       onClick: () =&gt; onSelecionar &amp;&amp; onSelecionar(aluno.matricula),
       children: [
         { type: 'h3', props: { children: aluno.nome } },
-        { type: 'p', props: { children: <code class="inline-code">Matrícula: ${aluno.matricula} — ${aluno.curso}</code> } }
+        { type: 'p', props: { children: `Matrícula: ${aluno.matricula} — ${aluno.curso}` } }
       ]
     }
   };

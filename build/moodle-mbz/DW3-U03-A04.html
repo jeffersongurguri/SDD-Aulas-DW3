@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade III: Framework Front-end, Headless CMS & No-Code UI</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 04: Requisições Assíncronas (<code class="inline-code">fetch</code> / SDK <code class="inline-code">pocketbase</code>) e Manipulação de Estado Reativo</h1>
+      <h1 class="lesson-main-title">Aula 04: Requisições Assíncronas (<code class="inline-code">fetch</code> / SDK <code class="inline-code">pocketbase</code>) e Manipulação de Estado Reativo</h1>
 
-<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-INFO01.png" alt="Infográfico JS Vanilla vs Estado Reativo React" loading="lazy" /><figcaption>Infográfico JS Vanilla vs Estado Reativo React</figcaption></figure>
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-INFO01.png" alt="Infográfico JS Vanilla vs Estado Reativo React" /><figcaption>Infográfico JS Vanilla vs Estado Reativo React</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,7 +124,7 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Construir</strong> formulários controlados (<em>Controlled Components</em>) em React para cadastro de discentes.</li>
 <li class="task-item">✅ <strong>Subscrever</strong> atualizações em tempo real (<em>Realtime SSE</em>) do <strong>PocketBase</strong> para atualizar a lista automaticamente quando outro usuário insere dados.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -109,21 +132,21 @@ Ao concluir esta aula assíncrona, você será capaz de:
 No <strong>JavaScript Vanilla</strong> e no <strong>React</strong> moderno, não precisamos instalar bibliotecas legadas para requisições simples: a <strong><code class="inline-code">fetch()</code> API</strong> é nativa tanto no navegador quanto no Node.js 18+.
 
 Quando nos conectamos ao <strong>PocketBase</strong>, podemos usar tanto <code class="inline-code">fetch()</code> direto quanto o SDK leve <code class="inline-code">pocketbase</code>, que adiciona conveniências poderosas como subscrição em tempo real com apenas 3 linhas de código:
-<pre class="code-block" data-lang="javascript"><code>// Escuta qualquer criação ou edição na coleção 'alunos' em tempo real!
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// Escuta qualquer criação ou edição na coleção 'alunos' em tempo real!
 pb.collection('alunos').subscribe('*', (evento) =&gt; {
   console.log('Ação em tempo real:', evento.action, evento.record);
 });</code></pre>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação de Serviço de Rede e Formulário Controlado</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Escreva uma função assíncrona cadastrarAlunoViaFetch(apiUrl, dadosAluno, fetchFn) que envie um POST JSON com tratamento de erro HTTP, e uma função de validação de formulário controlado para React que habilite o botão de envio apenas quando o nome (&gt;=3 letras) e matrícula (10 dígitos) forem válidos.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Escreva uma função assíncrona cadastrarAlunoViaFetch(apiUrl, dadosAluno, fetchFn) que envie um POST JSON com tratamento de erro HTTP, e uma função de validação de formulário controlado para React que habilite o botão de envio apenas quando o nome (&gt;=3 letras) e matrícula (10 dígitos) forem válidos.</code></pre>
 
 <h3>Passo 2: Implementação de Requisição Assíncrona e Validação Reativa</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u3-react-frontend/clienteApiReact.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/code-samples/u3-react-frontend/clienteApiReact.js
 export function validarFormularioAluno({ nome = '', matricula = '' }) {
   const erros = {};
   if (nome.trim().length &lt; 3) {
@@ -144,7 +167,7 @@ export async function enviarNovoAlunoFetch(apiUrl, payload, fetchFn = fetch) {
     throw new Error(Object.values(validacao.erros).join(' '));
   }
 
-  const res = await fetchFn(<code class="inline-code">${apiUrl}/alunos</code>, {
+  const res = await fetchFn(`${apiUrl}/alunos`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
@@ -152,7 +175,7 @@ export async function enviarNovoAlunoFetch(apiUrl, payload, fetchFn = fetch) {
 
   const dados = await res.json();
   if (!res.ok) {
-    throw new Error(dados.erro || dados.detail || <code class="inline-code">Erro HTTP ${res.status}</code>);
+    throw new Error(dados.erro || dados.detail || `Erro HTTP ${res.status}`);
   }
   return dados;
 }</code></pre>

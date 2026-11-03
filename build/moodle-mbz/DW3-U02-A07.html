@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade II: Framework ORM, Persistência & Backend Low-Code / BaaS</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 07: Atividade de Fixação: Mapeamento de Tabelas Complexas e API Rules no PocketBase</h1>
+      <h1 class="lesson-main-title">Aula 07: Atividade de Fixação: Mapeamento de Tabelas Complexas e API Rules no PocketBase</h1>
 
-<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama API Rules e Segurança no PocketBase" loading="lazy" /><figcaption>Diagrama API Rules e Segurança no PocketBase</figcaption></figure>
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama API Rules e Segurança no PocketBase" /><figcaption>Diagrama API Rules e Segurança no PocketBase</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,29 +124,30 @@ Ao concluir esta atividade assíncrona de fechamento da Unidade II, você será 
 <li class="task-item">✅ <strong>Escrever</strong> expressões de segurança utilizando o contexto <code class="inline-code">@request.auth.id</code> e <code class="inline-code">@request.auth.role</code>.</li>
 <li class="task-item">✅ <strong>Auditar</strong> regras de acesso com auxílio de IA para impedir que um estudante altere notas de outros estudantes.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Segurança Declarativa no Banco: As <em>API Rules</em> do PocketBase</h3>
 Por padrão, toda coleção criada no <strong>PocketBase</strong> vem bloqueada (<code class="inline-code">Admin Only</code> = <code class="inline-code">null</code>), impedindo acessos públicos acidentais. Para liberar o acesso seguro diretamente para o front-end <strong>React</strong>, configuramos expressões booleanas avaliadas a cada requisição:
 
-| Operação | Regra no PocketBase (<code class="inline-code">matriculas</code>) | Significado Pedagógico e de Segurança |
-| :--- | :--- | :--- |
-| <strong>List / View</strong> | <code class="inline-code">@request.auth.id != "" &amp;&amp; (aluno_id = @request.auth.id \|\| @request.auth.role = "docente")</code> | O aluno logado vê apenas seu próprio boletim; professores veem todos. |
-| <strong>Create / Update</strong> | <code class="inline-code">@request.auth.role = "docente" \|\| @request.auth.role = "coordenador"</code> | Apenas docentes ou coordenadores autenticados podem lançar ou alterar notas. |
-| <strong>Delete</strong> | <code class="inline-code">@request.auth.role = "coordenador"</code> | Somente a coordenação pode excluir registros de matrícula. |
+<table class="md-table">
+<thead><tr><th>Operação</th><th>Regra no PocketBase (<code class="inline-code">matriculas</code>)</th><th>Significado Pedagógico e de Segurança</th></tr></thead><tbody>
+<tr><td><strong>List / View</strong></td><td><code class="inline-code">@request.auth.id != "" &amp;&amp; (aluno_id = @request.auth.id \</td><td>\</td><td>@request.auth.role = "docente")</code></td><td>O aluno logado vê apenas seu próprio boletim; professores veem todos.</td></tr>
+<tr><td><strong>Create / Update</strong></td><td><code class="inline-code">@request.auth.role = "docente" \</td><td>\</td><td>@request.auth.role = "coordenador"</code></td><td>Apenas docentes ou coordenadores autenticados podem lançar ou alterar notas.</td></tr>
+<tr><td><strong>Delete</strong></td><td><code class="inline-code">@request.auth.role = "coordenador"</code></td><td>Somente a coordenação pode excluir registros de matrícula.</td></tr>
+</tbody></table>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação de Regras de Segurança no PocketBase</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere um avaliador em JavaScript que simule a validação das API Rules do PocketBase para a coleção "matriculas", verificando o objeto de contexto auth ({ id, role }) e o registro alvo ({ aluno_id }) para as operações view, update e delete.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere um avaliador em JavaScript que simule a validação das API Rules do PocketBase para a coleção "matriculas", verificando o objeto de contexto auth ({ id, role }) e o registro alvo ({ aluno_id }) para as operações view, update e delete.</code></pre>
 
 <h3>Passo 2: Simulador de Avaliação de API Rules em JavaScript</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Validador de API Rules)
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Validador de API Rules)
 export function avaliarRegraAcessoPocketBase(operacao, authUser, registroMatricula) {
   if (!authUser || !authUser.id) return false; // Não autenticado
 

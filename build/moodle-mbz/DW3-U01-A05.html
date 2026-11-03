@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade I: Framework Back-end, Padrões de Software & Vibe Coding</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 05: Arquitetura RESTful, Verbos HTTP, Middlewares e Tratamento de Exceções</h1>
+      <h1 class="lesson-main-title">Aula 05: Arquitetura RESTful, Verbos HTTP, Middlewares e Tratamento de Exceções</h1>
 
-<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-DIAG01.png" alt="Diagrama REST e Error Handling" loading="lazy" /><figcaption>Diagrama REST e Error Handling</figcaption></figure>
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-DIAG01.png" alt="Diagrama REST e Error Handling" /><figcaption>Diagrama REST e Error Handling</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,34 +124,35 @@ Ao concluir esta aula síncrona, você será capaz de:
 <li class="task-item">✅ <strong>Construir</strong> funções de <em>Middleware</em> (logging, CORS e autenticação) no fluxo de requisição Node.js.</li>
 <li class="task-item">✅ <strong>Padronizar</strong> respostas de erro JSON com classes customizadas (<code class="inline-code">HttpError</code>) e tratador global de exceções.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Semântica RESTful e Idempotência</h3>
 Uma API verdadeiramente <strong>RESTful</strong> utiliza substantivos no plural para identificar recursos (<code class="inline-code">/alunos</code>, <code class="inline-code">/turmas</code>) e delega a ação ao verbo HTTP:
 
-| Verbo HTTP | Rota Exemplo | Ação Semântica | Idempotente? | Status de Sucesso |
-| :--- | :--- | :--- | :---: | :---: |
-| <code class="inline-code">GET</code> | <code class="inline-code">/alunos</code> | Listar todos os discentes | Sim | <code class="inline-code">200 OK</code> |
-| <code class="inline-code">GET</code> | <code class="inline-code">/alunos/:matricula</code> | Buscar discente específico | Sim | <code class="inline-code">200 OK</code> (ou <code class="inline-code">404</code>) |
-| <code class="inline-code">POST</code> | <code class="inline-code">/alunos</code> | Cadastrar novo discente | Não | <code class="inline-code">201 Created</code> |
-| <code class="inline-code">PUT</code> / <code class="inline-code">PATCH</code> | <code class="inline-code">/alunos/:matricula</code> | Atualizar cadastro do discente | Sim | <code class="inline-code">200 OK</code> |
-| <code class="inline-code">DELETE</code> | <code class="inline-code">/alunos/:matricula</code> | Remover registro acadêmico | Sim | <code class="inline-code">200 OK</code> / <code class="inline-code">204 No Content</code> |
+<table class="md-table">
+<thead><tr><th>Verbo HTTP</th><th>Rota Exemplo</th><th>Ação Semântica</th><th>Idempotente?</th><th>Status de Sucesso</th></tr></thead><tbody>
+<tr><td><code class="inline-code">GET</code></td><td><code class="inline-code">/alunos</code></td><td>Listar todos os discentes</td><td>Sim</td><td><code class="inline-code">200 OK</code></td></tr>
+<tr><td><code class="inline-code">GET</code></td><td><code class="inline-code">/alunos/:matricula</code></td><td>Buscar discente específico</td><td>Sim</td><td><code class="inline-code">200 OK</code> (ou <code class="inline-code">404</code>)</td></tr>
+<tr><td><code class="inline-code">POST</code></td><td><code class="inline-code">/alunos</code></td><td>Cadastrar novo discente</td><td>Não</td><td><code class="inline-code">201 Created</code></td></tr>
+<tr><td><code class="inline-code">PUT</code> / <code class="inline-code">PATCH</code></td><td><code class="inline-code">/alunos/:matricula</code></td><td>Atualizar cadastro do discente</td><td>Sim</td><td><code class="inline-code">200 OK</code></td></tr>
+<tr><td><code class="inline-code">DELETE</code></td><td><code class="inline-code">/alunos/:matricula</code></td><td>Remover registro acadêmico</td><td>Sim</td><td><code class="inline-code">200 OK</code> / <code class="inline-code">204 No Content</code></td></tr>
+</tbody></table>
 
 <h3>2.2 Tratamento Centralizado de Exceções (<code class="inline-code">HttpError</code>)</h3>
 Em vez de espalhar blocos <code class="inline-code">res.writeHead(400)...</code> por dezenas de funções, criamos uma classe <code class="inline-code">HttpError extends Error</code> que carrega o <code class="inline-code">statusCode</code> e os detalhes do erro, capturando qualquer falha em um único bloco <code class="inline-code">try / catch</code> de alto nível no servidor.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Especificação de Tratador Global de Erros e CORS via Vibe Coding</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Crie em JavaScript ES6+ uma classe HttpError(statusCode, message, details) e um wrapper de servidor HTTP em Node.js que configure cabeçalhos CORS para o front-end React e capture qualquer exceção assíncrona retornando um JSON padronizado { erro, statusCode, timestamp }.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Crie em JavaScript ES6+ uma classe HttpError(statusCode, message, details) e um wrapper de servidor HTTP em Node.js que configure cabeçalhos CORS para o front-end React e capture qualquer exceção assíncrona retornando um JSON padronizado { erro, statusCode, timestamp }.</code></pre>
 
 <h3>Passo 2: Implementação de <code class="inline-code">HttpError</code> e Middleware Handler</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/errors/HttpError.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/errors/HttpError.js
 export class HttpError extends Error {
   constructor(statusCode, message, details = null) {
     super(message);

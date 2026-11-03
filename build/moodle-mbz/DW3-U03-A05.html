@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade III: Framework Front-end, Headless CMS & No-Code UI</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 05: Laboratório Prático: Consumo de Dados e Renderização Dinâmica na Interface React</h1>
+      <h1 class="lesson-main-title">Aula 05: Laboratório Prático: Consumo de Dados e Renderização Dinâmica na Interface React</h1>
 
-<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-DIAG01.png" alt="Diagrama Dashboard React e PocketBase" loading="lazy" /><figcaption>Diagrama Dashboard React e PocketBase</figcaption></figure>
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-DIAG01.png" alt="Diagrama Dashboard React e PocketBase" /><figcaption>Diagrama Dashboard React e PocketBase</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,23 +124,23 @@ Ao concluir este laboratório presencial de 4 horas da Unidade III, você será 
 <li class="task-item">✅ <strong>Implementar</strong> filtragem instantânea de discentes por nome ou matrícula usando estado derivado.</li>
 <li class="task-item">✅ <strong>Calcular</strong> e renderizar cartões de indicadores acadêmicos (Total de Alunos, Taxa de Aprovação e Média da Turma).</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Estado Derivado (<em>Derived State</em>) no React</h3>
 Um erro comum ao iniciar no React é criar múltiplos <code class="inline-code">useState</code> redundantes (por exemplo, um estado para <code class="inline-code">alunos</code>, outro para <code class="inline-code">alunosFiltrados</code> e outro para <code class="inline-code">totalAprovados</code>). Na arquitetura limpa em React, mantemos na memória apenas a <strong>fonte única da verdade</strong> (<code class="inline-code">alunos</code> e <code class="inline-code">termoBusca</code>) e calculamos os dados filtrados e as estatísticas dinamicamente durante a renderização.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação do Dashboard Acadêmico</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere o módulo de lógica de apresentação de um Dashboard em React (calcularResumoDashboard e filtrarAlunosReativo) que filtre discentes por nome ou matrícula (case-insensitive) e retorne os KPIs da turma (total, aprovados, em exame final e média geral).</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere o módulo de lógica de apresentação de um Dashboard em React (calcularResumoDashboard e filtrarAlunosReativo) que filtre discentes por nome ou matrícula (case-insensitive) e retorne os KPIs da turma (total, aprovados, em exame final e média geral).</code></pre>
 
 <h3>Passo 2: Implementação da Lógica do Dashboard React (<code class="inline-code">src/code-samples/u3-react-frontend/</code>)</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u3-react-frontend/dashboardLogica.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/code-samples/u3-react-frontend/dashboardLogica.js
 export function filtrarAlunosReativo(alunos = [], termoBusca = '') {
   const termo = termoBusca.trim().toLowerCase();
   if (!termo) return alunos;
@@ -158,9 +181,9 @@ export function calcularResumoDashboard(alunos = []) {
 }</code></pre>
 
 <h3>Passo 3: Roteiro de Validação em Laboratório</h3>
-1. Carregar os discentes da API no Dashboard.
-2. Digitar parte da matrícula no campo de busca e verificar a atualização instantânea da lista e dos contadores.
-3. Cadastrar um novo aluno pelo modal e observar a inserção imediata sem recarregar a página (<code class="inline-code">F5</code>).
+<li class="num-item"><span class="num-badge">1.</span> Carregar os discentes da API no Dashboard.</li>
+<li class="num-item"><span class="num-badge">2.</span> Digitar parte da matrícula no campo de busca e verificar a atualização instantânea da lista e dos contadores.</li>
+<li class="num-item"><span class="num-badge">3.</span> Cadastrar um novo aluno pelo modal e observar a inserção imediata sem recarregar a página (<code class="inline-code">F5</code>).</li>
     </main>
   </div>
 </body>

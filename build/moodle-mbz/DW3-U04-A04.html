@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 04: Padrões Avançados de Arquitetura Full-Stack e Integração de Sistemas</h1>
+      <h1 class="lesson-main-title">Aula 04: Padrões Avançados de Arquitetura Full-Stack e Integração de Sistemas</h1>
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Integração Full-Stack" loading="lazy" /><figcaption>Diagrama Integração Full-Stack</figcaption></figure>
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Integração Full-Stack" /><figcaption>Diagrama Integração Full-Stack</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,23 +124,23 @@ Ao concluir esta aula síncrona, você será capaz de:
 <li class="task-item">✅ <strong>Implementar</strong> a regra completa de cálculo pós-Exame Final ($X_F = \frac{X_S + EFP}{2}$) conforme a Seção 5.1 do plano pedagógico do IFCE.</li>
 <li class="task-item">✅ <strong>Garantir</strong> consistência transacional na consolidação de notas.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 O Padrão BFF (Backend for Frontend) com Node.js e PocketBase</h3>
 Em telas complexas de fechamento de semestre, o front-end <strong>React</strong> precisa exibir simultaneamente dados do aluno, notas parciais ($AD$ e $AP$), nota de Exame Final ($EFP$), estatísticas da turma e situação final. Em vez de o React fazer 5 requisições separadas ao banco, o servidor <strong>Node.js</strong> atua como um <strong>BFF</strong>: busca os registros necessários no <strong>PocketBase</strong>, executa as fórmulas matemáticas oficiais do ROD/IFCE e entrega um único payload JSON pronto para a tela.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação do Cálculo Pós-Exame Final (ROD/IFCE)</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Implemente em JavaScript ES6+ a função calcularResultadoFinalPosExame(mediaXs, notaEFP) seguindo a regra oficial do IFCE: Xf = (Xs + EFP) / 2, aprovando o estudante em exame final se Xf &gt;= 5.0.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Implemente em JavaScript ES6+ a função calcularResultadoFinalPosExame(mediaXs, notaEFP) seguindo a regra oficial do IFCE: Xf = (Xs + EFP) / 2, aprovando o estudante em exame final se Xf &gt;= 5.0.</code></pre>
 
 <h3>Passo 2: Implementação Completa da Regra Pós-Exame (<code class="inline-code">EFP</code>)</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Consolidação Final)
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Consolidação Final)
 export function calcularResultadoFinalPosExame(mediaXs, notaEFP) {
   const xs = Number(mediaXs);
   const efp = Number(notaEFP);

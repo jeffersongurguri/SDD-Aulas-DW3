@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 03: Camada de Persistência no PocketBase/Node.js, Autenticação e Segurança da Informação</h1>
+      <h1 class="lesson-main-title">Aula 03: Camada de Persistência no PocketBase/Node.js, Autenticação e Segurança da Informação</h1>
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Pipeline e Segurança Full-Stack" loading="lazy" /><figcaption>Diagrama Pipeline e Segurança Full-Stack</figcaption></figure>
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Pipeline e Segurança Full-Stack" /><figcaption>Diagrama Pipeline e Segurança Full-Stack</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,30 +124,30 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Sanitizar</strong> dados de entrada e saída para mitigar ataques de <em>Cross-Site Scripting (XSS)</em> e injeção.</li>
 <li class="task-item">✅ <strong>Configurar</strong> políticas restritivas de CORS e cabeçalhos HTTP de segurança.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Fluxo de Autenticação JWT Full-Stack (React ↔ PocketBase ↔ Node.js)</h3>
-1. O usuário envia e-mail e senha no formulário <strong>React</strong> para <code class="inline-code">pb.collection('users').authWithPassword(email, senha)</code>.
-2. O <strong>PocketBase</strong> valida o hash <code class="inline-code">bcrypt</code> e retorna um <strong>Token JWT</strong> assinado junto aos dados do perfil (<code class="inline-code">record</code>).
-3. Nas chamadas subsequentes à API <strong>Node.js</strong> ou ao próprio <strong>PocketBase</strong>, o cliente envia o cabeçalho <code class="inline-code">Authorization: Bearer &lt;token_jwt&gt;</code>.
-4. O servidor verifica a assinatura e a expiração do token antes de autorizar a operação.
+<li class="num-item"><span class="num-badge">1.</span> O usuário envia e-mail e senha no formulário <strong>React</strong> para <code class="inline-code">pb.collection('users').authWithPassword(email, senha)</code>.</li>
+<li class="num-item"><span class="num-badge">2.</span> O <strong>PocketBase</strong> valida o hash <code class="inline-code">bcrypt</code> e retorna um <strong>Token JWT</strong> assinado junto aos dados do perfil (<code class="inline-code">record</code>).</li>
+<li class="num-item"><span class="num-badge">3.</span> Nas chamadas subsequentes à API <strong>Node.js</strong> ou ao próprio <strong>PocketBase</strong>, o cliente envia o cabeçalho <code class="inline-code">Authorization: Bearer &lt;token_jwt&gt;</code>.</li>
+<li class="num-item"><span class="num-badge">4.</span> O servidor verifica a assinatura e a expiração do token antes de autorizar a operação.</li>
 
 <h3>2.2 Prevenção às Vulnerabilidades OWASP Top 10</h3>
 <li><strong>A01 — Broken Access Control</strong>: Nunca confie apenas em esconder botões no React; valide permissões no servidor Node.js e nas <em>API Rules</em> do PocketBase.</li>
 <li><strong>A03 — Injection &amp; XSS</strong>: Escape caracteres especiais HTML (<code class="inline-code">&lt;</code>, <code class="inline-code">&gt;</code>, <code class="inline-code">&amp;</code>, <code class="inline-code">"</code>, <code class="inline-code">'</code>) sempre que renderizar strings em <strong>JavaScript Vanilla</strong>, e evite <code class="inline-code">dangerouslySetInnerHTML</code> no <strong>React</strong>.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação de Sanitização XSS e Verificação de Token</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Crie em JavaScript ES6+ uma função escaparHtmlXSS(texto) para prevenir ataques Cross-Site Scripting e um middleware extrairBearerToken(authorizationHeader) que valide a estrutura de um token JWT no servidor Node.js.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Crie em JavaScript ES6+ uma função escaparHtmlXSS(texto) para prevenir ataques Cross-Site Scripting e um middleware extrairBearerToken(authorizationHeader) que valide a estrutura de um token JWT no servidor Node.js.</code></pre>
 
 <h3>Passo 2: Implementação de Utilitários de Segurança</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/seguranca/authSecurity.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/seguranca/authSecurity.js
 export function escaparHtmlXSS(input) {
   return String(input ?? '')
     .replace(/&amp;/g, '&amp;amp;')

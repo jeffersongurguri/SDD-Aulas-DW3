@@ -5,225 +5,365 @@
     {
       "modulo_id": "DW3-U01-A01",
       "titulo": "Introdução ao Node.js, Frameworks Web e Gerenciamento de Pacotes com IA",
-      "unidade": "Unidade I: Framework Back-end (Node.js), Padrões & Vibe Coding (20h)",
+      "unidade": "Unidade I: Framework Back-end (Node.js), Padrões & Vibe Coding",
+      "unidadeId": "U1",
       "carga_horaria": "4h",
       "modalidade": "Assíncrono",
+      "competencias": [
+        "Compreender a arquitetura orientada a eventos do Node.js e o uso de módulos ES6+ no servidor",
+        "Gerenciar dependências e scripts de automação via npm e package.json com auxílio de IA"
+      ],
       "arquivoHtml": "DW3-U01-A01.html"
     },
     {
       "modulo_id": "DW3-U01-A02",
       "titulo": "Configuração de Ambiente Node.js e Arquitetura Web na Prática (Laboratório)",
-      "unidade": "Unidade I: Framework Back-end (Node.js), Padrões & Vibe Coding (20h)",
+      "unidade": "Unidade I: Framework Back-end (Node.js), Padrões & Vibe Coding",
+      "unidadeId": "U1",
       "carga_horaria": "4h",
       "modalidade": "Presencial",
+      "competencias": [
+        "Configurar ambiente de desenvolvimento profissional com Node.js LTS, Git e variáveis de ambiente (.env)",
+        "Inspecionar o ciclo completo de Requisição e Resposta HTTP (Headers, Query Params, Body e Status Codes)"
+      ],
       "arquivoHtml": "DW3-U01-A02.html"
     },
     {
       "modulo_id": "DW3-U01-A03",
       "titulo": "Padrões de Arquitetura Back-end (MVC/Controllers) e Scaffolding com Vibe Coding",
-      "unidade": "Unidade I: Framework Back-end (Node.js), Padrões & Vibe Coding (20h)",
+      "unidade": "Unidade I: Framework Back-end (Node.js), Padrões & Vibe Coding",
+      "unidadeId": "U1",
       "carga_horaria": "2h",
       "modalidade": "Síncrono",
+      "competencias": [
+        "Desacoplar aplicações Node.js em camadas de Rotas, Controllers, Services e Models/Schemas",
+        "Aplicar Scaffolding assistido por IA para gerar controladores coesos e testáveis"
+      ],
       "arquivoHtml": "DW3-U01-A03.html"
     },
     {
       "modulo_id": "DW3-U01-A04",
       "titulo": "Estudo Dirigido: Análise Crítica e Auditoria de Código Node.js Gerado por IA",
-      "unidade": "Unidade I: Framework Back-end (Node.js), Padrões & Vibe Coding (20h)",
+      "unidade": "Unidade I: Framework Back-end (Node.js), Padrões & Vibe Coding",
+      "unidadeId": "U1",
       "carga_horaria": "2h",
       "modalidade": "Assíncrono",
+      "competencias": [
+        "Auditar códigos JavaScript/Node.js gerados por IA identificando falhas de segurança e bloqueio do Event Loop",
+        "Corrigir vulnerabilidades de validação, tratamento de Promises e exposição de dados sensíveis"
+      ],
       "arquivoHtml": "DW3-U01-A04.html"
     },
     {
       "modulo_id": "DW3-U01-A05",
       "titulo": "Arquitetura RESTful, Verbos HTTP, Middlewares e Tratamento de Exceções",
-      "unidade": "Unidade I: Framework Back-end (Node.js), Padrões & Vibe Coding (20h)",
+      "unidade": "Unidade I: Framework Back-end (Node.js), Padrões & Vibe Coding",
+      "unidadeId": "U1",
       "carga_horaria": "2h",
       "modalidade": "Síncrono",
+      "competencias": [
+        "Projetar endpoints semânticos seguindo as restrições REST e os códigos de status HTTP corretos",
+        "Implementar pipeline de Middlewares e tratamento centralizado de exceções em Node.js"
+      ],
       "arquivoHtml": "DW3-U01-A05.html"
     },
     {
       "modulo_id": "DW3-U01-A06",
       "titulo": "Resolução de Exercícios Práticos Virtuais de Construção de APIs REST em Node.js",
-      "unidade": "Unidade I: Framework Back-end (Node.js), Padrões & Vibe Coding (20h)",
+      "unidade": "Unidade I: Framework Back-end (Node.js), Padrões & Vibe Coding",
+      "unidadeId": "U1",
       "carga_horaria": "6h",
       "modalidade": "Assíncrono",
+      "competencias": [
+        "Construir uma API RESTful completa em Node.js com operações CRUD, filtros e validações",
+        "Executar testes automatizados de validação dos endpoints da Unidade I"
+      ],
       "arquivoHtml": "DW3-U01-A06.html"
     },
     {
       "modulo_id": "DW3-U02-A01",
       "titulo": "Conceitos Fundamentais de ORM em Node.js e Abstração de Entidades",
-      "unidade": "Unidade II: Framework ORM, Persistência & PocketBase BaaS (20h)",
+      "unidade": "Unidade II: Framework ORM, Persistência & Backend Low-Code (PocketBase)",
+      "unidadeId": "U2",
       "carga_horaria": "4h",
       "modalidade": "Assíncrono",
+      "competencias": [
+        "Compreender o problema da impedância objeto-relacional entre objetos JavaScript e tabelas SQL",
+        "Mapear entidades de domínio acadêmico utilizando modelos declarativos em Node.js"
+      ],
       "arquivoHtml": "DW3-U02-A01.html"
     },
     {
       "modulo_id": "DW3-U02-A02",
       "titulo": "Mapeamento de Atributos, Chaves e Relacionamentos no ORM",
-      "unidade": "Unidade II: Framework ORM, Persistência & PocketBase BaaS (20h)",
+      "unidade": "Unidade II: Framework ORM, Persistência & Backend Low-Code (PocketBase)",
+      "unidadeId": "U2",
       "carga_horaria": "2h",
       "modalidade": "Síncrono",
+      "competencias": [
+        "Definir chaves primárias (PK), chaves estrangeiras (FK) e restrições de unicidade (UNIQUE)",
+        "Modelar relacionamentos 1:1, 1:N e N:N entre Cursos, Turmas, Alunos e Matrículas"
+      ],
       "arquivoHtml": "DW3-U02-A02.html"
     },
     {
       "modulo_id": "DW3-U02-A03",
       "titulo": "Modelagem e Geração Automática de Migrações (Migrations)",
-      "unidade": "Unidade II: Framework ORM, Persistência & PocketBase BaaS (20h)",
+      "unidade": "Unidade II: Framework ORM, Persistência & Backend Low-Code (PocketBase)",
+      "unidadeId": "U2",
       "carga_horaria": "2h",
       "modalidade": "Assíncrono",
+      "competencias": [
+        "Versionar a evolução estrutural do banco de dados usando scripts de Migration (up e down)",
+        "Automatizar a carga inicial de dados de teste (Database Seeding) com Node.js e IA"
+      ],
       "arquivoHtml": "DW3-U02-A03.html"
     },
     {
       "modulo_id": "DW3-U02-A04",
       "titulo": "Automação de Scripts de Banco de Dados e Introdução ao BaaS com PocketBase",
-      "unidade": "Unidade II: Framework ORM, Persistência & PocketBase BaaS (20h)",
+      "unidade": "Unidade II: Framework ORM, Persistência & Backend Low-Code (PocketBase)",
+      "unidadeId": "U2",
       "carga_horaria": "4h",
       "modalidade": "Assíncrono",
+      "competencias": [
+        "Compreender a arquitetura do PocketBase (SQLite embutido, Collections, Auth e Realtime SSE)",
+        "Integrar aplicações Node.js e JavaScript Vanilla ao PocketBase via SDK oficial e REST API"
+      ],
       "arquivoHtml": "DW3-U02-A04.html"
     },
     {
       "modulo_id": "DW3-U02-A05",
       "titulo": "Laboratório Prático: Integração Back-end Node.js + ORM/PocketBase + Banco Relacional (1ª Avaliação)",
-      "unidade": "Unidade II: Framework ORM, Persistência & PocketBase BaaS (20h)",
+      "unidade": "Unidade II: Framework ORM, Persistência & Backend Low-Code (PocketBase)",
+      "unidadeId": "U2",
       "carga_horaria": "4h",
       "modalidade": "Presencial",
+      "competencias": [
+        "Construir uma camada híbrida onde o Node.js orquestra regras de negócio complexas e persiste dados no PocketBase",
+        "Realizar a 1ª Atividade Avaliativa Prática Presencial integrando validação, cálculo acadêmico ROD/IFCE e persistência"
+      ],
       "arquivoHtml": "DW3-U02-A05.html"
     },
     {
       "modulo_id": "DW3-U02-A06",
       "titulo": "Consultas Avançadas, Joins/Expand e Performance no ORM e PocketBase auxiliados por IA",
-      "unidade": "Unidade II: Framework ORM, Persistência & PocketBase BaaS (20h)",
+      "unidade": "Unidade II: Framework ORM, Persistência & Backend Low-Code (PocketBase)",
+      "unidadeId": "U2",
       "carga_horaria": "2h",
       "modalidade": "Síncrono",
+      "competencias": [
+        "Diagnosticar e eliminar o problema de performance de queries N+1 em ORMs e APIs",
+        "Utilizar o parâmetro expand e filtros relacionais avançados no PocketBase"
+      ],
       "arquivoHtml": "DW3-U02-A06.html"
     },
     {
       "modulo_id": "DW3-U02-A07",
       "titulo": "Atividade de Fixação: Mapeamento de Tabelas Complexas e API Rules no PocketBase",
-      "unidade": "Unidade II: Framework ORM, Persistência & PocketBase BaaS (20h)",
+      "unidade": "Unidade II: Framework ORM, Persistência & Backend Low-Code (PocketBase)",
+      "unidadeId": "U2",
       "carga_horaria": "2h",
       "modalidade": "Assíncrono",
+      "competencias": [
+        "Definir políticas de controle de acesso baseadas em linha (Row-Level Security / API Rules) no PocketBase",
+        "Validar permissões de leitura e escrita entre perfis de Discente, Docente e Coordenador"
+      ],
       "arquivoHtml": "DW3-U02-A07.html"
     },
     {
       "modulo_id": "DW3-U03-A01",
       "titulo": "Do JavaScript Vanilla ao React: Componentes Visuais, Reatividade e Ciclo de Vida",
-      "unidade": "Unidade III: Front-end (JS Vanilla & React), Headless CMS & No-Code UI (16h)",
+      "unidade": "Unidade III: Framework Front-end (JS Vanilla & React), Headless CMS & No-Code UI",
+      "unidadeId": "U3",
       "carga_horaria": "4h",
       "modalidade": "Assíncrono",
+      "competencias": [
+        "Compreender a evolução da manipulação imperativa do DOM (JS Vanilla) para a UI declarativa em React",
+        "Criar componentes funcionais reutilizáveis utilizando JSX, Props e renderização condicional"
+      ],
       "arquivoHtml": "DW3-U03-A01.html"
     },
     {
       "modulo_id": "DW3-U03-A02",
       "titulo": "Soluções de Gerenciamento de Conteúdo (PocketBase Headless CMS) e Prototipagem No-Code (v0 / Figma)",
-      "unidade": "Unidade III: Front-end (JS Vanilla & React), Headless CMS & No-Code UI (16h)",
+      "unidade": "Unidade III: Framework Front-end (JS Vanilla & React), Headless CMS & No-Code UI",
+      "unidadeId": "U3",
       "carga_horaria": "4h",
       "modalidade": "Assíncrono",
+      "competencias": [
+        "Utilizar o PocketBase como Headless CMS para gerenciar avisos, editais e conteúdos dinâmicos do portal",
+        "Acelerar a criação de interfaces em React utilizando geradores de UI por IA (v0 / Figma-to-Code)"
+      ],
       "arquivoHtml": "DW3-U03-A02.html"
     },
     {
       "modulo_id": "DW3-U03-A03",
       "titulo": "Integração do Front-end React com APIs RESTful e Gerenciamento de Estado (useState / useEffect)",
-      "unidade": "Unidade III: Front-end (JS Vanilla & React), Headless CMS & No-Code UI (16h)",
+      "unidade": "Unidade III: Framework Front-end (JS Vanilla & React), Headless CMS & No-Code UI",
+      "unidadeId": "U3",
       "carga_horaria": "2h",
       "modalidade": "Síncrono",
+      "competencias": [
+        "Gerenciar estado local reativo e efeitos colaterais no React utilizando useState e useEffect",
+        "Modelar estados explícitos de interface (loading, data, error) durante chamadas a APIs REST"
+      ],
       "arquivoHtml": "DW3-U03-A03.html"
     },
     {
       "modulo_id": "DW3-U03-A04",
       "titulo": "Requisições Assíncronas (fetch / SDK pocketbase) e Manipulação de Estado Reativo",
-      "unidade": "Unidade III: Front-end (JS Vanilla & React), Headless CMS & No-Code UI (16h)",
+      "unidade": "Unidade III: Framework Front-end (JS Vanilla & React), Headless CMS & No-Code UI",
+      "unidadeId": "U3",
       "carga_horaria": "2h",
       "modalidade": "Assíncrono",
+      "competencias": [
+        "Executar chamadas HTTP assíncronas (GET, POST, DELETE) com Fetch API nativa e SDK do PocketBase",
+        "Implementar formulários controlados em React com validação instantânea e subscrição Realtime"
+      ],
       "arquivoHtml": "DW3-U03-A04.html"
     },
     {
       "modulo_id": "DW3-U03-A05",
       "titulo": "Laboratório Prático: Consumo de Dados e Renderização Dinâmica na Interface React",
-      "unidade": "Unidade III: Front-end (JS Vanilla & React), Headless CMS & No-Code UI (16h)",
+      "unidade": "Unidade III: Framework Front-end (JS Vanilla & React), Headless CMS & No-Code UI",
+      "unidadeId": "U3",
       "carga_horaria": "4h",
       "modalidade": "Presencial",
+      "competencias": [
+        "Construir um Dashboard Acadêmico interativo em React consumindo a API Node.js e o PocketBase",
+        "Implementar busca em tempo real, indicadores estatísticos e feedback visual de ações do usuário"
+      ],
       "arquivoHtml": "DW3-U03-A05.html"
     },
     {
       "modulo_id": "DW3-U04-A01",
       "titulo": "Planejamento de Projeto: Escopo e Levantamento de Requisitos com SDD",
-      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem (24h)",
+      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem",
+      "unidadeId": "U4",
       "carga_horaria": "2h",
       "modalidade": "Síncrono",
+      "competencias": [
+        "Especificar Requisitos Funcionais (RF), Requisitos Não-Funcionais (RNF) e Histórias de Usuário",
+        "Redigir o documento de especificação técnica (project.spec.md) para guiar o Vibe Coding Full-Stack"
+      ],
       "arquivoHtml": "DW3-U04-A01.html"
     },
     {
       "modulo_id": "DW3-U04-A02",
       "titulo": "Modelagem de Interface (UI/UX) e Fluxos de Navegação em React",
-      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem (24h)",
+      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem",
+      "unidadeId": "U4",
       "carga_horaria": "2h",
       "modalidade": "Assíncrono",
+      "competencias": [
+        "Projetar fluxos de navegação SPA (Single Page Application) e rotas protegidas em React",
+        "Aplicar heurísticas de usabilidade (Nielsen) e acessibilidade Web (WCAG) em componentes gerados por IA"
+      ],
       "arquivoHtml": "DW3-U04-A02.html"
     },
     {
       "modulo_id": "DW3-U04-A03",
       "titulo": "Camada de Persistência no PocketBase/Node.js, Autenticação e Segurança da Informação",
-      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem (24h)",
+      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem",
+      "unidadeId": "U4",
       "carga_horaria": "4h",
       "modalidade": "Assíncrono",
+      "competencias": [
+        "Implementar autenticação baseada em JWT entre React, Node.js e PocketBase (pb.collection('users').authWithPassword)",
+        "Proteger a aplicação contra vulnerabilidades OWASP Top 10 (XSS, Broken Access Control, Injection e CORS)"
+      ],
       "arquivoHtml": "DW3-U04-A03.html"
     },
     {
       "modulo_id": "DW3-U04-A04",
       "titulo": "Padrões Avançados de Arquitetura Full-Stack e Integração de Sistemas",
-      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem (24h)",
+      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem",
+      "unidadeId": "U4",
       "carga_horaria": "1h",
       "modalidade": "Síncrono",
+      "competencias": [
+        "Orquestrar fluxos completos entre React, API Node.js e PocketBase usando o padrão BFF (Backend for Frontend)",
+        "Implementar cálculo de Exame Presencial Final (EFP) e consolidação de diário de classe"
+      ],
       "arquivoHtml": "DW3-U04-A04.html"
     },
     {
       "modulo_id": "DW3-U04-A05",
       "titulo": "Codificação Supervisionada do Projeto Final",
-      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem (24h)",
+      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem",
+      "unidadeId": "U4",
       "carga_horaria": "2h",
       "modalidade": "Assíncrono",
+      "competencias": [
+        "Desenvolver iterativamente as funcionalidades Full-Stack mantendo histórico Git limpo com Conventional Commits",
+        "Integrar variáveis de ambiente (.env) e scripts de inicialização unificados entre front-end e back-end"
+      ],
       "arquivoHtml": "DW3-U04-A05.html"
     },
     {
       "modulo_id": "DW3-U04-A06",
       "titulo": "Testes Automatizados Gerados por IA (node:test) e Estratégias de Deploy (Docker/Vercel/Render/Fly.io)",
-      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem (24h)",
+      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem",
+      "unidadeId": "U4",
       "carga_horaria": "4h",
       "modalidade": "Assíncrono",
+      "competencias": [
+        "Gerar e executar suítes de testes automatizados nativos no Node.js (node:test e node:assert)",
+        "Empacotar a aplicação Node.js + PocketBase + React em containers Docker prontos para nuvem"
+      ],
       "arquivoHtml": "DW3-U04-A06.html"
     },
     {
       "modulo_id": "DW3-U04-A07",
       "titulo": "Laboratório Prático: Publicação Prática (Deploy) e Testes de Carga Finais",
-      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem (24h)",
+      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem",
+      "unidadeId": "U4",
       "carga_horaria": "4h",
       "modalidade": "Presencial",
+      "competencias": [
+        "Publicar a aplicação completa em ambiente de produção e configurar variáveis de ambiente seguras",
+        "Implementar endpoints de Healthcheck e executar testes de carga e latência concorrentes"
+      ],
       "arquivoHtml": "DW3-U04-A07.html"
     },
     {
       "modulo_id": "DW3-U04-A08",
       "titulo": "Code Review, Análise de Performance e Apresentação de Projetos",
-      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem (24h)",
+      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem",
+      "unidadeId": "U4",
       "carga_horaria": "1h",
       "modalidade": "Síncrono",
+      "competencias": [
+        "Conduzir revisão técnica de código (Code Review) avaliando legibilidade, segurança e arquitetura",
+        "Apresentar e defender as decisões técnicas do projeto Full-Stack perante a banca docente"
+      ],
       "arquivoHtml": "DW3-U04-A08.html"
     },
     {
       "modulo_id": "DW3-U04-A09",
       "titulo": "Envio Final do Repositório do Projeto no AVA Moodle (2ª Atividade Avaliativa - Projeto Final)",
-      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem (24h)",
+      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem",
+      "unidadeId": "U4",
       "carga_horaria": "2h",
       "modalidade": "Assíncrono",
+      "competencias": [
+        "Documentar o repositório final de produção com README técnico, instruções de setup e diagrama de arquitetura",
+        "Submeter o pacote completo da 2ª Atividade Avaliativa no AVA Moodle do IFCE Campus Baturité"
+      ],
       "arquivoHtml": "DW3-U04-A09.html"
     },
     {
       "modulo_id": "DW3-U04-A10",
       "titulo": "Fechamento de Diário de Classe e Orientações para Exame Final",
-      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem (24h)",
+      "unidade": "Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem",
+      "unidadeId": "U4",
       "carga_horaria": "2h",
       "modalidade": "Assíncrono",
+      "competencias": [
+        "Consolidar os conhecimentos das 4 Unidades Curriculares (Node.js, PocketBase, JS Vanilla e React)",
+        "Calcular a nota necessária no Exame Presencial Final (EFP) segundo as regras do ROD/IFCE"
+      ],
       "arquivoHtml": "DW3-U04-A10.html"
     }
   ]

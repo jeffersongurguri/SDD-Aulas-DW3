@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 10: Fechamento de Diário de Classe e Orientações para Exame Final</h1>
+      <h1 class="lesson-main-title">Aula 10: Fechamento de Diário de Classe e Orientações para Exame Final</h1>
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Encerramento e Consolidação DWIII" loading="lazy" /><figcaption>Banner Encerramento e Consolidação DWIII</figcaption></figure>
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Encerramento e Consolidação DWIII" /><figcaption>Banner Encerramento e Consolidação DWIII</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,7 +124,7 @@ Ao concluir esta última aula da disciplina <strong>Desenvolvimento Web III (UC1
 <li class="task-item">✅ <strong>Compreender</strong> o fechamento do diário de classe conforme o Regulamento da Organização Didática (ROD) do IFCE.</li>
 <li class="task-item">✅ <strong>Simular</strong> a nota mínima necessária no Exame Presencial Final ($EFP$), caso sua Média Semestral Parcial ($X_S$) tenha ficado entre $3,0$ e $5,9$.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -116,18 +139,18 @@ Ao longo de 28 aulas (16h presenciais, 14h síncronas e 50h assíncronas), você
 Segundo o ROD do IFCE, se $3,0 \le X_S &lt; 6,0$ e a frequência for $\ge 75\%$, o estudante realiza o $EFP$ precisando atingir média final $X_F = \frac{X_S + EFP}{2} \ge 5,0$. Portanto, a nota mínima necessária no exame é:
 $$EFP_{\text{mín}} = 10,0 - X_S$$
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt para Simulador de Fechamento de Diário do Aluno</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Escreva uma função simularFechamentoSemestreIFCE({ notaAD, notaAP, frequencia, notaEFP }) em JavaScript que calcule toda a trajetória acadêmica do estudante segundo o ROD/IFCE, informando inclusive quanto ele precisa tirar no EFP caso fique em exame.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Escreva uma função simularFechamentoSemestreIFCE({ notaAD, notaAP, frequencia, notaEFP }) em JavaScript que calcule toda a trajetória acadêmica do estudante segundo o ROD/IFCE, informando inclusive quanto ele precisa tirar no EFP caso fique em exame.</code></pre>
 
 <h3>Passo 2: Simulador Completo do Diário Acadêmico IFCE</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Fechamento Completo ROD/IFCE)
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Fechamento Completo ROD/IFCE)
 export function simularFechamentoSemestreIFCE({ notaAD, notaAP, frequencia, notaEFP = null }) {
-  const mediaXs = Number(((2 <em> Number(notaAD) + 3 </em> Number(notaAP)) / 5).toFixed(2));
+  const mediaXs = Number(((2 * Number(notaAD) + 3 * Number(notaAP)) / 5).toFixed(2));
 
   if (Number(frequencia) &lt; 75) {
     return { mediaXs, situacao: 'REPROVADO_POR_FALTA', notaMinimaEFP: null, mediaXf: mediaXs };

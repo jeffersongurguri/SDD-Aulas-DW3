@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 09: Envio Final do Repositório do Projeto no AVA Moodle (2ª Atividade Avaliativa)</h1>
+      <h1 class="lesson-main-title">Aula 09: Envio Final do Repositório do Projeto no AVA Moodle (2ª Atividade Avaliativa)</h1>
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Pipeline de Entrega Final" loading="lazy" /><figcaption>Diagrama Pipeline de Entrega Final</figcaption></figure>
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Pipeline de Entrega Final" /><figcaption>Diagrama Pipeline de Entrega Final</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,27 +124,27 @@ Ao concluir esta atividade avaliativa assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Executar</strong> o checklist final de conformidade antes da submissão no AVA Moodle.</li>
 <li class="task-item">✅ <strong>Realizar</strong> o envio oficial do link do repositório GitHub/GitLab e da URL de deploy.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Anatomia de uma Entrega de Software Profissional</h3>
 Um projeto sem documentação clara não pode ser auditado nem mantido. Para a <strong>2ª Atividade Avaliativa (Projeto Final)</strong> no Moodle do IFCE <em>Campus</em> Baturité, o repositório deve conter obrigatoriamente:
-1. <strong><code class="inline-code">README.md</code> Completo</strong>: Descrição do projeto, stack tecnológica (<code class="inline-code">JS Vanilla</code>, <code class="inline-code">Node.js</code>, <code class="inline-code">PocketBase</code>, <code class="inline-code">React</code>), passo a passo para rodar localmente e link do ambiente em nuvem.
-2. <strong>Arquivo <code class="inline-code">.env.example</code></strong>: Documentando todas as variáveis de ambiente necessárias (sem expor segredos reais!).
-3. <strong>Exportação do Schema do PocketBase (<code class="inline-code">pb_schema.json</code> ou <code class="inline-code">pb_migrations/</code>)</strong>: Permitindo que o professor recrie as coleções e <em>API Rules</em> com um único comando.
-4. <strong>Suíte de Testes Automatizados (<code class="inline-code">npm test</code>)</strong>: Executando sem erros.
+<li class="num-item"><span class="num-badge">1.</span> <strong><code class="inline-code">README.md</code> Completo</strong>: Descrição do projeto, stack tecnológica (<code class="inline-code">JS Vanilla</code>, <code class="inline-code">Node.js</code>, <code class="inline-code">PocketBase</code>, <code class="inline-code">React</code>), passo a passo para rodar localmente e link do ambiente em nuvem.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>Arquivo <code class="inline-code">.env.example</code></strong>: Documentando todas as variáveis de ambiente necessárias (sem expor segredos reais!).</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Exportação do Schema do PocketBase (<code class="inline-code">pb_schema.json</code> ou <code class="inline-code">pb_migrations/</code>)</strong>: Permitindo que o professor recrie as coleções e <em>API Rules</em> com um único comando.</li>
+<li class="num-item"><span class="num-badge">4.</span> <strong>Suíte de Testes Automatizados (<code class="inline-code">npm test</code>)</strong>: Executando sem erros.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt para Verificador de Entrega Final no Moodle</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere uma função verificarChecklistEntregaMoodle(entrega) em JavaScript que valide se o pacote de submissão do aluno possui urlRepositorioGit, urlDeployNuvem, possuiEnvExample, possuiSchemaPocketBase e testesPassando.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere uma função verificarChecklistEntregaMoodle(entrega) em JavaScript que valide se o pacote de submissão do aluno possui urlRepositorioGit, urlDeployNuvem, possuiEnvExample, possuiSchemaPocketBase e testesPassando.</code></pre>
 
 <h3>Passo 2: Validador de Submissão do Projeto Final</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/projeto/checklistEntregaMoodle.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/projeto/checklistEntregaMoodle.js
 export function verificarChecklistEntregaMoodle(entrega) {
   const pendencias = [];
   if (!entrega?.urlRepositorioGit || !/^https?:\/\/(github|gitlab)\.com\/.+/.test(entrega.urlRepositorioGit)) {

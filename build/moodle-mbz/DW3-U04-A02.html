@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 02: Modelagem de Interface (UI/UX) e Fluxos de Navegação em React</h1>
+      <h1 class="lesson-main-title">Aula 02: Modelagem de Interface (UI/UX) e Fluxos de Navegação em React</h1>
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Full-Stack UI/UX e Deploy" loading="lazy" /><figcaption>Banner Full-Stack UI/UX e Deploy</figcaption></figure>
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Full-Stack UI/UX e Deploy" /><figcaption>Banner Full-Stack UI/UX e Deploy</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,7 +124,7 @@ Ao concluir esta aula assíncrona, você será capaz de:
 <li class="task-item">✅ <strong>Implementar</strong> proteção de rotas no cliente (<em>Protected Routes</em>), redirecionando usuários não autenticados para a tela de login.</li>
 <li class="task-item">✅ <strong>Avaliar</strong> a interface segundo as heurísticas de Nielsen (visibilidade do status do sistema, prevenção de erros e contraste visual).</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -109,20 +132,20 @@ Ao concluir esta aula assíncrona, você será capaz de:
 Em uma aplicação <strong>React</strong> integrada ao <strong>PocketBase</strong>, páginas administrativas (como lançamento de notas ou edição de editais) só devem ser renderizadas se houver um token de autenticação válido (<code class="inline-code">pb.authStore.isValid</code>). Caso contrário, o roteador intercepta a navegação e redireciona o usuário para <code class="inline-code">/login</code>.
 
 <h3>2.2 Heurísticas de UI/UX Essenciais no Projeto Final</h3>
-1. <strong>Visibilidade do Status do Sistema</strong>: Botões de submissão devem exibir <code class="inline-code">"Salvando..."</code> e ficar desabilitados (<code class="inline-code">disabled</code>) durante requisições ao Node.js/PocketBase para evitar cliques duplos.
-2. <strong>Prevenção de Erros</strong>: Confirmação explícita antes de ações destrutivas (<code class="inline-code">DELETE</code>).
-3. <strong>Acessibilidade Semântica</strong>: Uso de tags <code class="inline-code">&lt;main&gt;</code>, <code class="inline-code">&lt;nav&gt;</code>, <code class="inline-code">&lt;label htmlFor="..."&gt;</code> e atributos <code class="inline-code">aria-live</code> para mensagens de erro.
+<li class="num-item"><span class="num-badge">1.</span> <strong>Visibilidade do Status do Sistema</strong>: Botões de submissão devem exibir <code class="inline-code">"Salvando..."</code> e ficar desabilitados (<code class="inline-code">disabled</code>) durante requisições ao Node.js/PocketBase para evitar cliques duplos.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>Prevenção de Erros</strong>: Confirmação explícita antes de ações destrutivas (<code class="inline-code">DELETE</code>).</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Acessibilidade Semântica</strong>: Uso de tags <code class="inline-code">&lt;main&gt;</code>, <code class="inline-code">&lt;nav&gt;</code>, <code class="inline-code">&lt;label htmlFor="..."&gt;</code> e atributos <code class="inline-code">aria-live</code> para mensagens de erro.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação de Guarda de Rotas React</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Escreva uma função pura de guarda de navegação resolverRotaNavegacao(rotaDestino, usuarioLogado) em JavaScript/React que proteja rotas administrativas (/admin, /lancamento-notas), exigindo autenticação e perfil adequado, ou redirecionando para /login ou /acesso-negado.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Escreva uma função pura de guarda de navegação resolverRotaNavegacao(rotaDestino, usuarioLogado) em JavaScript/React que proteja rotas administrativas (/admin, /lancamento-notas), exigindo autenticação e perfil adequado, ou redirecionando para /login ou /acesso-negado.</code></pre>
 
 <h3>Passo 2: Implementação de Guarda de Rotas (<code class="inline-code">RouteGuard</code>)</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/frontend/routeGuard.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/frontend/routeGuard.js
 const ROTAS_PUBLICAS = ['/login', '/catalogo-cursos', '/editais-publicos'];
 const ROTAS_DOCENTE = ['/lancamento-notas', '/fechamento-diario'];
 

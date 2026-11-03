@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade I: Framework Back-end, Padrões de Software & Vibe Coding</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 04: Estudo Dirigido: Análise Crítica e Auditoria de Código Node.js Gerado por IA</h1>
+      <h1 class="lesson-main-title">Aula 04: Estudo Dirigido: Análise Crítica e Auditoria de Código Node.js Gerado por IA</h1>
 
-<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-INFO01.png" alt="Infográfico Auditoria de Código" loading="lazy" /><figcaption>Infográfico Auditoria de Código</figcaption></figure>
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-INFO01.png" alt="Infográfico Auditoria de Código" /><figcaption>Infográfico Auditoria de Código</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,25 +124,25 @@ Ao concluir este estudo dirigido assíncrono, você será capaz de:
 <li class="task-item">✅ <strong>Refatorar</strong> trechos defeituosos aplicando programação defensiva em JavaScript Vanilla.</li>
 <li class="task-item">✅ <strong>Aplicar</strong> um checklist de auditoria SDD antes de aceitar sugestões de assistentes de código.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Por que Auditar Código Gerado por IA?</h3>
 No paradigma de <strong>Vibe Coding</strong>, a velocidade de geração aumenta exponencialmente, mas a responsabilidade técnica permanece 100% humana. Assistentes de IA treinados em repositórios públicos frequentemente reproduzem práticas obsoletas ou inseguras em Node.js:
-1. <strong>Bloqueio do Event Loop</strong>: Uso de <code class="inline-code">fs.readFileSync</code> dentro de rotas HTTP, travando todas as requisições concorrentes.
-2. <strong>Alucinação de Pacotes (<em>Package Hallucination</em>)</strong>: Sugestão de bibliotecas inexistentes ou depreciadas no <code class="inline-code">npm</code>.
-3. <strong>Ausência de Sanitização e Tipagem</strong>: Confiar cegamente em <code class="inline-code">req.body</code> sem validar tipos primitivos (<code class="inline-code">typeof</code>, expressões regulares).
-4. <strong>Exposição de Stack Trace</strong>: Retornar <code class="inline-code">err.stack</code> diretamente ao cliente em produção.
+<li class="num-item"><span class="num-badge">1.</span> <strong>Bloqueio do Event Loop</strong>: Uso de <code class="inline-code">fs.readFileSync</code> dentro de rotas HTTP, travando todas as requisições concorrentes.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>Alucinação de Pacotes (<em>Package Hallucination</em>)</strong>: Sugestão de bibliotecas inexistentes ou depreciadas no <code class="inline-code">npm</code>.</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Ausência de Sanitização e Tipagem</strong>: Confiar cegamente em <code class="inline-code">req.body</code> sem validar tipos primitivos (<code class="inline-code">typeof</code>, expressões regulares).</li>
+<li class="num-item"><span class="num-badge">4.</span> <strong>Exposição de Stack Trace</strong>: Retornar <code class="inline-code">err.stack</code> diretamente ao cliente em produção.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Cenário de Auditoria (Código Vulnerável vs. Código Auditado)</h3>
 Analise o código problemático abaixo (frequentemente sugerido por prompts vagos) e compare-o com a versão refatorada:
 
-<pre class="code-block" data-lang="javascript"><code>// ❌ CÓDIGO VULNERÁVEL (NÃO UTILIZAR EM PRODUÇÃO)
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// ❌ CÓDIGO VULNERÁVEL (NÃO UTILIZAR EM PRODUÇÃO)
 import fs from 'node:fs';
 
 export function rotaInseguraBuscarAluno(req, res) {
@@ -131,7 +154,7 @@ export function rotaInseguraBuscarAluno(req, res) {
   res.end(JSON.stringify(alunos.filter(filtro)));
 }</code></pre>
 
-<pre class="code-block" data-lang="javascript"><code>// ✅ CÓDIGO AUDITADO E REFATORADO (PADRÃO SDD DWIII)
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// ✅ CÓDIGO AUDITADO E REFATORADO (PADRÃO SDD DWIII)
 import fs from 'node:fs/promises';
 
 export async function rotaSeguraBuscarAluno(termoMatricula) {
@@ -153,9 +176,9 @@ export async function rotaSeguraBuscarAluno(termoMatricula) {
 
 <h3>Passo 2: Checklist de Validação do Estudo Dirigido</h3>
 Sempre execute os 3 questionamentos de auditoria antes de fazer <em>commit</em>:
-1. Todas as operações de I/O utilizam <code class="inline-code">async/await</code> ou <code class="inline-code">Promises</code>?
-2. Todos os dados vindos do usuário passam por validação explícita de tipo e formato?
-3. As dependências importadas são nativas do Node.js (<code class="inline-code">node:*</code>) ou estritamente homologadas no <code class="inline-code">package.json</code>?
+<li class="num-item"><span class="num-badge">1.</span> Todas as operações de I/O utilizam <code class="inline-code">async/await</code> ou <code class="inline-code">Promises</code>?</li>
+<li class="num-item"><span class="num-badge">2.</span> Todos os dados vindos do usuário passam por validação explícita de tipo e formato?</li>
+<li class="num-item"><span class="num-badge">3.</span> As dependências importadas são nativas do Node.js (<code class="inline-code">node:*</code>) ou estritamente homologadas no <code class="inline-code">package.json</code>?</li>
     </main>
   </div>
 </body>

@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade I: Framework Back-end, Padrões de Software & Vibe Coding</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 03: Padrões de Arquitetura Back-end (MVC/Controllers) e Scaffolding com Vibe Coding</h1>
+      <h1 class="lesson-main-title">Aula 03: Padrões de Arquitetura Back-end (MVC/Controllers) e Scaffolding com Vibe Coding</h1>
 
-<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-INFO01.png" alt="Infográfico Código Manual vs Vibe Coding" loading="lazy" /><figcaption>Infográfico Código Manual vs Vibe Coding</figcaption></figure>
+<figure class="visual-asset"><img src="./u1-backend-vibe/assets/DW3-U01-INFO01.png" alt="Infográfico Código Manual vs Vibe Coding" /><figcaption>Infográfico Código Manual vs Vibe Coding</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,29 +124,29 @@ Ao concluir este encontro síncrono, você será capaz de:
 <li class="task-item">✅ <strong>Elaborar</strong> especificações de <em>Scaffolding</em> para assistentes de IA gerarem controladores padronizados sem misturar regras de negócio com manipulação de HTTP.</li>
 <li class="task-item">✅ <strong>Refatorar</strong> um código monolítico em camadas modulares em JavaScript ES6+.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 O Padrão MVC e Arquitetura em Camadas para APIs REST</h3>
 No desenvolvimento tradicional com renderização no servidor, o padrão <strong>MVC (Model-View-Controller)</strong> dividia a aplicação em Dados (<em>Model</em>), Tela HTML (<em>View</em>) e Controle (<em>Controller</em>). Em arquiteturas modernas onde a <em>View</em> é um front-end desacoplado em <strong>React</strong> ou <strong>JavaScript Vanilla</strong>, adaptamos o MVC no Node.js para três camadas essenciais:
-1. <strong>Controller (Controlador HTTP)</strong>: Recebe <code class="inline-code">req</code> e <code class="inline-code">res</code>, extrai parâmetros, aciona o <em>Service</em> e devolve o status HTTP adequado.
-2. <strong>Service (Regra de Negócio)</strong>: Aplica validações acadêmicas (ex.: verificar se o aluno já possui matrícula ativa) de forma independente do protocolo HTTP.
-3. <strong>Repository / Model (Persistência)</strong>: Comunica-se com o banco de dados em memória, ORM ou <strong>PocketBase</strong>.
+<li class="num-item"><span class="num-badge">1.</span> <strong>Controller (Controlador HTTP)</strong>: Recebe <code class="inline-code">req</code> e <code class="inline-code">res</code>, extrai parâmetros, aciona o <em>Service</em> e devolve o status HTTP adequado.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>Service (Regra de Negócio)</strong>: Aplica validações acadêmicas (ex.: verificar se o aluno já possui matrícula ativa) de forma independente do protocolo HTTP.</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Repository / Model (Persistência)</strong>: Comunica-se com o banco de dados em memória, ORM ou <strong>PocketBase</strong>.</li>
 
 <h3>2.2 Scaffolding Acelerado com Vibe Coding</h3>
 Quando pedimos a uma IA apenas <em>"crie uma API de alunos"</em>, ela tende a gerar um único arquivo gigante difícil de manter. No <strong>Vibe Coding orientado a especificação</strong>, instruímos explicitamente a arquitetura em camadas desejada.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Scaffolding em Camadas</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Gere um Service (AlunoService) e um Controller (AlunoController) em JavaScript ES6+ para Node.js seguindo o princípio da responsabilidade única. O AlunoService deve validar matrícula de 10 dígitos e nome mínimo de 3 letras, impedindo duplicidades. O AlunoController deve apenas traduzir chamadas HTTP em invocações ao Service.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Gere um Service (AlunoService) e um Controller (AlunoController) em JavaScript ES6+ para Node.js seguindo o princípio da responsabilidade única. O AlunoService deve validar matrícula de 10 dígitos e nome mínimo de 3 letras, impedindo duplicidades. O AlunoController deve apenas traduzir chamadas HTTP em invocações ao Service.</code></pre>
 
 <h3>Passo 2: Implementação Desacoplada (<code class="inline-code">Service</code> + <code class="inline-code">Controller</code>)</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/services/AlunoService.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/services/AlunoService.js
 export class AlunoService {
   constructor() {
     this.repositorio = new Map();

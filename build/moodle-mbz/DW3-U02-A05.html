@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade II: Framework ORM, Persistência & Backend Low-Code / BaaS</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 05: Laboratório Prático: Integração Back-end Node.js + ORM/PocketBase (1ª Avaliação Prática)</h1>
+      <h1 class="lesson-main-title">Aula 05: Laboratório Prático: Integração Back-end Node.js + ORM/PocketBase (1ª Avaliação Prática)</h1>
 
-<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama Arquitetura PocketBase e Node.js" loading="lazy" /><figcaption>Diagrama Arquitetura PocketBase e Node.js</figcaption></figure>
+<figure class="visual-asset"><img src="./u2-orm-lowcode/assets/DW3-U02-DIAG01.png" alt="Diagrama Arquitetura PocketBase e Node.js" /><figcaption>Diagrama Arquitetura PocketBase e Node.js</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,7 +124,7 @@ Ao concluir este laboratório presencial avaliativo (AP1), você será capaz de:
 <li class="task-item">✅ <strong>Implementar</strong> a regra oficial de cálculo da Média Semestral Parcial ($X_S = \frac{2 \cdot AD + 3 \cdot AP}{5}$) do ROD/IFCE antes de gravar o boletim do aluno no banco.</li>
 <li class="task-item">✅ <strong>Demonstrar</strong> operações completas de criação, consulta filtrada e atualização de notas com persistência real.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
@@ -110,16 +133,16 @@ Em aplicações reais:
 <li><strong>Operações CRUD diretas</strong> (listar cursos, exibir perfil do aluno) podem ser consumidas diretamente do <strong>PocketBase</strong> pelo front-end <strong>React</strong>, protegidas pelas <em>API Rules</em>.</li>
 <li><strong>Regras de negócio críticas ou integrações externas</strong> (cálculo oficial de médias segundo o ROD do IFCE, emissão de certificados assinados, disparo de e-mails ou geração de relatórios) são processadas pelo servidor <strong>Node.js</strong>, que atua como orquestrador confiável e persiste o resultado no PocketBase.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on — 1ª Avaliação Prática)</h2>
 
 <h3>Passo 1: Especificação do Serviço Avaliativo (ROD/IFCE + PocketBase)</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Implemente em JavaScript ES6+ a função calcularMediaSemestralIFCE(notaAD, notaAP, frequenciaPercentual) seguindo a fórmula oficial Xs = (2<em>AD + 3</em>AP)/5 do ROD/IFCE, determinando a situação ("APROVADO_POR_MEDIA", "EXAME_FINAL_EFP" ou "REPROVADO") e preparando o registro para persistência na coleção "matriculas" do PocketBase.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Implemente em JavaScript ES6+ a função calcularMediaSemestralIFCE(notaAD, notaAP, frequenciaPercentual) seguindo a fórmula oficial Xs = (2*AD + 3*AP)/5 do ROD/IFCE, determinando a situação ("APROVADO_POR_MEDIA", "EXAME_FINAL_EFP" ou "REPROVADO") e preparando o registro para persistência na coleção "matriculas" do PocketBase.</code></pre>
 
 <h3>Passo 2: Implementação da Regra de Negócio Acadêmica e Persistência</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Trecho da AP1)
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/code-samples/u2-pocketbase-orm/pocketbase-client.js (Trecho da AP1)
 export function calcularMediaSemestralIFCE(notaAD, notaAP, frequencia) {
   const ad = Number(notaAD);
   const ap = Number(notaAP);
@@ -132,7 +155,7 @@ export function calcularMediaSemestralIFCE(notaAD, notaAP, frequencia) {
     throw new Error('O percentual de frequência deve estar entre 0 e 100.');
   }
 
-  const mediaXs = Number(((2 <em> ad + 3 </em> ap) / 5).toFixed(2));
+  const mediaXs = Number(((2 * ad + 3 * ap) / 5).toFixed(2));
   let situacao = 'REPROVADO';
 
   if (freq &lt; 75) {
@@ -147,9 +170,9 @@ export function calcularMediaSemestralIFCE(notaAD, notaAP, frequencia) {
 }</code></pre>
 
 <h3>Passo 3: Rubrica de Validação Presencial (AP1)</h3>
-1. Testar aluno com <code class="inline-code">AD = 8.0</code>, <code class="inline-code">AP = 7.0</code>, <code class="inline-code">Frequência = 85%</code> → Deve resultar em <code class="inline-code">mediaXs = 7.4</code> e <code class="inline-code">APROVADO_POR_MEDIA</code>.
-2. Testar aluno com <code class="inline-code">AD = 5.0</code>, <code class="inline-code">AP = 4.0</code>, <code class="inline-code">Frequência = 80%</code> → Deve resultar em <code class="inline-code">mediaXs = 4.4</code> e <code class="inline-code">EXAME_FINAL_EFP</code>.
-3. Testar aluno com <code class="inline-code">AD = 9.0</code>, <code class="inline-code">AP = 9.0</code>, <code class="inline-code">Frequência = 70%</code> → Deve resultar em <code class="inline-code">REPROVADO_POR_FALTA</code>.
+<li class="num-item"><span class="num-badge">1.</span> Testar aluno com <code class="inline-code">AD = 8.0</code>, <code class="inline-code">AP = 7.0</code>, <code class="inline-code">Frequência = 85%</code> → Deve resultar em <code class="inline-code">mediaXs = 7.4</code> e <code class="inline-code">APROVADO_POR_MEDIA</code>.</li>
+<li class="num-item"><span class="num-badge">2.</span> Testar aluno com <code class="inline-code">AD = 5.0</code>, <code class="inline-code">AP = 4.0</code>, <code class="inline-code">Frequência = 80%</code> → Deve resultar em <code class="inline-code">mediaXs = 4.4</code> e <code class="inline-code">EXAME_FINAL_EFP</code>.</li>
+<li class="num-item"><span class="num-badge">3.</span> Testar aluno com <code class="inline-code">AD = 9.0</code>, <code class="inline-code">AP = 9.0</code>, <code class="inline-code">Frequência = 70%</code> → Deve resultar em <code class="inline-code">REPROVADO_POR_FALTA</code>.</li>
     </main>
   </div>
 </body>

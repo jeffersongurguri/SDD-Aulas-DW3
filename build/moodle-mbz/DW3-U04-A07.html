@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 07: Laboratório Prático: Publicação Prática (Deploy) e Testes de Carga Finais</h1>
+      <h1 class="lesson-main-title">Aula 07: Laboratório Prático: Publicação Prática (Deploy) e Testes de Carga Finais</h1>
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Deploy em Produção" loading="lazy" /><figcaption>Diagrama Deploy em Produção</figcaption></figure>
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-DIAG01.png" alt="Diagrama Deploy em Produção" /><figcaption>Diagrama Deploy em Produção</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,23 +124,23 @@ Ao concluir este laboratório presencial de 4 horas, você será capaz de:
 <li class="task-item">✅ <strong>Implementar</strong> uma rota de verificação de integridade (<code class="inline-code">/health</code>) que monitora o tempo de atividade (<em>uptime</em>) e a conexão com o banco.</li>
 <li class="task-item">✅ <strong>Executar</strong> uma bateria de requisições concorrentes (<code class="inline-code">Promise.all</code>) para aferir a latência média (<code class="inline-code">p95</code>) e a estabilidade do servidor.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Observabilidade, <em>Healthchecks</em> e Testes de Carga</h3>
 Plataformas modernas de nuvem (Render, Fly.io, Railway) monitoram periodicamente uma rota de <strong>Healthcheck</strong> (<code class="inline-code">/health</code> ou <code class="inline-code">/api/health</code> no PocketBase) para saber se o container está saudável ou precisa ser reiniciado automaticamente. Além disso, antes de entregar o sistema aos usuários finais, simulamos rajadas de acessos simultâneos para garantir que o Event Loop do Node.js permaneça responsivo.
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt para Simulador de Carga e Healthcheck em Node.js</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Crie em JavaScript ES6+ um avaliador de saúde e carga (executarTesteCargaConcorrente) que dispare N requisições assíncronas simultâneas via Promise.all contra uma função de handler da API, medindo o tempo total, taxa de sucesso e latência média por requisição.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Crie em JavaScript ES6+ um avaliador de saúde e carga (executarTesteCargaConcorrente) que dispare N requisições assíncronas simultâneas via Promise.all contra uma função de handler da API, medindo o tempo total, taxa de sucesso e latência média por requisição.</code></pre>
 
 <h3>Passo 2: Implementação de Healthcheck e Teste de Carga</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/projeto/loadTester.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/projeto/loadTester.js
 import { performance } from 'node:perf_hooks';
 
 export async function executarTesteCargaConcorrente(fnRequisicao, totalRequisicoes = 50) {

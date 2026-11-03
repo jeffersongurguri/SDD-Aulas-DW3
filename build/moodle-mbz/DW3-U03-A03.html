@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade III: Framework Front-end, Headless CMS & No-Code UI</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 03: Integração do Front-end React com APIs RESTful e Gerenciamento de Estado</h1>
+      <h1 class="lesson-main-title">Aula 03: Integração do Front-end React com APIs RESTful e Gerenciamento de Estado</h1>
 
-<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-DIAG01.png" alt="Diagrama Fluxo React e REST Gateway" loading="lazy" /><figcaption>Diagrama Fluxo React e REST Gateway</figcaption></figure>
+<figure class="visual-asset"><img src="./u3-frontend-nocode/assets/DW3-U03-DIAG01.png" alt="Diagrama Fluxo React e REST Gateway" /><figcaption>Diagrama Fluxo React e REST Gateway</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,13 +124,13 @@ Ao concluir esta aula síncrona, você será capaz de:
 <li class="task-item">✅ <strong>Evitar</strong> loops infinitos de renderização compreendendo o array de dependências do <code class="inline-code">useEffect</code>.</li>
 <li class="task-item">✅ <strong>Implementar</strong> a máquina de estados da interface (<code class="inline-code">idle</code> → <code class="inline-code">loading</code> → <code class="inline-code">success</code> | <code class="inline-code">error</code>).</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Hooks Fundamentais no React: <code class="inline-code">useState</code> e <code class="inline-code">useEffect</code></h3>
-1. <strong><code class="inline-code">useState(valorInicial)</code></strong>: Preserva o estado reativo entre renderizações. Ao invocar a função atualizadora (<code class="inline-code">setAlunos(novosAlunos)</code>), o React agenda uma nova renderização da árvore visual.
-2. <strong><code class="inline-code">useEffect(efeito, [dependencias])</code></strong>: Executa efeitos colaterais fora do cálculo puro de renderização (como buscar a lista de discentes na API Node.js/PocketBase assim que o componente é montado na tela).
+<li class="num-item"><span class="num-badge">1.</span> <strong><code class="inline-code">useState(valorInicial)</code></strong>: Preserva o estado reativo entre renderizações. Ao invocar a função atualizadora (<code class="inline-code">setAlunos(novosAlunos)</code>), o React agenda uma nova renderização da árvore visual.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong><code class="inline-code">useEffect(efeito, [dependencias])</code></strong>: Executa efeitos colaterais fora do cálculo puro de renderização (como buscar a lista de discentes na API Node.js/PocketBase assim que o componente é montado na tela).</li>
 
 <h3>2.2 A Tríade de Estado de Rede (<code class="inline-code">dados</code>, <code class="inline-code">carregando</code>, <code class="inline-code">erro</code>)</h3>
 Uma interface profissional nunca deixa o usuário diante de uma tela em branco enquanto a rede responde. Todo componente que consome uma API deve gerenciar três variáveis reativas:
@@ -115,16 +138,16 @@ Uma interface profissional nunca deixa o usuário diante de uma tela em branco e
 <li><code class="inline-code">erro</code> (<code class="inline-code">string | null</code>): Exibe um alerta amigável caso o servidor Node.js ou PocketBase esteja inacessível.</li>
 <li><code class="inline-code">dados</code> (<code class="inline-code">Array</code>): Renderiza a lista ou um aviso de <em>"Nenhum registro encontrado"</em>.</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt de Especificação de Gerenciador de Estado Reativo</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Crie um controlador de estado reativo em JavaScript/React (StoreAlunosReativo) que gerencie o estado { alunos, carregando, erro, filtroCurso }, permitindo buscar dados assíncronos da API e filtrar discentes em tempo real sem mutar o estado original.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Crie um controlador de estado reativo em JavaScript/React (StoreAlunosReativo) que gerencie o estado { alunos, carregando, erro, filtroCurso }, permitindo buscar dados assíncronos da API e filtrar discentes em tempo real sem mutar o estado original.</code></pre>
 
 <h3>Passo 2: Implementação de Gerenciamento de Estado Imutável</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/code-samples/u3-react-frontend/estadoReativo.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/code-samples/u3-react-frontend/estadoReativo.js
 export function criarEstadoInicialAlunos() {
   return {
     alunos: [],

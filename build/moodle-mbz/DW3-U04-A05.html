@@ -57,12 +57,35 @@
     overflow-x: auto;
     color: #e2e8f0;
     font-size: 0.9rem;
+    position: relative;
+  }
+  .code-lang {
+    font-size: 0.7rem;
+    color: var(--accent-indigo);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
   }
   code.inline-code {
     background: rgba(129, 140, 248, 0.15);
     color: #c7d2fe;
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
+  }
+  table.md-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+  }
+  table.md-table th, table.md-table td {
+    border: 1px solid #334155;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+  }
+  table.md-table th {
+    background: #020617;
+    color: var(--accent-emerald);
   }
   figure.visual-asset {
     margin: 1.5rem 0;
@@ -90,9 +113,9 @@
       <p>Unidade IV: Projeto Web Completo, Testes por IA & Deploy na Nuvem</p>
     </header>
     <main class="lesson-card">
-      <h1>Aula 05: Codificação Supervisionada do Projeto Final</h1>
+      <h1 class="lesson-main-title">Aula 05: Codificação Supervisionada do Projeto Final</h1>
 
-<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Projeto Full-Stack" loading="lazy" /><figcaption>Banner Projeto Full-Stack</figcaption></figure>
+<figure class="visual-asset"><img src="./u4-projeto-deploy/assets/DW3-U04-ART01.png" alt="Banner Projeto Full-Stack" /><figcaption>Banner Projeto Full-Stack</figcaption></figure>
 
 <h2>1. Objetivos de Aprendizagem</h2>
 
@@ -101,26 +124,26 @@ Ao concluir esta etapa assíncrona de codificação supervisionada, você será 
 <li class="task-item">✅ <strong>Aplicar</strong> o padrão <em>Conventional Commits</em> (<code class="inline-code">feat:</code>, <code class="inline-code">fix:</code>, <code class="inline-code">test:</code>, <code class="inline-code">docs:</code>) em entregas incrementais.</li>
 <li class="task-item">✅ <strong>Validar</strong> a integração local entre as 3 camadas da aplicação.</li>
 
----
+<hr class="section-divider" />
 
 <h2>2. Fundamentação Teórica (Markdown)</h2>
 
 <h3>2.1 Fluxo de Trabalho Profissional com Git e Vibe Coding Iterativo</h3>
 Durante a codificação do Projeto Final, evite pedir que a IA gere todo o sistema de uma só vez. Trabalhe em fatias verticais pequenas (<em>Vertical Slices</em>):
-1. <strong>Slice 1 (Persistência)</strong>: Crie a coleção no PocketBase e valide pelo painel Admin.
-2. <strong>Slice 2 (Regra de Negócio Node.js)</strong>: Implemente o serviço/endpoint e rode o teste unitário.
-3. <strong>Slice 3 (Componente React)</strong>: Construa a tela consumindo o endpoint e faça um commit semântico (<code class="inline-code">feat(matriculas): adiciona listagem e filtro de alunos no dashboard</code>).
+<li class="num-item"><span class="num-badge">1.</span> <strong>Slice 1 (Persistência)</strong>: Crie a coleção no PocketBase e valide pelo painel Admin.</li>
+<li class="num-item"><span class="num-badge">2.</span> <strong>Slice 2 (Regra de Negócio Node.js)</strong>: Implemente o serviço/endpoint e rode o teste unitário.</li>
+<li class="num-item"><span class="num-badge">3.</span> <strong>Slice 3 (Componente React)</strong>: Construa a tela consumindo o endpoint e faça um commit semântico (<code class="inline-code">feat(matriculas): adiciona listagem e filtro de alunos no dashboard</code>).</li>
 
----
+<hr class="section-divider" />
 
 <h2>3. Atividade Prática Guiada (Hands-on)</h2>
 
 <h3>Passo 1: Prompt para Validador de Padronização de Commits e Variáveis de Ambiente</h3>
-<pre class="code-block" data-lang="text"><code>[SPEC-PROMPT]: Escreva uma função em JavaScript validarCommitConvencional(mensagem) que valide se a mensagem de commit segue a especificação Conventional Commits (feat, fix, docs, test, refactor, chore) exigida na avaliação do Projeto Final.</code></pre>
+<pre class="code-block" data-lang="text"><div class="code-lang">TEXT</div><code>[SPEC-PROMPT]: Escreva uma função em JavaScript validarCommitConvencional(mensagem) que valide se a mensagem de commit segue a especificação Conventional Commits (feat, fix, docs, test, refactor, chore) exigida na avaliação do Projeto Final.</code></pre>
 
 <h3>Passo 2: Validador de Qualidade de Repositório</h3>
 
-<pre class="code-block" data-lang="javascript"><code>// src/projeto/gitQualityValidator.js
+<pre class="code-block" data-lang="javascript"><div class="code-lang">JAVASCRIPT</div><code>// src/projeto/gitQualityValidator.js
 const REGEX_CONVENTIONAL_COMMIT = /^(feat|fix|docs|style|refactor|test|chore)(\([a-z0-9-]+\))?:\s.{5,100}$/;
 
 export function validarCommitConvencional(mensagem) {
